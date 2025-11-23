@@ -620,7 +620,7 @@ globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Soul Orb
 #!define OW1_SYMMETRA_TURRET_HEALTH 30
 # Its actually 1, but 30 i set it to 30 for compensation for only having 3 turrets.
 
-#!define OW1_SYMMETRA_PROJECTOR_DAMAGE 120
+#!define OW1_SYMMETRA_PROJECTOR_DAMAGE 125
 #!define OW1_SYMMETRA_TELEPORTER_MAX_USE 6
 #!define OW1_SYMETRA_BEAM_INCREASE_PS 0.1
 #!define OW1_SYMETRA_BEAM_INCREASE 0.17
