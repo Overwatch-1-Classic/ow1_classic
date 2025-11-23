@@ -62,7 +62,7 @@ rule "[widowmaker/widow_kiss.opy]: fix reload":
     @Condition eventPlayer.getAmmo() == 0
     
     eventPlayer.disallowButton(Button.PRIMARY_FIRE)
-    wait(TICK_DURATION*7)
+    wait(TICK_DURATION*8)
     eventPlayer.setAmmo(0, 0)
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
 
