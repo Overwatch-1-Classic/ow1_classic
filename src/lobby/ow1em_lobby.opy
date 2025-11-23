@@ -6,7 +6,7 @@
 #!define STAGING_CODE "None"
 # !define DISCORD_SHORT_LINK "dsc.gg/runece, discord link deprecated"
 # !define DISCORD_LONG_LINK "discord.gg/vb5r2gfNTQ, discord link deprecated"
-#!define SOURCE_CODE_LINK "https://github.com/arvrianmaybe/ow1_classic"
+#!define SOURCE_CODE_LINK "https://github.com/Overwatch-1-Classic/ow1_classic"
 macro GAMEMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                "\n"\
                                "viper#18545's attempt to accurately recreate ""\n"\
