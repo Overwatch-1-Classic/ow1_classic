@@ -2,7 +2,7 @@
 
 # Environment Variables
 #!define GAMEMODE_VERSION "Internal Build"
-#!define GAMEMODE_NAME "Overwatch 1++"
+#!define GAMEMODE_NAME "Overwatch 1 Classic++"
 #!define GAMDMODE_DESCRIPTION (GAMEMODE_NAME + " " + GAMEMODE_VERSION + "\n" + \
                                "\n" + \
                                "Overwatch 1 Emulator (KHTG0)" + "\n" + \
@@ -35,5 +35,6 @@
 #!define SOURCE_CODE_LINK "github.com/Overwatch-1-Emulator/ow1-emulator"
 
 
-rule "Copyright (c) 2024 Overwatch 1 Emulator. See github.com/Overwatch-1-Emulator/ow1-emulator for license to use this code.":
+rule "Copyright (c) 2025 Overwatch 1 Classic. See https://github.com/arvrianmaybe/classic for license to use this code.":
+    # This code has been forked by Overwatch 1 Emulator, Please also check theres https://github.com/Overwatch-1-Emulator/ow1-emulator
     disableInspector()
