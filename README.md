@@ -1,4 +1,4 @@
-﻿# ow1_classic
+﻿# ow1-classic
 
 This repository contains OverPy source code for building [Overwatch 1 Classic](https://workshop.codes/ow1classic) and [Overwatch 1 Classic++](https://workshop.codes/ow1classic-plus-plus) Workshop gamemode.  
 
