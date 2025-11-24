@@ -2,8 +2,8 @@
 
 #!define GAMEMODE_VERSION "April Fools"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
-#!define GAMEMODE_CODE "YVE2X"
-#!define STAGING_CODE "None"
+#!define GAMEMODE_CODE "550G8"
+#!define STAGING_CODE "550G8"
 # !define DISCORD_SHORT_LINK "dsc.gg/runece, discord link deprecated"
 # !define DISCORD_LONG_LINK "discord.gg/vb5r2gfNTQ, discord link deprecated"
 #!define SOURCE_CODE_LINK "https://github.com/Overwatch-1-Classic/ow1_classic"
