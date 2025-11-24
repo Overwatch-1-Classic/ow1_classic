@@ -10,8 +10,6 @@ def initAshe():
     setUltCost(OW1_ASHE_ULT_COST)
     setBaseDamage(eventPlayer, OW1_ASHE_BOB_DAMAGE/OW2_ASHE_BOB_DAMAGE)
 
-    eventPlayer.setKnockbackDealt(200)
-
     removeSelfHealing()
 
     # eventPlayer.disallowButton(Button.ULTIMATE)
@@ -23,12 +21,3 @@ rule "[ashe/init.opy]: Compensate Ashe global damage reduction":
     @Condition eventAbility in [Button.PRIMARY_FIRE, Button.ABILITY_1, Button.ABILITY_2]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
-
-rule "[ashe/init.opy]: Reduce air control a little bit":
-    @Event playerDealtDamage
-    @Hero ashe
-    @Condition eventAbility == Button.ABILITY_1
-
-    victim.setGravity(90)
-    wait(1)
-    victim.setGravity(100)

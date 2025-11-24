@@ -14,8 +14,6 @@ def initReinhardt():
     setUltCost(OW1_REINHARDT_ULT_COST)
     setBaseDamage(eventPlayer, OW1_REINHARDT_FIRESTRIKE_DAMAGE/OW2_REINHARDT_FIRESTRIKE_DAMAGE)
 
-    eventPlayer.startScalingBarriers(2, false)
-
     removeSelfHealing()
     removeTankPassive() # No steadfast passive at launch
     # eventPlayer.setKnockbackReceived(percent((100 - OW1_REINHARDT_STEADFAST_KNOCKBACK_REDUCTION_PERCENT)/(100 - OW2_TANK_KNOCKBACK_REDUCTION_PERCENT)))

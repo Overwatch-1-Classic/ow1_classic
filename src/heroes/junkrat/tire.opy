@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[junkrat/init.opy]: Set tire ammo": 
+rule "[junkrat/init.opy]: Set tire ammo":
     @Event eachPlayer
     @Hero junkrat
     @Condition eventPlayer.isUsingUltimate()
@@ -27,11 +27,11 @@ rule "[junkrat/tire.opy]: Drop tire tech": # This isnt accurate because when upo
     wait(OW1_JUNKRAT_TIRE_CAST_TIME-0.25)
     eventPlayer.setGravity(100)
 
-rule "[junkrat/tire.opy]: Be invisible during tire":
+rule "[junkrat/tire.opy]: tire health": # Doesn't work
     @Event eachPlayer
     @Hero junkrat
     @Condition eventPlayer.isUsingUltimate()
 
-    eventPlayer.setInvisibility(Invis.ALL)
-    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
-    eventPlayer.setInvisibility(Invis.NONE)
+    eventPlayer.setMaxHealth(100)
+    waitUntil(eventPlayer.isUsingUltimate(), 1)
+    eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))

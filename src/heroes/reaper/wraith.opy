@@ -4,13 +4,14 @@ rule "[reaper/wraith.opy]: set reaper wraith":
     @Event eachPlayer
     @Hero reaper
     @Condition eventPlayer.isUsingAbility1()
+    
 
     eventPlayer.disallowButton(Button.ABILITY_1)
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_REAPER_WRAITH_MOVEMENT_INCREASE))
+    # setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW1_REAPER_WRAITH_MOVEMENT_INCREASE))
     eventPlayer.setAmmo(0, eventPlayer.wrath_ammo)
-    waitUntil((not eventPlayer.isUsingAbility1()), 3)
+    waitUntil((not eventPlayer.isUsingAbility1()), Math.INFINITY)
     eventPlayer.allowButton(Button.ABILITY_1)
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW1_REAPER_WRAITH_MOVEMENT_INCREASE))
+    # setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_REAPER_WRAITH_MOVEMENT_INCREASE))
 
 rule "[reaper/wraith.opy]: get wrath ammo":
     @Event eachPlayer

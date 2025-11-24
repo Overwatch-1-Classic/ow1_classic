@@ -1,6 +1,5 @@
 #!mainFile "../../dev_main.opy"
 
-/*
 playervar machine_gun_ammo
 playervar machine_gun_ready
 playervar machine_gun_reload_timer
@@ -116,4 +115,3 @@ rule "[bastion/machine_gun.opy]: Disallow machine gun shooting when machine gun 
     @Condition eventPlayer.current_configuration == Configuration.SENTRY
 
     eventPlayer.disallowButton(Button.PRIMARY_FIRE)
-*/

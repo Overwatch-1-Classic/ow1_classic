@@ -21,3 +21,5 @@ rule "[junkrat/init.opy]: Correct Mine, Tire damage":
     @Condition eventAbility in [Button.ABILITY_1, Button.ULTIMATE]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+    

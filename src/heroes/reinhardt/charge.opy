@@ -20,14 +20,3 @@ rule "[reinhardt/charge.opy]: Reduce charge radius":
     eventPlayer.startForcingThrottle(0, 1/OW2_REINHARDT_TURN_BONUS, 0, 1/OW2_REINHARDT_TURN_BONUS, 0, 1/OW2_REINHARDT_TURN_BONUS)
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.stopForcingThrottle()
-
-rule "[reinhardt/charge.opy]: Flying reinhardt!":
-    @Event eachPlayer
-    @Hero reinhardt
-    @Condition eventPlayer.isUsingAbility1()
-    @Condition eventPlayer.isHoldingButton(Button.JUMP)
-
-    do:
-        eventPlayer.applyImpulse(Vector.UP, FLIGHT_IMPULSE*3, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        wait()
-    while RULE_CONDITION

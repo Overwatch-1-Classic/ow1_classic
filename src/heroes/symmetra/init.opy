@@ -6,10 +6,10 @@ https://workshop.codes/AMSG8    code: AMSG8
 created by wadetata#0315
 */
 
-# !include "shield.opy"
-# !include "beam.opy"
-# !include "orb.opy"
-# !include "teleporter.opy"
+#!include "shield.opy"
+#!include "beam.opy"
+#!include "orb.opy"
+#!include "teleporter.opy"
 
 
 def initSymmetra():
@@ -19,17 +19,17 @@ def initSymmetra():
     setUltCost(OW1_SYMMETRA_ULT_COST)
     removeSelfHealing()
 
-    # showPhotonProjecterBeam()
-    # showPhotonProjecterHUD()
+    showPhotonProjecterBeam()
+    showPhotonProjecterHUD()
 
-    # eventPlayer.setPrimaryFireEnabled(false)
-    # eventPlayer.disallowButton(Button.ABILITY_2)
-    # eventPlayer.disallowButton(Button.ULTIMATE)
+    eventPlayer.setPrimaryFireEnabled(false)
+    eventPlayer.disallowButton(Button.ABILITY_2)
+    eventPlayer.disallowButton(Button.ULTIMATE)
 
-# rule "[symmetra/init.opy]: Clean up Symmetra":
-    # @Event eachPlayer
-    # @Condition eventPlayer.getCurrentHero() == Hero.SYMMETRA
+rule "[symmetra/init.opy]: Clean up Symmetra":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.SYMMETRA
 
-    # waitUntil(eventPlayer.getCurrentHero() != Hero.SYMMETRA, Math.INFINITY)
-    # destroyTeleporter()
-    # hidePhotonProjector()
+    waitUntil(eventPlayer.getCurrentHero() != Hero.SYMMETRA, Math.INFINITY)
+    destroyTeleporter()
+    hidePhotonProjector()

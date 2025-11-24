@@ -83,7 +83,7 @@ settings {
                 "ultGen%": percent(OW2_BAPTISTE_ULT_COST/OW1_BAPTISTE_ULT_COST)
             },
             "bastion": {
-                "ability1Cooldown%": percent(OW2_BASTION_RECONFIGURE_COOLDOWN/OW1_BASTION_RECONFIGURE_COOLDOWN),
+                "ability1Cooldown%": percent(OW1_BASTION_RECONFIGURE_COOLDOWN/OW2_BASTION_RECONFIGURE_COOLDOWN),
                 "ammoClipSize%": percent(OW1_BASTION_CLIP_SIZE)/(OW2_BASTION_CLIP_SIZE), # Hard code it, workshop sucks.
                 "ultGen%": percent(OW2_BASTION_ULT_COST/OW1_BASTION_ULT_COST)
             },

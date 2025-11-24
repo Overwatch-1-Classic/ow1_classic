@@ -35,16 +35,3 @@ rule "[reinhardt/shatter.opy]: OW1 earthshatter knock down duration":
 
     wait(OW1_REINHARDT_EARTHSHATTER_KNOCK_DOWN_DURATION)
     victim.clearStatusEffect(Status.KNOCKED_DOWN)
-
-rule "[reinhardt/earthshatter.opy]: Piledriver":
-    @Event eachPlayer
-    @Hero reinhardt
-    @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
-    @Condition eventPlayer.getUltCharge() == 100
-    @Condition eventPlayer.isInAir()
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-
-    eventPlayer.setGravity(200)
-    eventPlayer.applyImpulse(Vector.DOWN, 98, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-    waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
-    eventPlayer.setGravity(100)
