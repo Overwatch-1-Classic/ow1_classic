@@ -83,3 +83,12 @@ rule "[zarya/barrier.opy]: OW1 Zarya self barrier health":
     eventPlayer.disallowButton(Button.ABILITY_1)
     waitUntil(eventPlayer.isUsingAbility1(), TICK_DURATION)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
+
+rule "[zarya/barrier.opy]: OW1 Zarya self barrier health":
+    @Event eachPlayer
+    @Hero zarya
+    @Condition eventPlayer.isUsingAbility1()
+
+    eventPlayer.setMoveSpeed(200)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
+    eventPlayer.setMoveSpeed(100)

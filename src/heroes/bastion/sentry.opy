@@ -3,70 +3,27 @@
 rule "[bastion/sentry.opy]: Initialize sentry mode":
     @Event eachPlayer
     @Hero bastion
-    @Condition eventPlayer.isInAlternateForm()
-    @Condition eventPlayer.current_configuration == Configuration.RECON # Sentry mode can only be entered from recon mode
-    @Condition eventPlayer.current_configuration != Configuration.TANK # prevents incorrectly identifying tank as sentry
-    @Condition eventPlayer.isUsingAbility1()
+    @Condition eventPlayer.isUsingUltimate()
 
     eventPlayer.current_configuration = Configuration.SENTRY
 
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION)
     setBaseDamage(eventPlayer, OW1_BASTION_SENTRY_CONFIG_DAMAGE/OW2_BASTION_ASSAULT_CONFIG_DAMAGE)
-    eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
-    eventPlayer.setKnockbackReceived(0)
-    eventPlayer.setJumpEnabled(false)
+    eventPlayer.setMoveSpeed(percent(OW1_BASTION_TANK_CONFIG_MOVE_SPEED)) # move faster in sentry mode
 
-    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    # transform into ow1 sentry
+    eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
+    wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
+    eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
+    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
+    eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
+    eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
+    eventPlayer.setDamageReceived(90) # take 30% less damage
 
-    waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
-    if eventPlayer.current_configuration == Configuration.SENTRY:
-        eventPlayer.setMoveSpeed(0)
+    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
 
-
-rule "[bastion/sentry.opy]: Extend sentry mode": # thanks to Wadetata for this wonderful piece of code that Ciach795 rewrote to OverPy: https://workshop.codes/AMSG8
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.current_configuration == Configuration.SENTRY
-    @Condition eventPlayer.current_configuration != Configuration.TANK
-    @Condition eventPlayer.isUsingAbility1()
-
-    do:
-        wait(1, Wait.IGNORE_CONDITION)
-        waitUntil(not eventPlayer.isUsingAbility1(), 4.984) # 6 second total time - 1 second - 1 tick
-        waitUntil(eventPlayer.isHoldingButton(Button.ABILITY_1) or not eventPlayer.isUsingAbility1(), 1)
-        if eventPlayer.isUsingAbility1() and not eventPlayer.isHoldingButton(Button.ABILITY_1):
-            wait(TICK_DURATION, Wait.IGNORE_CONDITION)
-            eventPlayer.cancelPrimaryAction()
-            eventPlayer.forceButtonPress(Button.ABILITY_1)
-            eventPlayer.setKnockbackReceived(0)
-            eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
-            waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
-            eventPlayer.setMoveSpeed(0)
-    while RULE_CONDITION
-
-rule "[bastion/sentry.opy]: Stop using sentry if player dealt cc":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.current_configuration == Configuration.SENTRY
-    @Condition eventPlayer.current_configuration != Configuration.TANK
-    @Condition eventPlayer.isUsingAbility1()
-    @Condition isCCd(eventPlayer)
-    
-    waitUntil(not isCCd(eventPlayer), Math.INFINITY)
-    eventPlayer.forceButtonPress(Button.ABILITY_1)
-
-rule "[bastion/sentry.opy]: Sentry Facing & Cast time":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.isUsingAbility1()
-    @Condition eventPlayer.current_configuration != Configuration.TANK
-
-    waitUntil(eventPlayer.isUsingAbility1(), OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME*2)
-    eventPlayer.startFacing(eventPlayer.getEyePosition(), 0)
-    eventPlayer.setPrimaryFireEnabled(false)
-    eventPlayer.setAbility1Enabled(false)
-    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
-    eventPlayer.setPrimaryFireEnabled(true)
-    eventPlayer.setAbility1Enabled(true)
-    eventPlayer.stopFacing()
-    startFiring()
+    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
+    eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon mode
+    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
+    eventPlayer.setDamageReceived(100)
+    eventPlayer.allowButton(Button.ABILITY_1)
+    eventPlayer.setUltEnabled(true)

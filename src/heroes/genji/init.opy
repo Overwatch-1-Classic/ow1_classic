@@ -22,3 +22,10 @@ rule "[genji/init.opy]: Deal OW1 shuriken damage":
     @Condition eventAbility in [Button.PRIMARY_FIRE, Button.SECONDARY_FIRE]
 
     damage(victim, attacker, eventDamage*(OW1_GENJI_SHURIKEN_DAMAGE/OW2_GENJI_SHURIKEN_DAMAGE)-eventDamage)
+
+rule "[genji/init.opy]: heal genji if actually asked for healing":
+    @Event eachPlayer
+    @Hero genji
+    @Condition eventPlayer.isCommunicating(Comms.NEED_HEALING)
+    
+    heal(eventPlayer, null, 38)

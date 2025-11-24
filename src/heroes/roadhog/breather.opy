@@ -23,11 +23,13 @@ rule "[roadhog/breather.opy]: OW1 Classic Take a Breather":
     eventPlayer.setDamageReceived(percent((1-OW1_ROADHOG_BREATHER_DAMAGE_REDUCTION)/(1-OW2_ROADHOG_BREATHER_DAMAGE_REDUCTION)))
     eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.startForcingButton(Button.ABILITY_2)
+    eventPlayer.applyImpulse(Vector.UP, 100, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
     wait(OW1_ROADHOG_BREATHER_CAST_TIME*2+OW1_ROADHOG_BREATHER_DURATION)
     eventPlayer.stopForcingButton(Button.ABILITY_2)
     eventPlayer.allowButton(Button.ABILITY_2)
     eventPlayer.setDamageReceived(100)
     eventPlayer.clearStatusEffect(Status.ROOTED)
+    eventPlayer.applyImpulse(Vector.DOWN, 100, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, OW1_ROADHOG_BREATHER_COOLDOWN)
 
 /*

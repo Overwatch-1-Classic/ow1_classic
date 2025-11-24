@@ -5,7 +5,10 @@ playervar tank_armour
 rule "[bastion/tank.opy]: Initialize tank mode":
     @Event eachPlayer
     @Hero bastion
-    @Condition eventPlayer.isUsingUltimate()
+    @Condition eventPlayer.isInAlternateForm()
+    @Condition eventPlayer.current_configuration == Configuration.RECON # Sentry mode can only be entered from recon mode
+    @Condition eventPlayer.current_configuration != Configuration.SENTRY # prevents incorrectly identifying tank as sentry
+    @Condition eventPlayer.isUsingAbility1()
 
     eventPlayer.current_configuration = Configuration.TANK
 
@@ -20,26 +23,12 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.clearStatusEffect(Status.ROOTED)
     eventPlayer.setKnockbackReceived(100)
 
-    # transform into ow1 tank
-    eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
-    wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
-    eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
-    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
-    eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
-    eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION) # Remove Ironclad
-
-    eventPlayer.addHealthPool(Health.ARMOR, OW1_BASTION_TANK_ARMOR-OW1_BASTION_ARMOR, true, false) # Apply Tank healthpool
-    eventPlayer.tank_armour = getLastCreatedHealthPool()
-
     waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION)
 
     if eventPlayer.isUsingAbility1():
         eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
         eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon mode
     eventPlayer.allowButton(Button.ABILITY_1)
-    eventPlayer.setUltEnabled(true)
-    removeHealthPool(eventPlayer.tank_armour)
     wait(TICK_DURATION)
     eventPlayer.stopFacing()
     eventPlayer.setPrimaryFireEnabled(true)
@@ -75,14 +64,3 @@ rule "[bastion/tank.opy]: Reload tank shells":
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME_COMPENSATION) # modify cooldown for tank shell
     wait(OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # Wait tank shell reload time
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0) # Set tank shell as available
-
-/*
-rule "[bastion/tank.opy]: Decrease kb on self":
-    @Event playerTookDamage
-    @Hero bastion
-    @Condition attacker == victim
-    
-    eventPlayer.setGravity(125)
-    wait(1)
-    eventPlayer.setGravity(100)
-*/

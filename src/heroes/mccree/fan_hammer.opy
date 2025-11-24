@@ -7,6 +7,13 @@ rule "[mccree/fan_hammer.opy]: Launch Fan the Hammer damage":
 
     damage(victim, attacker, eventDamage*(OW1_MCCREE_FAN_THE_HAMMER_DAMAGE/OW2_MCCREE_FAN_THE_HAMMER_DAMAGE) - eventDamage)
 
+rule "[mccree/fan_hammer.opy]: Refund 1 Ammo on headshot":
+    @Event playerDealtDamage
+    @Hero cassidy
+    @Condition eventWasCriticalHit
+
+    eventPlayer.setAmmo(0, eventPlayer.getAmmo(0) + 1)
+
 # rule "[cassidy/fan_hammer.opy]: Launch reload time":
     # @Event eachPlayer
     # @Hero cassidy

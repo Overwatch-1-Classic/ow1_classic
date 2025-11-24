@@ -29,3 +29,13 @@ rule "[brigitte/init.opy]: Compensate Brigitte global damage reduction":
     @Condition eventAbility in [Button.ABILITY_1]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+rule "[brigitte/init.opy]: Reduce gravity to everyone if dealing damage":
+    @Event playerDealtDamage
+    @Hero brigitte
+
+    victim.setGravity(50)
+    victim.applyImpulse(Vector.UP, 5, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
+    victim.applyImpulse(eventPlayer.getFacingDirection(), 15, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
+    wait(0.1)
+    victim.setGravity(100)

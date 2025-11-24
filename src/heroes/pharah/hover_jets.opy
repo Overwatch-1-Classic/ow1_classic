@@ -41,7 +41,6 @@ rule "[pharah/hover_jets.opy]: Consume fuel when using hover jets":
     @Condition isUsingHoverJets()
 
     eventPlayer.setMoveSpeed(percent(OW1_PHARAH_HOVER_JETS_SPEED_BOOST/OW2_PHARAH_HOVER_JETS_SPEED_BOOST))
-    eventPlayer.setGravity(100*1.75)
     chase(eventPlayer.jet_fuel, 0, rate=OW1_PHARAH_HOVER_JETS_FUEL_CONSUMPTION_RATE, ChaseReeval.NONE)
 
 
@@ -51,7 +50,6 @@ rule "[pharah/hover_jets.opy]: Stop fuel consumption when not using hover jets":
     @Condition not isUsingHoverJets()
 
     eventPlayer.setMoveSpeed(100)
-    eventPlayer.setGravity(100)
     stopChasingVariable(eventPlayer.jet_fuel)
 
 

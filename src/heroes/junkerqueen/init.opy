@@ -34,3 +34,14 @@ rule "[junkerqueen/init.opy]: Compensate Junkerqueen global damage reduction":
     @Condition eventAbility in [Button.MELEE, Button.PRIMARY_FIRE, Button.SECONDARY_FIRE, Button.ABILITY_2]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+rule "[junkerqueen/init.opy]:  Go to gracie":
+    @Event eachPlayer
+    @Hero junkerQueen
+    @Condition eventPlayer.isFiringSecondaryFire()
+
+
+    eventPlayer.setGravity(50)
+    eventPlayer.applyImpulse(eventPlayer.getFacingDirection(), 40, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION)
+    wait(1)
+    eventPlayer.setGravity(100)
