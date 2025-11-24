@@ -1,3 +1,5 @@
+# Taken from: https://youtu.be/JZCOWtSB4Jk?si=U6eyu6dRK8aWXZpi by Mercy:l & https://www.youtube.com/watch?v=vo2NecWFyec by KarQ for 2025 April 1st
+
 # Include for global scoping
 #!include "heroes/sombra/hack_status.opy"
 #!include "heroes/pharah/ammo.opy"

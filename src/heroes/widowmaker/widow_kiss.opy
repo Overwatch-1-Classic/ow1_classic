@@ -89,22 +89,12 @@ rule "[widowmaker/widow_kiss.opy]: Fixed secondary fire ammo comsuption":
     waitUntil(not eventPlayer.isFiringPrimaryFire() and eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     eventPlayer.setAmmo(0, max(0, eventPlayer.getAmmo() + 2))
 
-# rule "[widowmaker/widow_kiss.opy]: Correct headshot damage":
-    # @Event playerDealtDamage
-    # @Hero widowmaker
-    # @Condition eventPlayer.isFiringSecondaryFire()
-    # @Condition eventAbility in [Button.PRIMARY_FIRE]
-    # @Condition eventWasCriticalHit
+rule "[widowmaker/widow_kiss.opy]: Restart hook if dealt critical hit":
+    @Event playerDealtDamage
+    @Hero widowmaker
+    @Condition eventWasCriticalHit
+    @Condition eventPlayer.isFiringSecondaryFire()
+    @Condition eventPlayer.isFiringPrimaryFire()
+    @Condition eventAbility == Button.PRIMARY_FIRE
 
-
-    # heal(victim, null, ((eventDamage/eventPlayer._base_damage_scalar)*(OW1_WIDOWMAKER_WIDOW_KISS_HEADSHOT_MULTIPLIER/OW2_WIDOWMAKER_WIDOW_KISS_HEADSHOT_MULTIPLIER) - eventDamage)/eventPlayer._base_damage_scalar)
-    
-# rule "[widowmaker/widow_kiss.opy]: Correct headshot damage":
-    # @Event playerDealtDamage
-    # @Hero widowmaker
-    # @Condition eventPlayer.isFiringSecondaryFire()
-    # @Condition eventAbility in [Button.PRIMARY_FIRE]
-    # @Condition eventWasCriticalHit
-
-
-    # heal(victim, null, 75)
+    eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)

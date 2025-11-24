@@ -1,10 +1,9 @@
 #!mainFile "../../dev_main.opy"
 
-# Depcrecated code, lifeweaver is not included anymore
-
 #!include "parting_gift.opy"
 #!include "platform.opy"
 #!include "tree.opy"
+#!include "grip.opy"
 
 def initLifeweaver():
     @Name "[lifeweaver/init.opy]: initLifeweaver()"
@@ -15,6 +14,7 @@ def initLifeweaver():
 
     eventPlayer.setProjectileSpeed(percent(OW1_LIFEWEAVER_THORN_VALLEY_PROJECTILE_SPEED/OW2_LIFEWEAVER_THORN_VALLEY_PROJECTILE_SPEED))
     setBaseDamage(eventPlayer, OW1_LIFEWEAVER_THORN_VALLEY_DAMAGE/OW2_LIFEWEAVER_THORN_VALLEY_DAMAGE)
+    eventPlayer.disallowButton(Button.ABILITY_2)
 
     eventPlayer.setAmmo(0, OW1_LIFEWEAVER_CLIP_SIZE2)
     # eventPlayer.setMaxAmmo(0, OW1_LIFEWEAVER_CLIP_SIZE2)

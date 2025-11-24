@@ -29,3 +29,9 @@ rule "[sombra/init.opy]: Clean up Sombra":
     waitUntil(eventPlayer.getCurrentHero() != Hero.SOMBRA, Math.INFINITY)
     # exitStealth()
     destroyTranslocator()
+
+rule "[sombra/init.opy]: hack victims if sombra died":
+    @Event playerDied
+    @Hero sombra
+
+    attacker.setStatusEffect(victim, Status.HACKED, OW1_SOMBRA_HACK_ENEMY_DURATION)

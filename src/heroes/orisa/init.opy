@@ -5,6 +5,7 @@
 #!include "barrier.opy"
 #!include "fusion_driver.opy"
 #!include "fortify.opy"
+#!include "jousting.opy"
 
 def initOrisa():
     @Name "[orisa/init.opy]: initOrisa()"
@@ -44,3 +45,4 @@ rule "[orisa/init.opy]: Clean up Orisa":
     destroyBarrier()
     endSupercharger()
     hideOrisaAmmoHud()
+

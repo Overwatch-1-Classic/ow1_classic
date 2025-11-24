@@ -19,8 +19,8 @@ rule "[roadhog/wholehog.opy]: OW1 disable abilities during wholehog":
     eventPlayer.setAbility1Enabled(false)
     eventPlayer.setAbility2Enabled(false)
     eventPlayer.setSecondaryFireEnabled(false) # For some reason, breather is also secondary fire
-    eventPlayer.setDamageDealt(percent(OW1_ROADHOG_WHOLEHOG_DAMAGE/OW2_ROADHOG_WHOLEHOG_DAMAGE))
-    eventPlayer.setKnockbackDealt(percent(OW1_ROADHOG_WHOLEHOG_KNOCKBACK/OW2_ROADHOG_WHOLEHOG_KNOCKBACK))
+    eventPlayer.setDamageDealt(0)
+    eventPlayer.setKnockbackDealt(200)
 
 
 rule "[roadhog/wholehog.opy]: OW1 enable abilities when not in wholehog":

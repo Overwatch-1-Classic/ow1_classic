@@ -4,14 +4,13 @@
 #!include "suzu.opy"
 #!include "swift_step.opy"
 
-
 def initKiriko():
     @Name "[kiriko/init.opy]: initKiriko()"
     
     setCustomHp(OW1_KIRIKO_HEALTH, 0, 0)
     setUltCost(OW1_KIRIKO_ULT_COST)
 
-    removeSelfHealing()
+    removePassiveHealing()
 
     eventPlayer.setHealingDealt(percent(OW1_KIRKIO_OFUDA_HEALING/OW2_KIRIKO_OFUDA_HEALING))
 
@@ -26,3 +25,10 @@ rule "[kiriko/init.opy]: Deal regular damage for any non custom damage":
     @Condition eventAbility in [Button.MELEE]
     
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+rule "[kiriko/init.opy]: Heal when using Swift Step & Rush":
+    @Event eachPlayer
+    @Hero kiriko
+    @Condition eventPlayer.isUsingAbility1() or eventPlayer.isUsingUltimate() or eventPlayer.isUsingAbility2()
+
+    eventPlayer.addHealthPool(Health.NORMAL, 100, false)

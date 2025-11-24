@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-# !include "nemesis.opy"
+#!include "nemesis.opy"
 # !include "vortex.opy"
 #!include "annahilation.opy"
 

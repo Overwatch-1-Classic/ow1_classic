@@ -15,3 +15,15 @@ rule "[soldier/sprint.opy]: set cast time on sprint":
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setSecondaryFireEnabled(true)
     startFiring()
+
+
+rule "[soldier/sprint.opy]: Reload 1 ammo while sprinting":
+    @Event eachPlayer
+    @Hero soldier
+    @Condition eventPlayer.isUsingAbility1()
+    @Condition eventPlayer.getAmmo(0) < eventPlayer.getMaxAmmo(0)
+
+    do:
+        wait(1/6)
+        eventPlayer.setAmmo(0, eventPlayer.getAmmo(0) + 1)
+    while RULE_CONDITION

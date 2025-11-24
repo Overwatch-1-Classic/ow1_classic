@@ -21,3 +21,9 @@ rule "[wreckingball/init.opy]: Correct primary fire, fireball, piledriver damage
     @Condition eventAbility in [Button.PRIMARY_FIRE, Button.ABILITY_1, Button.CROUCH]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar - eventDamage)/eventPlayer._base_damage_scalar)
+
+rule "[wreckingball/init.opy]: Scale randomly if did damage":
+    @Event playerDealtDamage
+    @Hero hammond
+
+    eventPlayer.startScalingSize(random.randint(0.1, 2), false)

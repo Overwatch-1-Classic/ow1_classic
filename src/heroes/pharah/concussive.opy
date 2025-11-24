@@ -1,9 +1,10 @@
 #!mainFile "../../dev_main.opy"
 
 
-rule "[pharah/concussive.opy]: Remove OW2 Concussive Blast damage":
+rule "[pharah/concussive.opy]: Rocket no self damage & better kb":
     @Event playerDealtDamage
     @Hero pharah
-    @Condition eventAbility == Button.ABILITY_2
+    @Condition eventAbility == Button.PRIMARY_FIRE
+    @Condition attacker == victim
 
     heal(victim, null, eventDamage)
