@@ -16,16 +16,3 @@ rule "[winston/leap.opy]: OW1 Winston jump pack damage":
     @Condition eventAbility in [Button.ABILITY_1]
 
     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar*(OW1_WINSTON_JUMP_PACK_DAMAGE/OW2_WINSTON_JUMP_PACK_DAMAGE) - eventDamage)/eventPlayer._base_damage_scalar)
-
-rule "[winston/leap.opy]: Piledriver":
-    @Event eachPlayer
-    @Hero winston
-    @Condition eventPlayer.isInAir()
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-    @Condition eventPlayer.isUsingAbility1()
-
-    eventPlayer.setGravity(200)
-    eventPlayer.applyImpulse(Vector.DOWN, 98, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-    waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
-    damage(getPlayersInRadius(eventPlayer.getPosition(), 5, getOppositeTeam(eventPlayer.getTeam())), eventPlayer, OW1_WINSTON_JUMP_PACK_DAMAGE + OW1_MELEE_DAMAGE)
-    eventPlayer.setGravity(100)

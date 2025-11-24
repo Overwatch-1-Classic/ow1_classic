@@ -32,8 +32,6 @@ def initTorbjorn():
 
     setBaseDamage(eventPlayer, OW1_TORBJORN_TURRET_DAMAGE/OW2_TORBJORN_TURRET_DAMAGE)
 
-    eventPlayer.startScalingSize(1.5, false)
-
 rule "[torbjorn/init.opy]: Clean up Torbjorn":
     @Event eachPlayer
     @Condition eventPlayer.getCurrentHero() == Hero.TORBJORN

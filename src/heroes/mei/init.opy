@@ -13,8 +13,6 @@ def initMei():
 
     setBaseDamage(eventPlayer, OW1_MEI_ICICLE_DAMAGE/OW2_MEI_ICICLE_DAMAGE)
 
-    eventPlayer.startScalingSize(1.3, false)
-
     eventPlayer.setAmmo(0, OW1_MEI_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_MEI_CLIP_SIZE)
 

@@ -17,10 +17,3 @@ rule "[ana/nade.opy]: Allow self healing during Biotic Grenade":
     pushSelfHealing(Button.ABILITY_2)
     waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
     popSelfHealing(Button.ABILITY_2)
-
-rule "[ana/nade.opy]: Sleep victims dealt damage in nade":
-    @Event playerDealtDamage
-    @Hero ana
-    @Condition eventAbility == Button.ABILITY_2
-
-    victim.setStatusEffect(attacker, Status.ASLEEP, OW1_ANA_SLEEP_DART_SLEEP_DURATION_NADE)

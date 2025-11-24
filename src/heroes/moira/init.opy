@@ -11,8 +11,4 @@ def initMoira():
     setCustomHp(OW1_MOIRA_HEALTH, 0, 0)
     setUltCost(OW1_MOIRA_ULT_COST)
     
-    eventPlayer.setHealingDealt(0)
-    eventPlayer.setDamageDealt(120)
-    eventPlayer.setPrimaryFireEnabled(false)
-
     removePassiveHealing()

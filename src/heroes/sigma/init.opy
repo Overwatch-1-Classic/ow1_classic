@@ -18,9 +18,6 @@ def initSigma():
     # removeTankPassive()
     removeSelfHealing()
 
-    eventPlayer.setGravity(0)
-    eventPlayer.setSecondaryFireEnabled(false)
-
     setBaseDamage(eventPlayer, OW1_SIGMA_ACCRETION_TOTAL_DAMAGE/OW2_SIGMA_ACCRETION_TOTAL_DAMAGE)
 
 rule "[sigma/init.opy]: Compensate Sigma global damage reduction":
@@ -41,25 +38,3 @@ rule "[sigma/barrier.opy]: OW1 Sigma barrier health":
     waitUntil(not eventPlayer.isFiringSecondaryFire(), 1)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
 */
-
-
-rule "[sigma/init.opy]: Move upwards on jump":
-    @Event eachPlayer
-    @Hero sigma
-    @Condition eventPlayer.isHoldingButton(Button.JUMP)
-
-    do:
-        eventPlayer.applyImpulse(Vector.UP, FLIGHT_IMPULSE, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        wait()
-    while RULE_CONDITION
-
-
-rule "[sigma/init.opy]: Move downwards on crouch":
-    @Event eachPlayer
-    @Hero sigma
-    @Condition eventPlayer.isHoldingButton(Button.CROUCH)
-
-    do:
-        eventPlayer.applyImpulse(Vector.DOWN, FLIGHT_IMPULSE, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        wait()
-    while RULE_CONDITION

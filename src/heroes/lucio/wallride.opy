@@ -1,15 +1,19 @@
 #!mainFile "../../dev_main.opy"
 
+globalvar LUCIO_WALLRIDE = createWorkshopSetting(bool, "Lucio", "Launch Wallride", true) # I added this because lucio is in such a horrible state
+
 rule "[lucio/wallride.opy]: Launch wallride":
     @Event eachPlayer
     @Hero lucio
+    @Condition LUCIO_WALLRIDE == true
     @Condition eventPlayer.isOnWall()
-
-    eventPlayer.setMoveSpeed(150)
-    setBaseDamage(eventPlayer, OW1_LUCIO_SOUND_GUN_DAMAGE/OW2_LUCIO_SOUND_GUN_DAMAGE*2)
-    eventPlayer.setAmmo(0, max(0, eventPlayer.getAmmo(0) + OW1_LUCIO_SOUNDWAVE_AMMO_CONSUMPTION))
-    eventPlayer.setProjectileSpeed(300)
-    waitUntil(not eventPlayer.isOnWall(), Math.INFINITY)
-    eventPlayer.setMoveSpeed(100)
-    eventPlayer.setProjectileSpeed(100)
-    setBaseDamage(eventPlayer, OW1_LUCIO_SOUND_GUN_DAMAGE/OW2_LUCIO_SOUND_GUN_DAMAGE)
+    
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW1_LUCIO_WALLRIDE_SPEED_PENALTY))
+    waitUntil(not eventPlayer.isOnWall(), 3)
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_LUCIO_WALLRIDE_SPEED_PENALTY))
+    if eventPlayer.isOnWall():
+        eventPlayer.forceButtonPress(Button.CROUCH)
+        wait()
+        if eventPlayer.isOnWall():
+            eventPlayer.forceButtonPress(Button.JUMP)
+    eventPlayer.applyImpulse(eventPlayer.getVelocity() * -1, 3.2, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)

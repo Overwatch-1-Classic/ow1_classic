@@ -11,5 +11,3 @@ def initMauga():
 
     # removeTankPassive()
     removeSelfHealing()
-    eventPlayer.startScalingSize(0.5, false)
-    eventPlayer.startScalingBarriers(0.5, false)

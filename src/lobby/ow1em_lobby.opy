@@ -1,6 +1,6 @@
 #!mainFile "../ow1em_main.opy"
 
-#!define GAMEMODE_VERSION "April Fools"
+#!define GAMEMODE_VERSION "1.0"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"
@@ -330,9 +330,9 @@ settings {
                 "junkerQueen",
                 "junkrat",
                 "kiriko",
-                "lifeweaver",
+                # "lifeweaver",
                 "lucio",
-                "mauga",
+                # "mauga",
                 "mei",
                 "mercy",
                 "moira",
@@ -345,7 +345,7 @@ settings {
                 "sigma",
                 "sojourn",
                 "soldier",
-                # "sombra",
+                "sombra",
                 "symmetra",
                 "torbjorn",
                 "tracer",
