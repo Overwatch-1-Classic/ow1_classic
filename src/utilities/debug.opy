@@ -11,6 +11,16 @@ playervar debug_pvar
 #!define _total_healing_received debug_pvar[2]
 #!define _last_healing_received debug_pvar[3]
 
+rule "[utilities/debug.opy]: Math.INFINITY ana hp":
+    @Event eachPlayer
+    @Hero ana
+    @Condition eventPlayer.isDummy()
+    @Condition DEBUG_MODE == true
+
+    wait(1)
+    eventPlayer.addHealthPool(Health.NORMAL, Math.INFINITY, true, true)
+    heal(eventPlayer, null, Math.INFINITY)
+
 rule "[utilities/debug.opy]: third person perspective":
     @Event eachPlayer
     @Condition DEBUG_MODE == true
