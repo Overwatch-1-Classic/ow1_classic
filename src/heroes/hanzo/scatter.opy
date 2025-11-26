@@ -57,7 +57,7 @@ rule "[hanzo/scatter.opy]: Scatter arrow firing state":
             eventPlayer.forceButtonPress(Button.ABILITY_1 if eventPlayer._controller_user else Button.ABILITY_2)
             wait()
     else:
-        eventPlayer.setAbilityCooldown(Button.ABILITY_1 if eventPlayer._controller_user else Button.ABILITY_2, TICK_DURATION)
+        eventPlayer.setAbilityCooldown(Button.ABILITY_1 if eventPlayer._controller_user else Button.ABILITY_2, 0.2)
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
 
 
@@ -91,7 +91,16 @@ rule "[hanzo/scatter.opy]: Move scatter":
     @Hero hanzo
     @Condition eventPlayer._scatter_arrow_active 
     
-    eventPlayer._scatter_position = eventPlayer._scatter_position + eventPlayer._scatter_velocity * 0.016
-    eventPlayer._scatter_velocity = eventPlayer._scatter_velocity + vect(0, -9.18, 0) * 0.016
-    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
-    goto RULE_START
+    do:
+        eventPlayer._scatter_position = eventPlayer._scatter_position + eventPlayer._scatter_velocity * 0.016
+        eventPlayer._scatter_velocity = eventPlayer._scatter_velocity + vect(0, -9.18, 0) * 0.016
+    while RULE_CONDITION
+
+rule "[hanzo/scatter.opy]: remove scatter arrow critical hit":
+    @Event playerDealtDamage
+    @Hero hanzo
+    @Condition eventWasCriticalHit
+    @Condition eventPlayer.isUsingAbility2()
+
+    heal(victim, null, eventDamage)
+    damage(victim, eventPlayer, OW1_HANZO_SCATTER_ARROW_DAMAGE)
