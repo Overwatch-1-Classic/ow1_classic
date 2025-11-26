@@ -18,20 +18,20 @@ macro hideHookEffects():
     eventPlayer._hook_effect = null
 
 
-rule "[roadhog/hook.opy]: Move hooked enemies closer":
-    @Event playerDealtDamage
-    @Hero roadhog
-    @Condition eventPlayer.isUsingAbility1()
+# rule "[roadhog/hook.opy]: Move hooked enemies closer":
+    # @Event playerDealtDamage
+    # @Hero roadhog
+    # @Condition eventPlayer.isUsingAbility1()
 
-    waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
-    if distance(victim, attacker) <= OW2_ROADHOG_HOOK_PROXIMITY + 1:
-        victim.teleport(
-            raycast(
-                victim.getPosition(), 
-                victim.getPosition() + (OW2_ROADHOG_HOOK_PROXIMITY - OW1_ROADHOG_HOOK_PROXIMITY)*directionTowards(victim, attacker), 
-                null, 
-                null, 
-                false).getHitPosition()) # i know this feels weird, and its buggy but its more accurate
+    # waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
+    # if distance(victim, attacker) <= OW2_ROADHOG_HOOK_PROXIMITY + 1:
+        # victim.teleport(
+            # raycast(
+                # victim.getPosition(), 
+                # victim.getPosition() + (OW2_ROADHOG_HOOK_PROXIMITY - OW1_ROADHOG_HOOK_PROXIMITY)*directionTowards(victim, attacker), 
+                # null, 
+                # null, 
+                # false).getHitPosition()) # i know this feels weird, and its buggy but its more accurate
     # victim.setStatusEffect(null, Status.STUNNED, 0.1)
 
 rule "[roadhog/hook.opy]: OW1 hook damage":
