@@ -45,6 +45,7 @@ rule "[bastion/repair.opy]: Activate self-repair":
     wait(0.15, Wait.ABORT_WHEN_FALSE) # Set this so you dont immediately use self repair  after untoggling it
 
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
+    eventPlayer.setPrimaryFireEnabled(false)
 
     # repair sparks and ring vfx
     if eventPlayer._self_repair_sparkles_upper_gui == null:
@@ -81,13 +82,25 @@ rule "[bastion/repair.opy]: Activate self-repair":
 rule "[bastion/repair.opy]: Deactivate self-repair":
     @Event eachPlayer
     @Hero bastion
-    @Condition isPressingSelfRepairButton(eventPlayer) or eventPlayer.isFiringPrimaryFire()
+    @Condition isPressingSelfRepairButton(eventPlayer) or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) or eventPlayer.isHoldingButton(Button.ABILITY_1) or eventPlayer.isUsingUltimate()
 
     stopHoT(eventPlayer.self_repair_instance) # Stop healing
     eventPlayer.self_repair_instance = null
 
     hideSelfRepairRing()
     eventPlayer.clearStatusEffect(Status.ROOTED)
+    eventPlayer.setPrimaryFireEnabled(true)
+    eventPlayer.allowButton(Button.ABILITY_1)
+
+    if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
+        startFiring()
+
+    if eventPlayer.isHoldingButton(Button.ABILITY_1):
+        eventPlayer.forceButtonPress(Button.ABILITY_1)
+        eventPlayer.setPrimaryFireEnabled(false)
+        wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
+        eventPlayer.setPrimaryFireEnabled(true)
+        startFiring()
 
     # wait(OW1_BASTION_SELF_REPAIR_COOLDOWN_TIME, Wait.ABORT_WHEN_FALSE) # Wait 1 second cooldown before recharging heal resource
 
@@ -126,19 +139,7 @@ rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
     eventPlayer.clearStatusEffect(Status.ROOTED)
 
     hideSelfRepairRing()
-
-rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
-    @Event playerTookDamage
-    @Hero bastion
-    @Condition isUsingSelfRepair(eventPlayer)
-
-    stopHoT(eventPlayer.self_repair_instance) # Stop healing
-    eventPlayer.self_repair_instance = null
-
-    eventPlayer.clearStatusEffect(Status.ROOTED)
-
-    hideSelfRepairRing()
-
+    # eventPlayer.setPrimaryFireEnabled(true)
 
 rule "[bastion/repair.opy]: Give ult charge for self repair":
     @Event playerDealtHealing

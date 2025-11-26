@@ -62,10 +62,13 @@ rule "[bastion/sentry.opy]: Sentry Facing & Cast time":
     @Condition eventPlayer.current_configuration != Configuration.TANK
 
     waitUntil(eventPlayer.isUsingAbility1(), OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME*2)
+
     eventPlayer.startFacing(eventPlayer.getEyePosition(), 0)
     eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.setAbility1Enabled(false)
+
     wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
+    
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
     eventPlayer.stopFacing()
