@@ -1,20 +1,20 @@
 #!mainFile "../../dev_main.opy"
 
 
-rule "[ramattra/nemesis.opy]: Disable Block during nemesis":
-    @Event eachPlayer
-    @Hero ramattra
-    @Condition eventPlayer.isUsingAbility1() or eventPlayer.isUsingUltimate()
+# rule "[ramattra/nemesis.opy]: Disable Block during nemesis":
+    # @Event eachPlayer
+    # @Hero ramattra
+    # @Condition eventPlayer.isUsingAbility1() or eventPlayer.isUsingUltimate()
 
-    eventPlayer.setSecondaryFireEnabled(false)
+    # eventPlayer.setSecondaryFireEnabled(false)
 
 
-rule "[ramattra/nemesis.opy]: Enable shield when not in nemesis":
-    @Event eachPlayer
-    @Hero ramattra
-    @Condition not (eventPlayer.isUsingAbility1() or eventPlayer.isUsingUltimate())
+# rule "[ramattra/nemesis.opy]: Enable shield when not in nemesis":
+    # @Event eachPlayer
+    # @Hero ramattra
+    # @Condition not (eventPlayer.isUsingAbility1() or eventPlayer.isUsingUltimate())
 
-    eventPlayer.setSecondaryFireEnabled(true)
+    # eventPlayer.setSecondaryFireEnabled(true)
 
 
 rule "[ramattra/nemesis.opy]: OW1 pummel damage":

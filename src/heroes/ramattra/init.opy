@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-# !include "nemesis.opy"
+#!include "nemesis.opy"
 # !include "vortex.opy"
 #!include "annahilation.opy"
 
@@ -26,7 +26,7 @@ rule "[ramattra/init.opy]: OW1 Ramattra barrier health":
     @Condition not eventPlayer.isInAlternateForm()
     @Condition eventPlayer.isFiringSecondaryFire()
 
-    eventPlayer.setMaxHealth(percent(OW1_RAMATTRA_BARRIER_HEALTH/OW2_RAMATTRA_BARRIER_HEALTH))
+    eventPlayer.setMaxHealth(percent(OW1_RAMATTRA_BARRIER_HEALTH/OW1_RAMATTRA_BARRIER_HEALTH))
     waitUntil(not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
 
