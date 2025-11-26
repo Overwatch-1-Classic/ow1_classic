@@ -37,12 +37,13 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     if eventPlayer.isUsingAbility1():
         eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
         eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon mode
+    eventPlayer.stopFacing()
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setUltEnabled(true)
     removeHealthPool(eventPlayer.tank_armour)
     wait(TICK_DURATION)
-    eventPlayer.stopFacing()
     eventPlayer.setPrimaryFireEnabled(true)
+    eventPlayer.setAbility1Enabled(true)
 
 rule "[bastion/tank.opy]: Cancel out tank initial hit damage":
     @Event playerDealtDamage
