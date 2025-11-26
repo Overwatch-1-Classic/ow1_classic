@@ -7,7 +7,19 @@ rule "[mccree/fan_hammer.opy]: Launch Fan the Hammer damage":
 
     damage(victim, attacker, eventDamage*(OW1_MCCREE_FAN_THE_HAMMER_DAMAGE/OW2_MCCREE_FAN_THE_HAMMER_DAMAGE) - eventDamage)
 
-# rule "[cassidy/fan_hammer.opy]: Launch reload time":
+rule "[mccree/fan_hammer.opy]: Fan the hammer lower firerate":
+    @Event eachPlayer
+    @Hero cassidy
+    @Condition eventPlayer.isFiringSecondaryFire()
+
+    do:
+        eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
+        wait(TICK_DURATION*2)
+        eventPlayer.setStatusEffect(null, Status.STUNNED, TICK_DURATION)
+        eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
+    while RULE_CONDITION
+    
+# rule "[mccree/fan_hammer.opy]: Launch reload time":
     # @Event eachPlayer
     # @Hero cassidy
     # @Condition eventPlayer.getAmmo() == 0
@@ -19,7 +31,7 @@ rule "[mccree/fan_hammer.opy]: Launch Fan the Hammer damage":
     # eventPlayer.setReloadEnabled(false)
 
 
-# rule "[cassidy/fan_hammer.opy]: Normal reload":
+# rule "[mccree/fan_hammer.opy]: Normal reload":
     # @Event eachPlayer
     # @Hero cassidy
     # @Condition eventPlayer.getAmmo(0)

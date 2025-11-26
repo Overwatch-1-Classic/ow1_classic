@@ -95,6 +95,7 @@ settings {
                 "ultGen%": percent(OW2_BRIGITTE_ULT_COST/OW1_BRIGITTE_ULT_COST)
             },
             "cassidy": {
+                "ability1Cooldown%": percent(OW1_MCCREE_COMBAT_ROLL_COOLDOWN/OW2_MCCREE_COMBAT_ROLL_COOLDOWN),
                 "health%": percent(OW1_MCCREE_HEALTH/OW2_MCCREE_HEALTH),
                 "ability2Cooldown%": percent(OW1_MCCREE_FLASHBANG_COOLDOWN/OW2_MCCREE_FLASHBANG_COOLDOWN),
                 "ultGen%": percent(OW2_MCCREE_ULT_COST/OW1_MCCREE_ULT_COST)
@@ -119,6 +120,7 @@ settings {
                 "ultGen%": percent(OW2_ECHO_ULT_COST/OW1_ECHO_ULT_COST)
             },
             "genji": {
+                "ability2Cooldown%": percent(OW1_GENJI_DEFLECT_COOLDOWN/OW2_GENJI_DEFLECT_COOLDOWN),
                 "ultDuration%": percent(OW1_GENJI_BLADE_DURATION/OW2_GENJI_BLADE_DURATION),
                 "ultGen%": percent(OW2_GENJI_ULT_COST/OW1_GENJI_ULT_COST)
             },

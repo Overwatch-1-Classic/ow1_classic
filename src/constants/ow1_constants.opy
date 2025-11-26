@@ -120,10 +120,11 @@
 #!define OW1_MCCREE_FLASHBANG_COOLDOWN 10
 #!define OW1_MCCREE_FLASHBANG_DAMAGE 25
 #!define OW1_MCCREE_FLASHBANG_STUN_DURATION 0.7
-#!define OW1_MCCREE_DAMAGE_FALLOFF_SCALAR 0.001
-#!define OW1_MCCREE_DAMAGE_FALLOFF_START_DISTANCE 25
-#!define OW1_MCCREE_DAMAGE_FALLOFF_END_DISTANCE 35
+#!define OW1_MCCREE_DAMAGE_FALLOFF_SCALAR 0.5
+#!define OW1_MCCREE_DAMAGE_FALLOFF_START_DISTANCE 20
+#!define OW1_MCCREE_DAMAGE_FALLOFF_END_DISTANCE 30
 #!define OW1_MCCREE_ULT_CHARGE_PRESERVED 50
+#!define OW1_MCCREE_COMBAT_ROLL_COOLDOWN 8
 #!define OW1_MCCREE_HEALTH 200
 #!define OW1_MCCREE_ULT_COST 1200
 
@@ -215,6 +216,7 @@ globalvar OW1_DOOMFIST_UPPERCUT_RADIUS = createWorkshopSettingFloat('Doomfist', 
 #!define OW1_GENJI_HEALTH 200
 #!define OW1_GENJI_BLADE_DURATION 8
 #!define OW1_GENJI_SHURIKEN_DAMAGE 28
+#!define OW1_GENJI_DEFLECT_COOLDOWN 8
 #!define OW1_GENJI_DEFLECT_DURATION 1.5
 #!define OW1_GENJI_ULT_COST 1200
 
@@ -482,18 +484,18 @@ globalvar OW1_ORISA_BARRIER_LOS_FREQ = createWorkshopSetting(float[0.001:60], "O
 # Reaper
 #!define OW1_REAPER_SHADOW_STEP_DELAY 1
 #!define OW1_REAPER_WRAITH_MOVEMENT_INCREASE 0.286
-#!define OW1_REAPER_DEATH_BLOSSON_DAMAGE 200
+#!define OW1_REAPER_DEATH_BLOSSON_DAMAGE 170
 #!define OW1_REAPER_HEALTH 250
 #!define OW1_REAPER_HELLFIRE_SHOTGUNS_DAMAGE 120
 #!define OW1_REAPER_SOUL_ORB_HEALING_DEFAULT 50
 #!define OW1_REAPER_SOUL_ORB_RADIUS_DEFAULT 10
 #!define OW1_REAPER_SOUL_ORB_ACCELERATION_SPEED_DEFAULT 10
 #!define OW1_REAPER_SOUL_ORB_SPEED_DEFAULT 10
-globalvar OW1_REAPER_SOUL_ORB_HEALING = createWorkshopSettingFloat("Soul Orbs", "Amount of heal per orb", OW1_REAPER_SOUL_ORB_HEALING_DEFAULT, 1, 100)
-globalvar OW1_REAPER_SOUL_ORB_RADIUS = createWorkshopSettingFloat("Soul Orbs", "Max orb collecting radius", OW1_REAPER_SOUL_ORB_RADIUS_DEFAULT, 3, 100, 1)
-globalvar OW1_REAPER_SOUL_ORB_SPEED = createWorkshopSettingFloat("Soul Orbs", "Initial speed when not in radius", OW1_REAPER_SOUL_ORB_SPEED_DEFAULT, 1, 100, 2)
-globalvar OW1_REAPER_SOUL_ORB_ACCELERATION = createWorkshopSettingFloat("Soul Orbs", "Accelarion speed ", OW1_REAPER_SOUL_ORB_ACCELERATION_SPEED_DEFAULT, 0, 100, 3)
-globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Soul Orbs", "Players who see the orbs", 0, ["Reaper", "Players team of reaper", "Players opposite team of reaper", "All players"], 5)
+globalvar OW1_REAPER_SOUL_ORB_HEALING = createWorkshopSettingFloat("Reaper", "Soul Orb - Heal", OW1_REAPER_SOUL_ORB_HEALING_DEFAULT, 1, 100)
+globalvar OW1_REAPER_SOUL_ORB_RADIUS = createWorkshopSettingFloat("Reaper", "Soul Orb - Raduis", OW1_REAPER_SOUL_ORB_RADIUS_DEFAULT, 3, 100, 1)
+globalvar OW1_REAPER_SOUL_ORB_SPEED = createWorkshopSettingFloat("Reaper", "Soul Orb - Initial speed if not in radius", OW1_REAPER_SOUL_ORB_SPEED_DEFAULT, 1, 100, 2)
+globalvar OW1_REAPER_SOUL_ORB_ACCELERATION = createWorkshopSettingFloat("Reaper", "Soul Orb - Accelartion speed ", OW1_REAPER_SOUL_ORB_ACCELERATION_SPEED_DEFAULT, 0, 100, 3)
+globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Reaper", "Soul Orb - Players who see the orbs", 0, ["Reaper", "Players team of reaper", "Players opposite team of reaper", "All players"], 5)
 # !define OW1_REAPER_LIFESTEAL 0.35
 #!define OW1_REAPER_ULT_COST 1640
 
