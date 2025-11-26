@@ -1,6 +1,6 @@
 #!mainFile "../dev_main.opy"
 
-subroutine startFiring
+# subroutine startFiring
 
 # Macro function for retrieving id of hero
 macro heroID(h):
@@ -57,8 +57,9 @@ macro reflection(d, n):
     d - 2 * (dotProduct(d, n)) * n
 
 # Start firing primary fire if holding button down.
-def startFiring():
-    @Name "[macro_functions.opy]: startFiring()"
+# def startFiring():
+    # @Name "[macro_functions.opy]: startFiring()"
+macro startFiring():
     if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE): 
         eventPlayer.startForcingButton(Button.PRIMARY_FIRE) 
         waitUntil(not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), Math.INFINITY) 
