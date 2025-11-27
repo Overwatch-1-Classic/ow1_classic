@@ -12,7 +12,7 @@ Progress (✅ = Equivalent to OW1, ✔ = Close to OW1, Blank = Untouched):
 | Ana | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | Ashe | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | Baptiste | ✅ | ✅ | ✅ | ✔ | ✅ |  |
-| Bastion | ✔ | ✅ | ✅ | ✅ | ✅ | ✅ Sentry Reload Animation |
+| Bastion | ✔ | ✅ | ✔ | ✅ | ✅ | ✅ Sentry Reload Animation |
 | Brigitte | ✅ | ✅ | ✅ | ✅ | ✔ | ✅ Shield Bash |
 | Cassidy | ✅ | ✅ | ✅ | ✅ | ✔ |  |
 | D.Va | ✅ | ✅ | ✅ | ✅ | ✔ |  |
@@ -44,6 +44,7 @@ Progress (✅ = Equivalent to OW1, ✔ = Close to OW1, Blank = Untouched):
 | Torbjorn |  | ✅ | ✔ | ✔ | ✔ |  |
 | Tracer | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | Venture |  |  |  |  |  |  |
+| Vendetta |  |  |  |  |  |  |
 | Widowmaker | ✅ | ✅ | ✅ | ✅ | ✔ |  |
 | Winston | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | Wrecking Ball | ✅ | ✅ | ✅ | ✔ | ✔ | ✅ Piledriver |
