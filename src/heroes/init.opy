@@ -163,6 +163,9 @@ def initHero():
         case Hero.VENTURE:
             initVenture()
             break
+        # case Hero.VENDETTA:
+            # initVendetta()
+            # break
         case Hero.WIDOWMAKER:
             initWidowmaker()
             break

@@ -684,6 +684,11 @@ globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Reaper",
 #!define OW1_VENTURE_HEALTH 200
 #!define OW1_VENTURE_ULT_COST 1925
 
+# Vendetta
+#!define OW1_VENDETTA_HEALTH 125
+#!define OW1_VENDETTA_ARMOR 100
+#!define OW1_VENDETTA_ULT_COST 2600
+
 # Widowmaker
 #!define OW1_WIDOWMAKER_CLIP_SIZE 30
 #!define OW1_WIDOWMAKER_AMMO_PER_SHOT 3
