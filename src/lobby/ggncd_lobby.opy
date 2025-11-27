@@ -218,6 +218,9 @@ settings {
             "venture": {
                 "ultGen%": percent(OW2_VENTURE_ULT_COST/OW1_VENTURE_ULT_COST),
             },
+            # "vendetta": {
+                # "ultGen%": percent(OW2_VENDETTA_ULT_COST/OW1_VENDETTA_ULT_COST),
+            # },
             "widowmaker": {
                 "ammoClipSize%": percent(OW1_WIDOWMAKER_CLIP_SIZE/OW2_WIDOWMAKER_CLIP_SIZE),
                 "ultGen%": percent(OW2_WIDOWMAKER_ULT_COST/OW1_WIDOWMAKER_ULT_COST)
