@@ -4,9 +4,9 @@
 #!define GAMEMODE_NAME "GGNCD - Overwatch 1 Classic Edition"
 #!define GAMEMODE_CODE "FHPZ3"
 #!define STAGING_CODE "None"
-# !define DISCORD_SHORT_LINK "dsc.gg/runece, discord link deprecated"
-# !define DISCORD_LONG_LINK "discord.gg/vb5r2gfNTQ, discord link deprecated"
-#!define SOURCE_CODE_LINK "https://github.com/arvrianmaybe/ow1_classic"
+#!define DISCORD_SHORT_LINK "dsc.gg/ow1-classic"
+#!define DISCORD_LONG_LINK "discord.gg/G64d9hZbHT"
+#!define SOURCE_CODE_LINK "https://github.com/Overwatch-1-Classic/ow1_classic"
 macro GAMEMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                "\n"\
                                "viper#18545's attempt to accurately recreate ""\n"\
@@ -25,10 +25,10 @@ macro GAMEMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                "\n"\
                                "workshop.codes/ow1-classic""\n"\
                                "\n"\
-#                               "Discord:""\n"\
-#                               DISCORD_SHORT_LINK"\n"\
-#                               DISCORD_LONG_LINK"\n"\
-#                               "\n"\
+                               "Discord:""\n"\
+                               DISCORD_SHORT_LINK"\n"\
+                               DISCORD_LONG_LINK"\n"\
+                               "\n"\
                                "Source code:""\n"\
                                SOURCE_CODE_LINK)
 
@@ -150,6 +150,7 @@ settings {
                 "ultGen%": percent(OW2_MAUGA_ULT_COST/OW1_MAUGA_ULT_COST)
             },
             "mei": {
+                "ability2Cooldown%": percent(OW1_MEI_ICEWALL_COOLDOWN/OW2_MEI_ICEWALL_COOLDOWN),
                 "ammoClipSize%": percent(OW1_MEI_CLIP_SIZE/OW2_MEI_CLIP_SIZE),
                 "ultGen%": percent(OW2_MEI_ULT_COST/OW1_MEI_ULT_COST)
             },
