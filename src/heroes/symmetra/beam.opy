@@ -25,18 +25,16 @@ rule "[symmetra/beam.opy]: set sym primary fire":
     @Condition not eventPlayer.isReloading()
     @Condition not isCCd(eventPlayer)
     
-    eventPlayer.setAmmo(0, eventPlayer.getAmmo(0) - 1)
-    damage((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if eventPlayer.hasSpawned() and isInLoS(eventPlayer.getEyePosition(), 
-    player.getEyePosition(), 
-    BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(), 
-    player.getEyePosition()) < 5], 
-    lambda i: distance(eventPlayer.getEyePosition(), 
-    i.getEyePosition())))[0], 
-    eventPlayer, 
-    floor(eventPlayer.beam_multiplier_dmg) * OW1_SYMETTRA_BEAM_DAMAGE)
-    wait(OW1_SYMETRA_BEAM_INCREASE_PS)
-    if RULE_CONDITION:
-        goto RULE_START
+    do:
+        eventPlayer.setAmmo(0, eventPlayer.getAmmo(0) - 1)
+        damage((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if eventPlayer.hasSpawned() and isInLoS(eventPlayer.getEyePosition(), player.getEyePosition(), 
+        BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(), player.getEyePosition()) < 5], 
+        lambda i: distance(eventPlayer.getEyePosition(), 
+        i.getEyePosition())))[0], 
+        eventPlayer, 
+        floor(eventPlayer.beam_multiplier_dmg) * OW1_SYMETTRA_BEAM_DAMAGE)
+        wait(OW1_SYMETRA_BEAM_INCREASE_PS)
+    while RULE_CONDITION
 
 rule "[symmetra/beam.opy]: make beam visible":
     @Event eachPlayer
@@ -133,7 +131,8 @@ def showPhotonProjecterHUD():
     @Name "[symmetra/beam.opy]: showPhotonProjecterHUD()"
 
     createInWorldText([player for player in getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if localPlayer.isAlive()], 
-    "[{}]".format(floor(localPlayer.beam_multiplier_dmg)), updateEveryTick(localPlayer.getEyePosition() + (150 * (1.3 * worldVector(Vector.RIGHT, localPlayer, Transform.ROTATION) + (-0.5 * (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 
+    "[{}]".format(floor(localPlayer.beam_multiplier_dmg)), updateEveryTick(localPlayer.getEyePosition() + (150 * (1.3 * worldVector(Vector.RIGHT, localPlayer, Transform.ROTATION) + (-0.5 * 
+    (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 
     2, 
     Clip.NONE, 
     WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
