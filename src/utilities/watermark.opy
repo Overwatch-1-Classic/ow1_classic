@@ -30,14 +30,14 @@ rule "[utilities/watermark.opy]: Create watermark HUD":
                      HudReeval.VISIBILITY)
         eventPlayer.info_id[0] = getLastCreatedText()
 
-    # if eventPlayer.info_id[1] == null:
-        # hudSubheader(eventPlayer if infoVisible(eventPlayer) else null, 
-                     # "Discord: " DISCORD_SHORT_LINK, 
-                     # HudPosition.LEFT, 
-                     # 1, 
-                     #rgb(eventPlayer.rgb_vect.x, eventPlayer.rgb_vect.y, eventPlayer.rgb_vect.z), 
-                     # HudReeval.VISIBILITY_AND_COLOR)
-        # eventPlayer.info_id[1] = getLastCreatedText()
+    if eventPlayer.info_id[1] == null:
+        hudSubheader(eventPlayer if infoVisible(eventPlayer) else null, 
+                    "Discord: " DISCORD_SHORT_LINK, 
+                    HudPosition.LEFT, 
+                    1, 
+                    rgb(eventPlayer.rgb_vect.x, eventPlayer.rgb_vect.y, eventPlayer.rgb_vect.z), 
+                    HudReeval.VISIBILITY_AND_COLOR)
+        eventPlayer.info_id[1] = getLastCreatedText()
     
     eventPlayer.rgb_i = 0
     eventPlayer.rgb_vect = rgb_list[eventPlayer.rgb_i]
