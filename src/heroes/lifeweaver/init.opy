@@ -28,13 +28,13 @@ rule "[lifeweaver/init.opy]: Healing blossom move penalty":
     waitUntil((not eventPlayer.isFiringPrimaryFire()), Math.INFINITY)
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_LIFEWEAVER_HEALING_BLOSSOM_MOVE_PENALTY))
 
-rule "[lifeweaver/init.opy]: Partially fix reload": # I personally dont like this approach cause its weird, buggy. And sadly due to Workshop Bugs, setMaxAmmo() is bugged on heroes like Lifeweaver 
-    @Event eachPlayer
-    @Hero lifeweaver
-    @Condition eventPlayer.getAmmo() <=  OW1_LIFEWEAVER_CLIP_SIZE2-1
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
+# rule "[lifeweaver/init.opy]: Partially fix reload": # I personally dont like this approach cause its weird, buggy. And sadly due to Workshop Bugs, setMaxAmmo() is bugged on heroes like Lifeweaver 
+    # @Event eachPlayer
+    # @Hero lifeweaver
+    # @Condition eventPlayer.getAmmo() <=  OW1_LIFEWEAVER_CLIP_SIZE2-1
+    # @Condition eventPlayer.isHoldingButton(Button.RELOAD)
     
-    eventPlayer.setAmmo(0, 0)
-    eventPlayer.forceButtonPress(Button.RELOAD)
-    waitUntil(not eventPlayer.isReloading())
-    eventPlayer.setAmmo(0, OW1_LIFEWEAVER_CLIP_SIZE2)
+    # eventPlayer.setAmmo(0, 0)
+    # eventPlayer.forceButtonPress(Button.RELOAD)
+    # waitUntil(not eventPlayer.isReloading())
+    # eventPlayer.setAmmo(0, OW1_LIFEWEAVER_CLIP_SIZE2)
