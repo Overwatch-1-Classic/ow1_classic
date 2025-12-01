@@ -126,6 +126,14 @@ rule "[debug.opy] Show Player Damage/Healing":
         Color.YELLOW, 
         SpecVisibility.DEFAULT)
 
+    # speed of players
+    # createInWorldText(
+        # getAllPlayers(), "{}".format(eventPlayer.getSpeed()), 
+        # eventPlayer,
+        # 1, 
+        # Clip.SURFACES, 
+        # WorldTextReeval.VISIBILITY_POSITION_AND_STRING)
+
 
 rule "[debug.opy] Debug damage instance":
     @Event playerTookDamage
