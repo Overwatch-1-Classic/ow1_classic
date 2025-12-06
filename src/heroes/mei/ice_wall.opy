@@ -12,3 +12,12 @@ rule "[mei/pillar.opy]: OW1 Mei pillar health":
     eventPlayer.disallowButton(Button.ABILITY_2)
     waitUntil(eventPlayer.isUsingAbility2(), 1)
     eventPlayer.setMaxHealth(percent(eventPlayer._hp_scalar))
+
+# rule "[mei/pillar.opy]: Icewall Cooldown":
+    # @Event eachPlayer
+    # @Hero mei
+    # @Condition eventPlayer.isUsingAbility2()
+    # @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    
+    # waitUntil(not eventPlayer.isUsingAbility2(), Math.INFINITY)
+    # eventPlayer.setAbilityCooldown(Button.ABILITY_2, 10)

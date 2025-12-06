@@ -29,7 +29,7 @@ playervar teleporter_used
 subroutine createTeleporter 
 subroutine destroyTeleporter 
 
-rule"[symetra/teleporter.opy]: init teleporter":
+rule "[symetra/teleporter.opy]: init teleporter":
     @Event global
 
     chase(teleporter1, raycast(getSpawnPoints(Team.1)[0], getSpawnPoints(Team.1)[0] + getSpawnPoints(Team.1)[0].getFacingDirection() * 8, null, null, false).getHitPosition(), rate=100, ChaseReeval.DESTINATION_AND_RATE)
@@ -49,6 +49,7 @@ def createTeleporter():
     destroyEffect(eventPlayer.shield_gen_effect4)
     destroyEffect(eventPlayer.shield_gen_effect5)
     eventPlayer.setUltCharge(0)
+    eventPlayer.setUltEnabled(false)
     eventPlayer.teleporter_used = OW1_SYMMETRA_TELEPORTER_MAX_USE
     eventPlayer.objective = getCurrentObjective()
     eventPlayer.shield_gen = []
@@ -79,14 +80,13 @@ def createTeleporter():
         SpecVisibility.DEFAULT)
     eventPlayer.shield_gen_effect3 = getLastCreatedText()
 
-    createInWorldText([player for player in getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if localPlayer.isAlive() and localPlayer.teleporter_used > 0], "{}".format(localPlayer.teleporter_used), 
-        updateEveryTick(localPlayer.getEyePosition() + (150 * (0.3 * worldVector(Vector.RIGHT, localPlayer, Transform.ROTATION) + (-1.6 * (angleToDirection(horizontalAngleOfDirection(localPlayer.getFacingDirection()), 
+    createInWorldText(getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if localPlayer.isAlive() and localPlayer.teleporter_used > 0 else [], "{1}{0}".format(localPlayer.teleporter_used, 
+        abilityIconString(Hero.SYMMETRA, Button.ABILITY_2)), 
+        updateEveryFrame(localPlayer.getEyePosition() + (150 * (0.3 * worldVector(Vector.RIGHT, 
+        localPlayer, 
+        Transform.ROTATION) + (-1.6 * (directionFromAngles(horizontalAngleOfDirection(localPlayer.getFacingDirection()), 
         verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 
-        2, 
-        Clip.NONE, 
-        WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
-        Color.WHITE, 
-        SpecVisibility.DEFAULT)
+        2)
     eventPlayer.shield_gen_hud = getLastCreatedText()
     
     smallMessage(getPlayers(eventPlayer.getTeam()), "Teleporter created by {}".format(eventPlayer))
@@ -97,6 +97,7 @@ def destroyTeleporter():
     @Name "[symettra/teleporter.opy]: destroyTeleporter()"
     
     eventPlayer.setUltCharge(0)
+    eventPlayer.setUltEnabled(true)
 
     destroyEffect(eventPlayer.shield_gen_effect2)
     destroyEffect(eventPlayer.shield_gen_effect5)
