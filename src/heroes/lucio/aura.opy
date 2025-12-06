@@ -6,14 +6,15 @@ playervar crossfade_pvar
 #!defineMember crossfade_aura crossfade_pvar[0]
 #!defineMember crossfade_enabled crossfade_pvar[1]
 #!defineMember crossfade_default crossfade_pvar[2]
+
 #!defineMember crossfade_targets crossfade_pvar[3]
+
 #!defineMember crossfade_target_temporary crossfade_pvar[4]
 #!defineMember crossfade_grace_temporary crossfade_pvar[5]
 
 #!defineMember crossfade_grace crossfade_pvar[6]
 #!defineMember crossfade_area_text crossfade_pvar[7]
-#!defineMember ow2_crossfade_area crossfade_pvar[8]
-#!defineMember crossfade_effects crossfade_pvar[9]
+#!defineMember crossfade_effects crossfade_pvar[8]
 playervar cross_fade_index 
 
 /*
