@@ -13,8 +13,7 @@ rule "[zenyatta/discord.opy]: damage victim.":
     @Event eachPlayer
     @Condition eventPlayer.discord_orb_damage
 
-    eventPlayer.setDamageReceived(percent(OW1_ZENYATTA_DISCORD_ORB_TAKEN*eventPlayer._base_damage_scalar))
-    # eventPlayer.setDamageReceived(OW1_ZENYATTA_DISCORD_ORB_TAKEN*OW2_ZENYATTA_DISCORD_ORB_TAKEN) # I have no idea where do you get that number but it is correct?
+    eventPlayer.setDamageReceived(percent(OW1_ZENYATTA_DISCORD_ORB_TAKEN/OW2_ZENYATTA_DISCORD_ORB_TAKEN))
     waitUntil(not getPlayersOnHero(Hero.ZENYATTA, getOppositeTeam(eventPlayer.getTeam())).isUsingAbility2(), Math.INFINITY)
     eventPlayer.setDamageReceived(100)
     eventPlayer.discord_orb_damage = false
