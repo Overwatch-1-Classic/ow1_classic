@@ -3,7 +3,7 @@
 #!define GAMEMODE_VERSION "v1.0.0"
 #!define GAMEMODE_NAME "GGNCD - Overwatch 1 Classic Edition"
 #!define GAMEMODE_CODE "FHPZ3"
-#!define STAGING_CODE "None"
+#!define STAGING_CODE "FHPZ3"
 #!define DISCORD_SHORT_LINK "dsc.gg/ow1-classic"
 #!define DISCORD_LONG_LINK "discord.gg/G64d9hZbHT"
 #!define SOURCE_CODE_LINK "https://github.com/Overwatch-1-Classic/ow1_classic"

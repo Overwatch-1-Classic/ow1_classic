@@ -1,9 +1,9 @@
 #!mainFile "../dev_main.opy"
 
 #!define GAMEMODE_VERSION "Internal Dev Build"
-#!define GAMEMODE_NAME "Overwatch 1 Classic"
+#!define GAMEMODE_NAME "Overwatch 1++"
 #!define GAMEMODE_CODE "YVE2X"
-#!define STAGING_CODE "None"
+#!define STAGING_CODE "78957"
 #!define DISCORD_SHORT_LINK "dsc.gg/ow1-classic"
 #!define DISCORD_LONG_LINK "discord.gg/G64d9hZbHT"
 #!define SOURCE_CODE_LINK "https://github.com/Overwatch-1-Classic/ow1_classic"
