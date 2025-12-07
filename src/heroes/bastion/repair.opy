@@ -9,8 +9,7 @@ playervar repair_pvar
 #!defineMember _self_repair_pvar repair_pvar[8]
 
 macro isPressingSelfRepairButton(player):
-    (player.isHoldingButton(Button.ABILITY_2))
-  # sor player.isHoldingButton(Button.SECONDARY_FIRE)) # I know bastion's self-repair is ability 2, but its a nice qol to allow both buttons
+    (player.isHoldingButton(Button.ABILITY_2)) or player.isHoldingButton(Button.SECONDARY_FIRE)
 
 macro isUsingSelfRepair(player):
     ((isPressingSelfRepairButton(player))
