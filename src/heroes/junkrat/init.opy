@@ -1,8 +1,8 @@
 #!mainFile "../../dev_main.opy"
 
 #!include "trap.opy"
-#!include "mine.opy"
-#!include "tire.opy"
+# !include "mine.opy"
+# !include "tire.opy"
 
 
 def initJunkrat():
