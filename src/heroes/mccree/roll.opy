@@ -14,6 +14,6 @@ rule "[mccree/roll.opy]: increase damage reduction during roll":
     @Hero cassidy
     @Condition eventPlayer.isUsingAbility1()
 
-    eventPlayer.setDamageReceived(percent(OW1_MCCREE_COMBAT_ROLL_DAMAGE_REDUCTION/OW2_MCCREE_COMBAT_ROLL_DAMAGE_REDUCTION))
+    eventPlayer.setDamageReceived(percent(OW2_MCCREE_COMBAT_ROLL_DAMAGE_REDUCTION/OW1_MCCREE_COMBAT_ROLL_DAMAGE_REDUCTION))
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setDamageReceived(100)
