@@ -50,6 +50,7 @@ rule "[sombra/translocator.opy]: Bind Ability 2 to translocator":
     eventPlayer.call_throwTranslocator = false
     waitUntil(not eventPlayer.isHoldingButton(Button.ABILITY_2), Math.INFINITY)
     waitUntil((eventPlayer.isHoldingButton(Button.ABILITY_2) \
+            or eventPlayer.isHoldingButton(Button.INTERACT) \
             or eventPlayer.isDead()) \
             or eventPlayer.transloc_timer <= 0
        and not isCCd(eventPlayer) \

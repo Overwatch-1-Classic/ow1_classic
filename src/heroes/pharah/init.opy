@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-#!include "hover_jets.opy"
+# !include "hover_jets.opy"
 #!include "rocket_launcher.opy"
 #!include "concussive.opy"
 #!include "barrage.opy"
@@ -13,7 +13,7 @@ def initPharah():
     removeSelfHealing()
     eventPlayer.setSecondaryFireEnabled(false)
     eventPlayer.setKnockbackDealt(percent(OW1_PHARAH_CONCUSSIVE_BLAST_KNOCKBACK/OW2_PHARAH_CONCUSSIVE_BLAST_KNOCKBACK))
-    initHoverJets()
+    # initHoverJets()
 
 
 # rule "[pharah/init.opy]: Clean up Pharah":

@@ -1,5 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
+/*
 globalvar LUCIO_CROSSFADE = createWorkshopSetting(bool, "Lucio", "30M Crossfade", true)
 
 playervar crossfade_pvar 
@@ -17,7 +18,6 @@ playervar crossfade_pvar
 #!defineMember crossfade_effects crossfade_pvar[8]
 playervar cross_fade_index 
 
-/*
 # Code by Spiderman31807 https://workshop.codes/APTH1
 # Recoded in overpy by viper & thanks for Spiderman31807 for coding this crossfade code!
 
@@ -36,7 +36,6 @@ Targets this is the list of players that'll obtain the `Mode` effects when the c
 TargetsTEMP this is the temp array of targets that builds the `Targets` array without modifying the `Targets` array until its finished.
 Grace: this is how long the player has (in seconds) before their effects from the crossfade will turn off once they leave the area of effect, in the basegame there is a grace of a single second which is mimicked over to this.. players inside the `Targets` array will not be removed until their linked `Grace` (linked on index of couse) has reached 0
 GraceTEMP this is the temp of grace values it builds before updating the main one used elsewhere, it uses the `TargetsTEMP` to choose weather to set the value to 1 or decrease it by 0.1 (the interval of updates for the targeting)
-*/
 
 macro initCrossfade():
         eventPlayer.crossfade_pvar = ["Speed", true, "Toggle", [], [], []]
@@ -147,3 +146,4 @@ rule "[lucio/aura.opy]: set correct amp speed":
         eventPlayer.setMoveSpeed(percent(OW1_LUCIO_AMP_SPEED/OW2_LUCIO_AMP_SPEED))
         wait(TICK_DURATION)
     while RULE_CONDITION
+*/

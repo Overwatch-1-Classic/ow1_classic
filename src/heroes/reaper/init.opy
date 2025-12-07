@@ -2,7 +2,7 @@
 
 #!include "blossom.opy"
 #!include "soul_orb.opy"
-#!include "wraith.opy"
+# !include "wraith.opy"
 #!include "step.opy"
 
 def initReaper():
@@ -11,7 +11,7 @@ def initReaper():
     setCustomHp(OW1_REAPER_HEALTH, 0, 0)
     setUltCost(OW1_REAPER_ULT_COST)
     removePassiveHealing()
-    eventPlayer.setHealingDealt(0)
+    eventPlayer.setHealingDealt(percent(OW1_REAPER_LIFESTEAL/OW2_REAPER_LIFESTEAL))
 
 
 rule "[reaper/init.opy]: Deal OW1 Reaper primary fire damage":

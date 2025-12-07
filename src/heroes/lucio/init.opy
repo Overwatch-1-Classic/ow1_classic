@@ -12,18 +12,18 @@ def initLucio():
     setUltCost(OW1_LUCIO_ULT_COST)
     removePassiveHealing()
 
-    initCrossfade()
-    showCrossfadeAreaText()
+    # initCrossfade()
+    # showCrossfadeAreaText()
 
     setBaseDamage(eventPlayer, OW1_LUCIO_SOUND_GUN_DAMAGE/OW2_LUCIO_SOUND_GUN_DAMAGE)
     eventPlayer.setKnockbackDealt(percent(OW1_LUCIO_SOUNDWAVE_KNOCKBACK/OW2_LUCIO_SOUNDWAVE_KNOCKBACK))
 
-rule "[lucio/init.opy]: Clean up Lucio":
-    @Event eachPlayer
-    @Condition eventPlayer.getCurrentHero() == Hero.LUCIO
+# rule "[lucio/init.opy]: Clean up Lucio":
+    # @Event eachPlayer
+    # @Condition eventPlayer.getCurrentHero() == Hero.LUCIO
     
-    waitUntil(eventPlayer.getCurrentHero() != Hero.LUCIO, Math.INFINITY)
-    hideCrossfadeAreaText()
+    # waitUntil(eventPlayer.getCurrentHero() != Hero.LUCIO, Math.INFINITY)
+    # hideCrossfadeAreaText()
 
 
 rule "[lucio/init.opy]: OW1 Lucio gun damage":

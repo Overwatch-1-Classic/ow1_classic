@@ -32,4 +32,4 @@ rule "[sigma/init.opy]: Set sigma barrier cooldown":
     @Hero sigma
     @Condition eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE) > 0
     
-    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, TICK_DURATION)
+    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0.1)

@@ -186,7 +186,6 @@ settings {
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
             "pharah": {
-                "enablePassiveUnlimitedFuel": true,
                 # "passiveExtraFuel%": 0,
                 "ability1Cooldown%": percent(OW1_PHARAH_JUMP_JET_COOLDOWN/OW2_PHARAH_JUMP_JET_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_PHARAH_CONCUSSIVE_BLAST_COOLDOWN/OW2_PHARAH_CONCUSSIVE_BLAST_COOLDOWN),
@@ -218,7 +217,7 @@ settings {
                 "ultGen%": percent(OW2_ROADHOG_ULT_COST/OW1_ROADHOG_ULT_COST)
             },
             "sigma": {
-                "health%": percent(OW1_SIGMA_BARRIER_HEALTH/OW2_SIGMA_BARRIER_HEALTH), # for barrier
+                # "health%": percent(OW1_SIGMA_BARRIER_HEALTH/OW2_SIGMA_BARRIER_HEALTH), # for barrier
                 # barrier recharge rate scales with health scalar for some reason
                 "secondaryFireRechargeRate%": percent((OW1_SIGMA_BARRIER_REGEN/OW2_SIGMA_BARRIER_REGEN)/(OW1_SIGMA_SHIELDS/OW2_SIGMA_SHIELDS)),
                 "ultGen%": percent(OW2_SIGMA_ULT_COST/OW1_SIGMA_ULT_COST),

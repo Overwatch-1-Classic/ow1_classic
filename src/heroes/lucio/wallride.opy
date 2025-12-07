@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-globalvar LUCIO_WALLRIDE = createWorkshopSetting(bool, "Lucio", "Launch Wallride", true) # I added this because lucio is in such a horrible state
+globalvar LUCIO_WALLRIDE = createWorkshopSetting(bool, "Lucio", "Launch Wallride", false) # I added this because lucio is in such a horrible state
 
 rule "[lucio/wallride.opy]: Launch wallride":
     @Event eachPlayer

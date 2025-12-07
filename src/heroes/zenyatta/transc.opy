@@ -15,17 +15,6 @@ rule "[zenyatta/transc.opy]: No movement boost during Transcendence":
     @Hero zenyatta
     @Condition eventPlayer.isUsingUltimate()
 
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW2_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS))
-    eventPlayer.setAmmo(0, eventPlayer.transc_ammo)
-    # eventPlayer.setMoveSpeed(percent(OW2_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS/OW1_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS))
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW1_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS))
     waitUntil((not eventPlayer.isUsingUltimate()), Math.INFINITY)
-    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW2_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS))
-
-rule "[zenyatta/transc.opy]: Get Zenyatta transc ammo":
-    @Event eachPlayer
-    @Hero zenyatta
-    @Condition eventPlayer.transc_ammo != eventPlayer.getAmmo(0)
-    @Condition not eventPlayer.isUsingUltimate()
-    
-    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
-    eventPlayer.transc_ammo = eventPlayer.getAmmo(0)
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS))

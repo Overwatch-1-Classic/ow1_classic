@@ -19,10 +19,6 @@ def initSymmetra():
     setUltCost(OW1_SYMMETRA_ULT_COST)
     removeSelfHealing()
 
-    showPhotonProjecterBeam()
-    showPhotonProjecterHUD()
-
-    eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.disallowButton(Button.ULTIMATE)
 
@@ -32,4 +28,3 @@ rule "[symmetra/init.opy]: Clean up Symmetra":
 
     waitUntil(eventPlayer.getCurrentHero() != Hero.SYMMETRA, Math.INFINITY)
     destroyTeleporter()
-    hidePhotonProjector()

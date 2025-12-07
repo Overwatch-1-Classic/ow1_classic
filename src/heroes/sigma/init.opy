@@ -13,7 +13,7 @@ created by oreoslurpee
 def initSigma():
     @Name "[sigma/init.opy]: initSigma()"
 
-    setCustomHp(OW1_SIGMA_HEALTH, 0, OW1_SIGMA_SHIELDS)
+    # setCustomHp(OW1_SIGMA_HEALTH, 0, OW1_SIGMA_SHIELDS)
     setUltCost(OW1_SIGMA_ULT_COST)
     # removeTankPassive()
     removeSelfHealing()

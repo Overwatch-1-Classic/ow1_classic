@@ -1,8 +1,8 @@
 #!mainFile "../ow1em_main.opy"
 
-#!define GAMEMODE_VERSION "1.2"
-#!define GAMEMODE_NAME "Overwatch 1 Classic"
-#!define GAMEMODE_CODE "YVE2X"
+#!define GAMEMODE_VERSION "1.0.0"
+#!define GAMEMODE_NAME "Overwatch 1++"
+#!define GAMEMODE_CODE "NC336"
 #!define STAGING_CODE "None"
 #!define DISCORD_SHORT_LINK "dsc.gg/ow1-classic"
 #!define DISCORD_LONG_LINK "discord.gg/G64d9hZbHT"
@@ -230,7 +230,6 @@ settings {
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
             "pharah": {
-                "enablePassiveUnlimitedFuel": true,
                 # "passiveExtraFuel%": 0,
                 "ability1Cooldown%": percent(OW1_PHARAH_JUMP_JET_COOLDOWN/OW2_PHARAH_JUMP_JET_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_PHARAH_CONCUSSIVE_BLAST_COOLDOWN/OW2_PHARAH_CONCUSSIVE_BLAST_COOLDOWN),

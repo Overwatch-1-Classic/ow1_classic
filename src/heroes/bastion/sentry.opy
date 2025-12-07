@@ -10,7 +10,6 @@ rule "[bastion/sentry.opy]: Initialize sentry mode":
 
     eventPlayer.current_configuration = Configuration.SENTRY
 
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION)
     setBaseDamage(eventPlayer, OW1_BASTION_SENTRY_CONFIG_DAMAGE/OW2_BASTION_ASSAULT_CONFIG_DAMAGE)
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
     eventPlayer.setKnockbackReceived(0)
@@ -67,7 +66,7 @@ rule "[bastion/sentry.opy]: Sentry Facing & Cast time":
     eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.setAbility1Enabled(false)
 
-    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
+    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*2) # Firing delay
     
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)

@@ -168,7 +168,6 @@ settings {
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
             "pharah": {
-                "enablePassiveUnlimitedFuel": true,
                 # "passiveExtraFuel%": 0,
                 "ultGen%": percent(OW1_PHARAH_ULT_COST/OW2_PHARAH_ULT_COST)
             },

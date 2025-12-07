@@ -5,7 +5,7 @@ rule "[symmetra/orb.opy]: set turret speed":
     @Hero symmetra
     @Condition eventPlayer.isUsingAbility1()
     
-    eventPlayer.setProjectileSpeed(1000)
+    eventPlayer.setProjectileSpeed(Math.INFINITY)
     eventPlayer.setMoveSpeed(47.778) # artillary based on
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setMoveSpeed(100)
@@ -16,10 +16,10 @@ rule "[symmetra/orb.opy]: symmetra allow turrets":
     @Hero symmetra
     @Condition distance(eventPlayer.getEyePosition(), raycast(eventPlayer.getEyePosition(), eventPlayer.getEyePosition() + 6 * eventPlayer.getFacingDirection(), null, eventPlayer, false).getHitPosition()) < 5
     
-    eventPlayer.setAbility1Enabled(true)
-    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
-    if RULE_CONDITION:
-        goto RULE_START
+    do:
+        eventPlayer.setAbility1Enabled(true)
+        wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
+    while RULE_CONDITION
 
 rule "[symmetra/orb.opy]: symettra disallow turrets":
     @Event eachPlayer

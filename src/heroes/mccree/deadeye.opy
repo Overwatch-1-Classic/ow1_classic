@@ -26,7 +26,7 @@ def startOW1Deadeye():
     eventPlayer.setMoveSpeed(percent(OW2_MCCREE_DEADEYE_MOVE_SPEED_MIN/OW2_MCCREE_DEADEYE_MOVE_SPEED_MAX))
 
 
-rule "[mccree/deadeye.opy]: Set 50% ultcharge if didnt fire":
+rule "[mccree/deadeye.opy]: Set 30% ultcharge if didnt fire":
     @Event eachPlayer
     @Hero cassidy
     @Condition eventPlayer.isUsingUltimate()

@@ -12,9 +12,6 @@ def initRoadhog():
     setCustomHp(OW1_ROADHOG_HEALTH, 0, 0)
     setUltCost(OW1_ROADHOG_ULT_COST)
 
-    if ROADHOG_HOOK_V1 == true:
-        eventPlayer.disallowButton(Button.ABILITY_1)
-
     # eventPlayer.setAmmo(0, OW1_ROADHOG_CLIP_SIZE) bugged clip size, manual set in lobby
     # eventPlayer.setMaxAmmo(0, OW1_ROADHOG_CLIP_SIZE)
 

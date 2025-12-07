@@ -85,8 +85,8 @@ def exitStealth():
 def showStealthHud():
     @Name "[sombra/stealth.opy]: showStealthHud()"
 
-    eventPlayer.stealth_timer =+ 100
-    chase(eventPlayer.stealth_timer, 0, rate=30, ChaseReeval.DESTINATION_AND_RATE)
+    eventPlayer.stealth_timer = 100
+    chase(eventPlayer.stealth_timer, 0, rate=20, ChaseReeval.DESTINATION_AND_RATE)
 
     
     if eventPlayer._stealth_hud_id == null:

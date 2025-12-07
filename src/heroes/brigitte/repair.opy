@@ -34,15 +34,3 @@ rule "[brigitte/repair.opy]: repair instant heal":
     @Condition eventPlayer.getNormalizedHealth() < 1
     
     heal(eventPlayer, healer, OW1_BRIGITTE_REPAIR_PACK_INSTANT_HEAL)
-
-
-rule "[brigitte/repair.opy]: repair bonus armor":
-    @Event playerReceivedHealing
-    @Condition healer.getCurrentHero() == Hero.BRIGITTE
-    @Condition eventAbility == Button.ABILITY_2
-    @Condition eventPlayer.getNormalizedHealth() == 1
-    
-    eventPlayer.addHealthPool(Health.NORMAL, OW1_BRIGITTE_REPAIR_PACK_ARMOR, false, false)
-    eventPlayer.repair_pack_armor = getLastCreatedHealthPool()
-    wait(OW1_BRIGITTE_INSPIRE_DURATION)
-    removeHealthPool(getLastCreatedHealthPool())

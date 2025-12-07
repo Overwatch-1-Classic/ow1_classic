@@ -27,10 +27,6 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION) # Remove Ironclad
-
-    eventPlayer.addHealthPool(Health.ARMOR, OW1_BASTION_TANK_ARMOR-OW1_BASTION_ARMOR, true, false) # Apply Tank healthpool
-    eventPlayer.tank_armour = getLastCreatedHealthPool()
 
     waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION)
 
@@ -40,17 +36,9 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.stopFacing()
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setUltEnabled(true)
-    removeHealthPool(eventPlayer.tank_armour)
     wait(TICK_DURATION)
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
-
-rule "[bastion/tank.opy]: Cancel out tank initial hit damage":
-    @Event playerDealtDamage
-    @Hero bastion
-    @Condition eventAbility == Button.SECONDARY_FIRE
-
-    heal(victim,null, OW1_BASTION_TANK_CONFIG_INITIAL_HIT_DAMAGE) # Deals an extra 30.75 damage, which added the math is 235.75
 
 rule "[bastion/tank.opy]: Fire tank shells":
     @Event eachPlayer

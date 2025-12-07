@@ -9,8 +9,7 @@ playervar repair_pvar
 #!defineMember _self_repair_pvar repair_pvar[8]
 
 macro isPressingSelfRepairButton(player):
-    (player.isHoldingButton(Button.ABILITY_2))
-  # sor player.isHoldingButton(Button.SECONDARY_FIRE)) # I know bastion's self-repair is ability 2, but its a nice qol to allow both buttons
+    (player.isHoldingButton(Button.ABILITY_2)) or player.isHoldingButton(Button.SECONDARY_FIRE) # I know bastion's self-repair is ability 2, but its a nice qol to allow both buttons
 
 macro isUsingSelfRepair(player):
     ((isPressingSelfRepairButton(player))
@@ -98,48 +97,9 @@ rule "[bastion/repair.opy]: Deactivate self-repair":
     if eventPlayer.isHoldingButton(Button.ABILITY_1):
         eventPlayer.forceButtonPress(Button.ABILITY_1)
         eventPlayer.setPrimaryFireEnabled(false)
-        wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
+        wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*2) # Firing delay
         eventPlayer.setPrimaryFireEnabled(true)
         startFiring()
-
-    # wait(OW1_BASTION_SELF_REPAIR_COOLDOWN_TIME, Wait.ABORT_WHEN_FALSE) # Wait 1 second cooldown before recharging heal resource
-
-    # chase(eventPlayer.self_repair_time_left, \
-          # OW1_BASTION_MAX_SELF_REPAIR_DURATION, \
-          # rate=OW1_BASTION_MAX_SELF_REPAIR_DURATION/OW1_BASTION_SELF_REPAIR_RECHARGE_DURATION, \
-          # ChaseReeval.DESTINATION_AND_RATE) # Start recharging
-
-# rule "[bastiom/repair.opy] Self-repair duration":
-    # @Event eachPlayer
-    # @Hero bastion
-    # @Condition isUsingSelfRepair(eventPlayer)
-    # @Condition eventPlayer.isHoldingButton(Button.ABILITY_2) 
-    # @Condition not eventPlayer.isFiringPrimaryFire()
-    # @Condition not eventPlayer.isMeleeing()
-    # @Condition not isCCd(eventPlayer)
-    # @Condition eventPlayer.isAlive()
-    # @Condition isUsingSelfRepair(eventPlayer)
-
-    # wait(OW1_BASTION_MAX_SELF_REPAIR_DURATION, Wait.ABORT_WHEN_FALSE)
-    # stopHoT(eventPlayer.self_repair_instance) # Stop healing
-    # eventPlayer.self_repair_instance = null
-
-    # hideSelfRepairRing()
-    # eventPlayer.clearStatusEffect(Status.ROOTED)
-    # @Condition eventPlayer.self_repair_time_left > 0
-
-rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
-    @Event playerTookDamage
-    @Hero bastion
-    @Condition isUsingSelfRepair(eventPlayer)
-
-    stopHoT(eventPlayer.self_repair_instance) # Stop healing
-    eventPlayer.self_repair_instance = null
-
-    eventPlayer.clearStatusEffect(Status.ROOTED)
-
-    hideSelfRepairRing()
-    # eventPlayer.setPrimaryFireEnabled(true)
 
 rule "[bastion/repair.opy]: Give ult charge for self repair":
     @Event playerDealtHealing

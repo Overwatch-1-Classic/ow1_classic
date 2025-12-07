@@ -12,8 +12,9 @@ def initMercy():
     eventPlayer.setAmmo(0, OW1_MERCY_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_MERCY_CLIP_SIZE)
 
-    eventPlayer.setAbility2Enabled(false)
-    eventPlayer.disallowButton(Button.ULTIMATE)
+    if MERCY_MASS_RESURRECTION:
+        eventPlayer.setAbility2Enabled(false)
+        eventPlayer.disallowButton(Button.ULTIMATE)
 
     setBaseHealing(eventPlayer, OW1_MERCY_STAFF_HEALING/OW2_MERCY_STAFF_HEALING)
 

@@ -1,5 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
+globalvar MERCY_MASS_RESURRECTION = createWorkshopSetting(bool, "Mercy", "Mass ressurection", true)
+
 playervar resurrect_pvar
 
 #!defineMember _mercy_hud_text resurrect_pvar [0]
@@ -23,6 +25,7 @@ subroutine stopMassRes
 rule "[mercy/resurrect.opy]: Store dead allies in an array":
     @Event eachPlayer
     @Hero mercy
+    @Condition MERCY_MASS_RESURRECTION == true
     @Condition eventPlayer.getUltCharge() >= 100
     @Condition not eventPlayer.isInSpawnRoom()
     
@@ -70,6 +73,7 @@ def stopMassRes():
 rule "[mercy/resurrect.opy]: Trigger res":
     @Event eachPlayer
     @Hero mercy
+    @Condition MERCY_MASS_RESURRECTION == true
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
     @Condition len(eventPlayer._dead_allies) > 0
     @Condition not isCCd(eventPlayer)
@@ -90,6 +94,7 @@ rule "[mercy/resurrect.opy]: Trigger res":
 rule "[mercy/resurrect.opy]: HUD counter":
     @Event eachPlayer
     @Hero mercy
+    @Condition MERCY_MASS_RESURRECTION == true
     @Condition eventPlayer.getUltCharge() >= 100
     @Condition len(eventPlayer._dead_allies) != eventPlayer._count_dead_allies
     @Condition not eventPlayer.isDead()
@@ -98,14 +103,18 @@ rule "[mercy/resurrect.opy]: HUD counter":
     do:
         eventPlayer._count_dead_allies = len(eventPlayer._dead_allies)
         if eventPlayer._mercy_hud_text == null:
-            createInWorldText(eventPlayer, "       /  \\ \r\n     /      \\ \r\n   /  {0}×{1}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= OW1_MERCY_RESURRECT_RADIUS]), iconString(Icon.SKULL)),
-            updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-1.65 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
-            verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
-            2.5, 
-            Clip.NONE, 
-            WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
-            Color.YELLOW, 
-            SpecVisibility.DEFAULT) 
+            createInWorldText(eventPlayer, "       /  \\ \r\n     /      \\ \r\n   /  {0}×{1}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), 
+                eventPlayer.getPosition()) <= OW1_MERCY_RESURRECT_RADIUS]), 
+                iconString(Icon.SKULL)),
+                updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, 
+                eventPlayer, 
+                Transform.ROTATION) + (-1.65 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+                verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+                2.5, 
+                Clip.NONE, 
+                WorldTextReeval.VISIBILITY_POSITION_STRING_AND_COLOR, 
+                Color.YELLOW, 
+                SpecVisibility.DEFAULT) 
         eventPlayer._mercy_hud_text = getLastCreatedText()
         waitUntil(not eventPlayer._dead_allies or eventPlayer.getUltCharge() < 100, 5)
         hideMercyResHud()
@@ -115,6 +124,7 @@ rule "[mercy/resurrect.opy]: HUD counter":
 
 rule "[mercy/resurrect.opy]: Resurrected player":
     @Event eachPlayer
+    @Condition MERCY_MASS_RESURRECTION == true
     @Condition eventPlayer._res_allies
     
     eventPlayer.disableRespawn()
@@ -136,6 +146,7 @@ rule "[mercy/resurrect.opy]: Resurrected player":
 rule "[mercy/resurrect.opy]: Fix bug where rez HUD applied after death":
     @Event eachPlayer
     @Hero mercy
+    @Condition MERCY_MASS_RESURRECTION == true
     @Condition eventPlayer.getUltCharge() >= 100
     @Condition eventPlayer.isDead()
     @Condition not eventPlayer.isInSpawnRoom()

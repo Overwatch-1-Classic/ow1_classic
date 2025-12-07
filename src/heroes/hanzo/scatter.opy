@@ -94,6 +94,7 @@ rule "[hanzo/scatter.opy]: Move scatter":
     do:
         eventPlayer._scatter_position = eventPlayer._scatter_position + eventPlayer._scatter_velocity * 0.016
         eventPlayer._scatter_velocity = eventPlayer._scatter_velocity + vect(0, -9.18, 0) * 0.016
+        wait(TICK_DURATION)
     while RULE_CONDITION
 
 rule "[hanzo/scatter.opy]: remove scatter arrow critical hit":

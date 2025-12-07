@@ -3,7 +3,7 @@
 #!include "dash.opy"
 #!include "deflect.opy"
 #!include "dragonblade.opy"
-#!include "agility.opy"
+# !include "agility.opy"
 
 def initGenji():
     @Name "[genji/init.opy]: initGenji()"
