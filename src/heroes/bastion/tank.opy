@@ -45,13 +45,6 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
 
-rule "[bastion/tank.opy]: Cancel out tank initial hit damage":
-    @Event playerDealtDamage
-    @Hero bastion
-    @Condition eventAbility == Button.SECONDARY_FIRE
-
-    heal(victim,null, OW1_BASTION_TANK_CONFIG_INITIAL_HIT_DAMAGE) # Deals an extra 30.75 damage, which added the math is 235.75
-
 rule "[bastion/tank.opy]: Fire tank shells":
     @Event eachPlayer
     @Hero bastion
