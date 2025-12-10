@@ -8,7 +8,7 @@
 #!include "utilities/macro_functions.opy"
 
 # Custom game lobby settings
-#!include "lobby/ow1em_lobby.opy"
+#!include "lobby/ow1c_lobby.opy"
 
 # Useful functions
 #!include "utilities/stat_helper.opy"

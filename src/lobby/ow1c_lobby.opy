@@ -1,4 +1,4 @@
-#!mainFile "../ow1em_main.opy"
+#!mainFile "../ow1c_main.opy"
 
 #!define GAMEMODE_VERSION "1.3.3"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
