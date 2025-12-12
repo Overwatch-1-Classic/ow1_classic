@@ -19,6 +19,8 @@ def initBastion():
     eventPlayer.setAmmo(0, OW1_BASTION_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_BASTION_CLIP_SIZE)
 
+    eventPlayer._is_using_self_repair = false
+
     removeSelfHealing()
 
 rule "[bastion/init.opy]: Clean up Bastion":
@@ -27,5 +29,5 @@ rule "[bastion/init.opy]: Clean up Bastion":
     
     waitUntil(eventPlayer.getCurrentHero() != Hero.BASTION, Math.INFINITY)
     hideMachineGunAmmo()
-    hideSelfRepairResource()
+    hideSelfRepair()
     hideSelfRepairRing()

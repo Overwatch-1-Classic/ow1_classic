@@ -9,7 +9,6 @@ rule "[bastion/recon.opy]: Initialize recon mode":
     @Hero bastion
     @Condition not eventPlayer.isInAlternateForm() # built in workshop function for detecting default hero form
 
-    wait(TICK_DURATION, Wait.IGNORE_CONDITION) # small for sentry cast time to prevent conflicts
     eventPlayer.current_configuration = Configuration.RECON
 
     eventPlayer.stopFacing()
