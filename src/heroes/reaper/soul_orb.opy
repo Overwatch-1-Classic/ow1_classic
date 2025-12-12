@@ -18,7 +18,9 @@ rule "[reaper/soul_orb.opy]: Create soul orb if player dies":
     wait(0.25)
     if not ruleCondition:
         return
-    eventPlayer.array_victim = getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 0 else getPlayers(getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())).getTeam()) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 1 else getPlayers(getOppositeTeam(getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())).getTeam())) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 2 else getAllPlayers()
+    eventPlayer.array_victim = getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 0 else getPlayers(getPlayersOnHero(Hero.REAPER, 
+        getOppositeTeam(eventPlayer.getTeam())).getTeam()) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 1 else getPlayers(getOppositeTeam(getPlayersOnHero(Hero.REAPER, 
+        getOppositeTeam(eventPlayer.getTeam())).getTeam())) if OW1_REAPER_SOUL_ORB_VISUAL_ARRAY == 2 else getAllPlayers()
     eventPlayer.position = eventPlayer.getEyePosition()
     eventPlayer.soul_orb_available = true
     createEffect(eventPlayer.array_victim, Effect.ORB, Color.RED, eventPlayer.position, 1, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)

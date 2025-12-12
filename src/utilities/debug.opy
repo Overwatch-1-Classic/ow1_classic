@@ -23,6 +23,12 @@ rule "[utilities/debug.opy]: Math.INFINITY ana hp":
 
 rule "[utilities/debug.opy]: third person perspective":
     @Event eachPlayer
+    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
+
+    getPlayers(getOppositeTeam(eventPlayer.getTeam())).forceButtonPress(Button.PRIMARY_FIRE)
+
+rule "[utilities/debug.opy]: third person perspective":
+    @Event eachPlayer
     @Condition DEBUG_MODE == true
     @Condition THIRD_PERSON == true
 
@@ -62,6 +68,8 @@ rule "[utilities/debug.opy]: player debug (Top Right)":
     hudSubheader(eventPlayer, "isFiringSecondaryFire() = {}".format(eventPlayer.isFiringSecondaryFire()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "isOnWall() = {}".format(eventPlayer.isOnWall()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "isReloading() = {}".format(eventPlayer.isReloading()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "isReloading() = {}".format(eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE)), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "_is_using_self_repair() = {}".format(eventPlayer._is_using_self_repair), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
 
 rule "[utilities/debug.opy]: Current victim HP":
     @Event playerDealtDamage
