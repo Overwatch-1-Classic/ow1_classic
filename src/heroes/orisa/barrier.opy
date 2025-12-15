@@ -19,24 +19,24 @@ playervar barrier_seed_velocity
 playervar barrier_seed_position
 #!defineMember _seed_hit_surface_normal barrier_pvar[3]
 
-#!defineMember _barrier_origin  barrier_pvar[4]
+#!defineMember _barrier_origin barrier_pvar[4]
 #!defineMember barrier_orientation barrier_pvar[5]
 #!defineMember barrier_sample_y barrier_pvar[6]
 #!defineMember barrier_sample_radius barrier_pvar[7]
-#!defineMember barrier_sample_coordinate barrier_pvar [8]
+#!defineMember barrier_sample_coordinate barrier_pvar[8]
 playervar barrier_entity_positions
-playervar barrier_entity_colors
-#!defineMember barrier_entity_ids barrier_pvar [9]
+#!defineMember barrier_entity_colors barrier_pvar[9]
+#!defineMember barrier_entity_ids barrier_pvar[10]
 
-#!defineMember barrier_active barrier_pvar [10]
-#!defineMember barrier_hp barrier_pvar [11]
-#!defineMember barrier_hp_hud_id barrier_pvar [12] 
-#!defineMember orisa_barrier_hit_positions barrier_pvar [13] 
+#!defineMember barrier_active barrier_pvar[11]
 playervar barrier_uptime
+#!defineMember barrier_hp barrier_pvar[12]
+#!defineMember barrier_hp_hud_id barrier_pvar[13]
+#!defineMember orisa_barrier_hit_positions barrier_pvar[14]
 
-#!defineMember barrier_damage_block_id barrier_pvar [14]
-#!defineMember barrier_all_enemies barrier_pvar [15]
-#!defineMember enemies_behind_barrier barrier_pvar [16]
+#!defineMember barrier_damage_block_id barrier_pvar[15]
+#!defineMember barrier_all_enemies barrier_pvar[16]
+#!defineMember enemies_behind_barrier barrier_pvar[16]
 
 subroutine throwBarrier
 subroutine deployBarrier
@@ -298,6 +298,7 @@ rule "[orisa/barrier.opy]: Decrease barrier health":
     @Condition eventPlayer.enemy_orisa_player.barrier_active
     
     eventPlayer.enemy_orisa_player.barrier_hp -= (eventDamage if not eventWasCriticalHit else eventDamage/2)/OW1_ORISA_PROJECTILE_BARRIER_BLOCK
+    heal(victim, null, eventDamage)
 
 
 # rule "[orisa/barrier.opy]: Receive no healing when behind barrier":
