@@ -5,7 +5,7 @@ globalvar SHOW_WATERMARK = createWorkshopSetting(bool, "Misc", "Show Watermark",
 
 playervar watermark_pvar
 #!defineMember rgb_i watermark_pvar[0]
-playervar info_id
+#!defineMember info_id watermark_pvar[1]
 playervar rgb_vect
 #!define RGB_DURATION 0.5
 
