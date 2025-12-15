@@ -33,6 +33,7 @@ rule "[orisa/halt.opy]: Trigger Halt ability":
     @Hero orisa
     @Condition eventPlayer.isHoldingButton(Button.SECONDARY_FIRE)
     @Condition eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE) <= 0
+    @Condition not eventPlayer.is_starting_supercharger # Cancel out force halt during supercharge animation
     @Condition eventPlayer.isAlive()
     @Condition not isCCd(eventPlayer)
 
@@ -54,6 +55,9 @@ def shootHalt():
     if (eventPlayer.halt_orb_id[0] == null):
         createEffect(getAllPlayers(), Effect.SPHERE, Color.LIME_GREEN, eventPlayer.halt_position, OW1_ORISA_HALT_PROJECTILE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
         eventPlayer.halt_orb_id[0] = getLastCreatedEntity()
+    if (eventPlayer.halt_orb_id[1] == null):
+        createEffect(getAllPlayers(), Effect.SPHERE, Color.LIME_GREEN, eventPlayer.halt_position, 0.5*OW1_ORISA_HALT_PROJECTILE_RADIUS, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
+        eventPlayer.halt_orb_id[1] = getLastCreatedEntity()
 
     # Halt orb sounds
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION_SOUND, Color.LIME_GREEN, eventPlayer, 100)
@@ -82,6 +86,8 @@ def explodeHalt():
     # Clear visuals
     destroyEffect(eventPlayer.halt_orb_id[0])
     eventPlayer.halt_orb_id[0] = null
+    destroyEffect(eventPlayer.halt_orb_id[1])
+    eventPlayer.halt_orb_id[1] = null
 
     eventPlayer.is_using_halt = false
     wait(OW1_ORISA_HALT_SNARE_DURATION)

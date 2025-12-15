@@ -9,6 +9,7 @@ playervar supercharger_pvar
 #!defineMember orisa_supercharger_beam_id supercharger_pvar[4]
 #!defineMember orisa_supercharger_sound_id supercharger_pvar[5]
 #!defineMember javelin_cooldown_before_ult supercharger_pvar[5]
+#!defineMember is_starting_supercharger supercharger_pvar[6]
 
 subroutine startSupercharger
 subroutine endSupercharger
@@ -31,6 +32,9 @@ def startSupercharger():
     @Name "[orisa/supercharger.opy]: startSupercharger()"
 
     eventPlayer.orisa_supercharger_origin = eventPlayer.getPosition() + OW1_ORISA_SUPERCHARGER_HEIGHT/2*Vector.UP
+
+    # Setup supercharger
+    eventPlayer.is_starting_supercharger = true
 
     eventPlayer.setUltCharge(0)
     eventPlayer.setUltEnabled(false) # Prevent Orisa from getting ult charge
@@ -57,17 +61,22 @@ def startSupercharger():
     # Supercharger deploy effect
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.GREEN, eventPlayer.orisa_supercharger_origin, 3)
     playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION_SOUND, Color.GREEN, eventPlayer.orisa_supercharger_origin, 200)
+    
     # play Javelin vfx
-    # eventPlayer.javelin_cooldown_before_ult = eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE)
-    # eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0)
-    # eventPlayer.allowButton(Button.SECONDARY_FIRE)
-    # eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
-    # eventPlayer.disallowButton(Button.SECONDARY_FIRE)
-    # eventPlayer.cancelPrimaryAction() # Cancel vfx
-    # eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, eventPlayer.javelin_cooldown_before_ult)
+    eventPlayer.javelin_cooldown_before_ult = eventPlayer.getAbilityCooldown(Button.SECONDARY_FIRE)
+    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0)
+    eventPlayer.allowButton(Button.SECONDARY_FIRE)
+    eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
+    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    eventPlayer.cancelPrimaryAction() # Cancel vfx
+    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, eventPlayer.javelin_cooldown_before_ult)
 
     # Announce supercharger active
     eventPlayer.is_using_supercharger = true
+    
+    # Stop supercharger setup
+    waitUntil(not eventPlayer.isHoldingButton(Button.SECONDARY_FIRE), 1)
+    eventPlayer.is_starting_supercharger = false
 
 
 def endSupercharger():
@@ -80,6 +89,7 @@ def endSupercharger():
     eventPlayer.orisa_supercharger_id[1] = null
     eventPlayer.is_using_supercharger = false
     getPlayers(eventPlayer.getTeam()).is_supercharged = false
+    eventPlayer.is_starting_supercharger = false
 
 
 rule "[orisa/supercharger.opy]: Supercharge teammates in supercharger range":
