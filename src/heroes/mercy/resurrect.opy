@@ -1,11 +1,15 @@
 #!mainFile "../../dev_main.opy"
 
+# Huge thanks for oreoslurpee for making this wonderful mass ressurection code! https://workshop.codes/72JEY
+# Rewrote in overpy & optimized by viper#18545
+
 playervar resurrect_pvar
 
 #!defineMember _mercy_hud_text resurrect_pvar [0]
 #!defineMember _count_dead_allies resurrect_pvar[1]
 #!defineMember _res_allies resurrect_pvar[2]
 #!defineMember _dead_allies resurrect_pvar[3]
+#!defineMember mercy_res_id resurrect_pvar[4]
 
 #!define OW1_MERCY_ULT_VOICELINE_DUR 1.635
 #!define OW1_MERCY_MAS_RES_DURATION 0.65
@@ -14,8 +18,6 @@ playervar resurrect_pvar
 macro hideMercyResHud():
     destroyInWorldText(eventPlayer._mercy_hud_text)
     eventPlayer._mercy_hud_text = null
-
-playervar mercy_res_id
 
 subroutine startMassRes
 subroutine stopMassRes
@@ -37,7 +39,7 @@ def startMassRes():
     # Ult Disable
     eventPlayer.setUltCharge(0)
     eventPlayer.setUltEnabled(false) # Prevent Mercy from getting ult charge
-    #eventPlayer.communicate(Comms.VOICE_LINE_UP) # Play ultimate voice line
+    eventPlayer.communicate(Comms.VOICE_LINE_UP) # Play ultimate voice line
 
     # mass res sound eeffects
     playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.YELLOW, eventPlayer, 5)
@@ -98,8 +100,12 @@ rule "[mercy/resurrect.opy]: HUD counter":
     do:
         eventPlayer._count_dead_allies = len(eventPlayer._dead_allies)
         if eventPlayer._mercy_hud_text == null:
-            createInWorldText(eventPlayer, "       /  \\ \r\n     /      \\ \r\n   /  {0}×{1}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), eventPlayer.getPosition()) <= OW1_MERCY_RESURRECT_RADIUS]), iconString(Icon.SKULL)),
-            updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, eventPlayer, Transform.ROTATION) + (-1.65 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+            createInWorldText(eventPlayer, "       /  \\ \r\n     /      \\ \r\n   /  {0}×{1}\r\n  --------".format(len([i for i in getDeadPlayers(eventPlayer.getTeam()).exclude(eventPlayer) if distance(i.getPosition(), 
+            eventPlayer.getPosition()) <= OW1_MERCY_RESURRECT_RADIUS]), 
+            iconString(Icon.SKULL)),
+            updateEveryTick(eventPlayer.getEyePosition() + (100 * (1.5 * worldVector(Vector.UP, 
+            eventPlayer, 
+            Transform.ROTATION) + (-1.65 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
             verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
             2.5, 
             Clip.NONE, 
@@ -117,6 +123,7 @@ rule "[mercy/resurrect.opy]: Resurrected player":
     @Event eachPlayer
     @Condition eventPlayer._res_allies
     
+    disableAllAbilities()
     eventPlayer.disableRespawn()
     eventPlayer.startCamera(eventPlayer.getEyePosition() + vect(0, 2, 0) + eventPlayer.getFacingDirection() * -2, eventPlayer, 0)
     eventPlayer.resurrect()
@@ -129,6 +136,7 @@ rule "[mercy/resurrect.opy]: Resurrected player":
     playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
     wait(OW1_RES_WAIT)
     eventPlayer.stopCamera()
+    enableAllAbilities()
     eventPlayer._res_allies = false
     eventPlayer.enableRespawn()
 
