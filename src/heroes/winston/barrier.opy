@@ -23,8 +23,7 @@ rule "[winston/barrier.opy]: Disallow barrier when using":
 
     eventPlayer.setAbility2Enabled(false)
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, 0)
-    # wait(1)
-    waitUntil(eventPlayer.getAbilityCooldown(Button.ABILITY_2) > 0, Math.INFINITY)
+    wait(OW1_WINSTON_BARRIER_DURATION)
     eventPlayer.setAbility2Enabled(true)
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, OW1_WINSTON_BARRIER_COOLDOWN) # This is very stupid because what if the barrier broke?
 */
