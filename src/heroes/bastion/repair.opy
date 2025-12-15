@@ -38,14 +38,16 @@ macro hideSelfRepairRing():
     destroyEffect(eventPlayer._self_repair_ring_gui)
     eventPlayer._self_repair_ring_gui = null
 
-rule "[bastion/repair.opy]: Activate self-repair":
+rule "[bastion/repair.opy]: Activate self-repair + Deactive self repair":
     @Event eachPlayer
     @Hero bastion
     @Condition isUsingSelfRepair(eventPlayer)
     @Condition not cancelSelfRepairTank()
     @Condition not isCCd(eventPlayer)
-    @Condition eventPlayer._is_using_self_repair == false
+    @Condition not eventPlayer.isUsingUltimate()
     @Condition eventPlayer._self_repair_cooldown == 0 # Custom ability timer.
+
+    eventPlayer._is_using_self_repair = true
 
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
     eventPlayer.setPrimaryFireEnabled(false)
@@ -72,9 +74,9 @@ rule "[bastion/repair.opy]: Activate self-repair":
 
     if eventPlayer._self_repair_ring_gui == null:
         createEffect(getAllPlayers(), 
-                     Effect.LIGHT_SHAFT, 
-                     Color.YELLOW, 
-                     updateEveryTick(eventPlayer.getPosition()), 
+                     Effect.SPHERE, 
+                     rgb(235, 235, 75, 255/3), 
+                     eventPlayer, 
                      1.5, 
                      EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
         eventPlayer._self_repair_ring_gui = getLastCreatedEntity()
@@ -83,27 +85,20 @@ rule "[bastion/repair.opy]: Activate self-repair":
         eventPlayer.startHoT(eventPlayer, Math.INFINITY, OW1_BASTION_SELF_REPAIR_HEALING_RATE)
         eventPlayer.self_repair_instance = getLastHoT()
 
-    eventPlayer._is_using_self_repair = true # Keep this order action this is important otherwise id create bugs
-
     if eventPlayer.isReloading():
         eventPlayer.cancelPrimaryAction()
-
-rule "[bastion/repair.opy]: Deactivate self-repair":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer._is_using_self_repair == true
-
+    
     waitUntil(isCCd(eventPlayer) or not isPressingSelfRepairButton(eventPlayer) or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), OW1_BASTION_MAX_SELF_REPAIR_DURATION) # Holding isPressingSelfRepairButton()
     waitUntil(isCCd(eventPlayer) or isPressingSelfRepairButton(eventPlayer) or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE), OW1_BASTION_MAX_SELF_REPAIR_DURATION) # Not holding isPressingSelfRepairButton()
 
-    wait(0.1, Wait.ABORT_WHEN_FALSE) # So it doesn't instantly restart self repair.
+    wait(0.1) # Doesn't instantly restart self-repair
 
+    eventPlayer._is_using_self_repair = false
 
     stopHoT(eventPlayer.self_repair_instance) # Stop healing
     eventPlayer.self_repair_instance = null
 
     hideSelfRepairRing()
-    hideSelfRepair()
     eventPlayer.clearStatusEffect(Status.ROOTED)
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setReloadEnabled(true)
@@ -111,10 +106,6 @@ rule "[bastion/repair.opy]: Deactivate self-repair":
     
     if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
         startFiring()
-        
-    
-    if isPressingSelfRepairButton(eventPlayer): # Hard code it due to issues
-        hideSelfRepair()
 
 rule "[bastion/repair.opy]: Deactivate self-repair if player took damage":
     @Event playerTookDamage
