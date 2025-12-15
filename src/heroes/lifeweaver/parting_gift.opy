@@ -54,7 +54,7 @@ rule "[lifeweaver/parting_gift.opy]: parting gift collected":
     wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     partingGiftCollected()
     eventPlayer.stopForcingPosition()
-    eventPlayer.teleport(vect(0, -500, 0))
+    # eventPlayer.teleport(vect(0, -500, 0))
 
 
 rule "[lifeweaver/parting_gift.opy]: follow players":

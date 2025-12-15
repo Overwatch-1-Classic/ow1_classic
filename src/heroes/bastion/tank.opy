@@ -50,9 +50,6 @@ rule "[bastion/tank.opy]: Initialize tank mode":
 
     eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of turret mode
 
-    damage(eventPlayer, eventPlayer, 1) # Overwrite self-repair, my code is pretty bad so this is how i would force it to disable self-repair
-    heal(eventPlayer, null, 1)
-
     waitUntil(not eventPlayer.isInAlternateForm(), OW2_BASTION_ASSAULT_CONFIG_LENGTH)
 
     if eventPlayer.isUsingAbility1():
