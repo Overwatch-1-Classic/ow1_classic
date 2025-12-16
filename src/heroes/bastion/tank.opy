@@ -21,6 +21,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 
     eventPlayer.clearStatusEffect(Status.ROOTED)
+    eventPlayer.setJumpEnabled(true)
     eventPlayer.setKnockbackReceived(100)
 
     # transform into ow1 tank
