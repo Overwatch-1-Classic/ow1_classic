@@ -1,6 +1,6 @@
 #!mainFile "../ow1c_main.opy"
 
-#!define GAMEMODE_VERSION "1.3.3"
+#!define GAMEMODE_VERSION "1.5.5"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"
@@ -48,61 +48,14 @@ settings {
         "enableMatchVoiceChat": true,
         "spectatorSlots": 12,
         "team1Slots": 6,
-        "team2Slots": 6,
+        "team2Slots": 0,
         "returnToLobby": "never",
         "teamBalancing": "afterGame",
         # "minimumLatencyInNs": 50000000
     },
     "gamemodes": {
-        "assault": {
-            "disabledMaps": [
-                "hanamuraWinter",
-                "hanamura",
-                "templeOfAnubis"
-            ],
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "control": {
-            "disabledMaps": [
-                "lijiangTowerLny"
-            ],
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "escort": {
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "push": {
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "flashpoint": {
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "hybrid": {
-            "disabledMaps": [
-                "blizzWorldWinter",
-                "eichenwaldeHalloween",
-                "hollywoodHalloween",
-                "kingsRowWinter"
-            ],
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "clash": {
-            "enablePerks": false,
-            "enableCompetitiveRules": true
-        },
-        "general": {
-            "heroLimit": "off",
-            "roleLimit": "off",
-            "gamemodeStartTrigger": "allSlotsFilled",
-            "tankPassiveHealthBonus": "alwaysEnabled",
-            "enableCompetitiveRules": true,
-            "enableKillFeed": false,
+        "practiceRange": {
+            "enabledMaps": [ "practiceRange" ]
         },
     },
     "heroes": {
@@ -185,7 +138,7 @@ settings {
             },
             "junkerQueen": {
                 "health%": percent(OW1_JUNKERQUEEN_SHOUT_OVERHEALTH/OW2_JUNKERQUEEN_SHOUT_OVERHEALTH), # for shout overhealth
-                "secondaryFireCooldown%": percent(OW1_JUNKERQUEEN_BLADE_COOLDOWN/OW2_JUNKERQUEEN_BLADE_COOLDOWN),
+                # "secondaryFireCooldown%": percent(OW1_JUNKERQUEEN_BLADE_COOLDOWN/OW2_JUNKERQUEEN_BLADE_COOLDOWN),
                 "ability1Cooldown%": percent(OW1_JUNKERQUEEN_SHOUT_COOLDOWN_TIME/OW2_JUNKERQUEEN_SHOUT_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_JUNKERQUEEN_ULT_COST/OW1_JUNKERQUEEN_ULT_COST)
             },
