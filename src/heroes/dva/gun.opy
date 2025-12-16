@@ -1,26 +1,15 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "matrix.opy"
+
 rule "[dva/gun.opy]: OW1 DVa movement penalty when shooting":
     @Event eachPlayer
     @Hero dva
     @Condition not eventPlayer.isInAlternateForm()
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    @Condition eventPlayer.isFiringPrimaryFire()
     @Condition not eventPlayer.isUsingAbility1()
-
-    eventPlayer.setMoveSpeed(percent((1-OW1_DVA_MOVE_PENALTY)/(1-OW2_DVA_MOVE_PENALTY)))
-
-
-rule "[dva/gun.opy]: Remove movement penalty when not shooting":
-    @Event eachPlayer
-    @Hero dva
-    @Condition not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-
-    eventPlayer.setMoveSpeed(100)
-
-
-rule "[dva/gun.opy]: Remove movement penalty when flying":
-    @Event eachPlayer
-    @Hero dva
-    @Condition eventPlayer.isUsingAbility1()
-
-    eventPlayer.setMoveSpeed(100)
+    @Condition not eventPlayer.matrix_pvar
+    
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*((1-OW1_DVA_MOVE_PENALTY)/(1-OW2_DVA_MOVE_PENALTY)))
+    waitUntil((not eventPlayer.isFiringPrimaryFire()) or eventPlayer.isUsingAbility1(), Math.INFINITY)
+    setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/((1-OW1_DVA_MOVE_PENALTY)/(1-OW2_DVA_MOVE_PENALTY)))
