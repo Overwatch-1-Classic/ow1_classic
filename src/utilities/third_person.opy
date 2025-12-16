@@ -3,7 +3,7 @@
 globalvar THIRD_PERSON = createWorkshopSetting(bool, "Dev Tools", "third person perspective", true)
 
 /*
-This third person perspective was by Mitsiee & jtbfs (for smooth camera)
+This third person perspective was made by Mitsiee & jtbfs (for smooth camera)
 https://workshop.codes/third-person & https://workshop.codes/SQGC8  code: SQGC8 or 2S23V
 */
 
@@ -22,7 +22,7 @@ playervar third_person_pvar
 enum CameraShoulder: # Camera Shoulder, similar to stadium
     MIDDLE_SHOULDER = 0,
     LEFT_SHOULDER = 1,
-    RIGHT_SHOULDER = -1,
+    RIGHT_SHOULDER = -1
 
 rule "[utilities/third_person.opy]: Initialise":
     @Event eachPlayer
@@ -47,7 +47,7 @@ rule "[utilities/third_person.opy]: Set up third person perspective":
     @Event eachPlayer
     @Condition DEBUG_MODE
     @Condition THIRD_PERSON
-    @Condition not ((eventPlayer.getHero() == Hero.WIDOWMAKER or eventPlayer.getHero() == Hero.ASHE) and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
+    @Condition not ((eventPlayer.getHero() == Hero.WIDOWMAKER or eventPlayer.getHero() == Hero.ASHE or eventPlayer.getHero() == Hero.REINHARDT or eventPlayer.getHero() == Hero.BRIGITTE) and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
 
     if not eventPlayer.inaccurate_crosshair_lineup:
         #Accurate Crosshair Camera (Default)
@@ -71,10 +71,10 @@ rule "[utilities/third_person.opy]: Disable Third Person for specific conditions
     @Event eachPlayer
     @Condition DEBUG_MODE
     @Condition THIRD_PERSON
-    @Condition ((eventPlayer.getHero() == Hero.WIDOWMAKER or eventPlayer.getHero() == Hero.ASHE) and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
+    @Condition ((eventPlayer.getHero() == Hero.WIDOWMAKER or eventPlayer.getHero() == Hero.ASHE or eventPlayer.getHero() == Hero.REINHARDT or eventPlayer.getHero() == Hero.BRIGITTE) and eventPlayer.isHoldingButton(Button.SECONDARY_FIRE))
     
     eventPlayer.stopCamera()    
-
+    
 # Controls
 
 rule "[utilities/third_person.opy]: Change shoulders when pressing interact":

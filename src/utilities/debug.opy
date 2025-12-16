@@ -20,12 +20,6 @@ rule "[utilities/debug.opy]: Math.INFINITY ana hp":
     eventPlayer.addHealthPool(Health.NORMAL, Math.INFINITY, true, true)
     heal(eventPlayer, null, Math.INFINITY)
 
-rule "[utilities/debug.opy]: huge mass res":
-    @Event eachPlayer
-    @Condition eventPlayer.isHoldingButton(Button.INTERACT)
-    
-    getPlayers(getOppositeTeam(eventPlayer.getTeam())).forceButtonPress(Button.PRIMARY_FIRE)
-
 rule "[debug.opy] Disable Inspector for performance":
     @Event global
     @Condition not DEBUG_MODE
