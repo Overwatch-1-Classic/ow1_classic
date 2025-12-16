@@ -1,7 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
 
-rule "[dva/booster.opy]: Disallow melee,shooting":
+rule "[dva/booster.opy]: Disallow melee & primary fire":
     @Event eachPlayer
     @Hero dva
     @Condition eventPlayer.isUsingAbility1()
@@ -13,16 +13,20 @@ rule "[dva/booster.opy]: Disallow melee,shooting":
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
     startFiring()
 
-# rule "[dva/booster.opy]: Cancel booster if melee pressed":
-    # @Event eachPlayer
-    # @Hero dva
-    # @Condition eventPlayer.isUsingAbility1()
-    # @Condition eventPlayer.isHoldingButton(Button.MELEE)
+rule "[dva/booster.opy]: Cancel booster if melee or primary fire pressed":
+    @Event eachPlayer
+    @Hero dva
+    @Condition eventPlayer.isUsingAbility1()
+    @Condition eventPlayer.isHoldingButton(Button.MELEE) or eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     
-    # eventPlayer.forceButtonPress(Button.ABILITY_1)
-    # eventPlayer.allowButton(Button.MELEE)
-    # eventPlayer.forceButtonPress(Button.MELEE)
-    # eventPlayer.disallowButton(Button.MELEE)
+    eventPlayer.forceButtonPress(Button.ABILITY_1)
+
+    if eventPlayer.isHoldingButton(Button.MELEE):
+        eventPlayer.allowButton(Button.MELEE)
+        eventPlayer.forceButtonPress(Button.MELEE)
+        eventPlayer.disallowButton(Button.MELEE)
+    elif eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
+        startFiring()
 
 
 rule "[dva/booster.opy]: Reduce boosters damage":
