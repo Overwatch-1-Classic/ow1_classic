@@ -1,6 +1,5 @@
 #!mainFile "../../dev_main.opy"
 
-playervar tank_armour
 
 rule "[bastion/tank.opy]: Initialize tank mode":
     @Event eachPlayer
@@ -18,15 +17,31 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 
     eventPlayer.clearStatusEffect(Status.ROOTED)
+    eventPlayer.setJumpEnabled(true)
     eventPlayer.setKnockbackReceived(100)
 
     # transform into ow1 tank
     eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
     wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
     eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
+    eventPlayer.setFacing(vect(updateEveryTick(eventPlayer.getFacingDirection()).x, 0, updateEveryTick(updateEveryTick(eventPlayer.getFacingDirection()).z)), Relativity.TO_WORLD) # Bruteforce camera facing
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
+
+    wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH) # Keep these 2 no matter what otherwise it would break
+    waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH) # Keep these 2 no matter what otherwise it would break
+
+    # Restart tank config
+    eventPlayer.allowButton(Button.ABILITY_1)
+    
+    eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave assault mode
+    eventPlayer.cancelPrimaryAction()
+
+    eventPlayer.forceButtonPress(Button.ABILITY_1) # Re-enter assault and restart tank mode
+    eventPlayer.cancelPrimaryAction()
+
+    eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of turret mode
 
     waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION)
 
@@ -36,9 +51,9 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.stopFacing()
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setUltEnabled(true)
-    wait(TICK_DURATION)
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
+
 
 rule "[bastion/tank.opy]: Fire tank shells":
     @Event eachPlayer
@@ -46,7 +61,7 @@ rule "[bastion/tank.opy]: Fire tank shells":
     @Condition eventPlayer.current_configuration == Configuration.TANK
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
     
-    do:     
+    do: 
         eventPlayer.allowButton(Button.SECONDARY_FIRE)
         eventPlayer.forceButtonPress(Button.SECONDARY_FIRE)
         eventPlayer.disallowButton(Button.SECONDARY_FIRE)
@@ -61,17 +76,6 @@ rule "[bastion/tank.opy]: Reload tank shells":
     @Condition eventPlayer.current_configuration == Configuration.TANK
     @Condition eventPlayer.isFiringSecondaryFire()
 
-    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME_COMPENSATION) # modify cooldown for tank shell
+    eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # modify cooldown for tank shell
     wait(OW1_BASTION_TANK_CONFIG_SHELL_RELOAD_TIME) # Wait tank shell reload time
     eventPlayer.setAbilityCooldown(Button.SECONDARY_FIRE, 0) # Set tank shell as available
-
-/*
-rule "[bastion/tank.opy]: Decrease kb on self":
-    @Event playerTookDamage
-    @Hero bastion
-    @Condition attacker == victim
-    
-    eventPlayer.setGravity(125)
-    wait(1)
-    eventPlayer.setGravity(100)
-*/

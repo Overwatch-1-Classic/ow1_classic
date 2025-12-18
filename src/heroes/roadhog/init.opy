@@ -15,7 +15,7 @@ def initRoadhog():
     # eventPlayer.setAmmo(0, OW1_ROADHOG_CLIP_SIZE) bugged clip size, manual set in lobby
     # eventPlayer.setMaxAmmo(0, OW1_ROADHOG_CLIP_SIZE)
 
-    # eventPlayer.setDamageDealt(percent(OW1_ROADHOG_SCRAP_GUN_DAMAGE/OW2_ROADHOG_SCRAP_GUN_DAMAGE))
+    setBaseDamage(eventPlayer, OW1_ROADHOG_SCRAP_GUN_DAMAGE/OW2_ROADHOG_SCRAP_GUN_DAMAGE)
 
     # Breather init
     eventPlayer.setHealingDealt(percent(OW1_ROADHOG_BREATHER_HEAL_TOTAL/OW2_ROADHOG_BREATHER_HEAL_TOTAL))

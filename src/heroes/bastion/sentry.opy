@@ -53,22 +53,3 @@ rule "[bastion/sentry.opy]: Stop using sentry if player dealt cc":
     
     waitUntil(not isCCd(eventPlayer), Math.INFINITY)
     eventPlayer.forceButtonPress(Button.ABILITY_1)
-
-rule "[bastion/sentry.opy]: Sentry Facing & Cast time":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.isUsingAbility1()
-    @Condition eventPlayer.current_configuration != Configuration.TANK
-
-    waitUntil(eventPlayer.isUsingAbility1(), OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME*2)
-
-    eventPlayer.startFacing(eventPlayer.getEyePosition(), 0)
-    eventPlayer.setPrimaryFireEnabled(false)
-    eventPlayer.setAbility1Enabled(false)
-
-    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*2) # Firing delay
-    
-    eventPlayer.setPrimaryFireEnabled(true)
-    eventPlayer.setAbility1Enabled(true)
-    eventPlayer.stopFacing()
-    startFiring()

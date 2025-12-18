@@ -14,10 +14,12 @@ def initBastion():
     eventPlayer.machine_gun_reload_timer = 0
 
     setBaseDamage(eventPlayer, OW1_BASTION_RECON_GUN_DAMAGE/OW2_BASTION_RECON_GUN_DAMAGE)
-    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 
     eventPlayer.setAmmo(0, OW1_BASTION_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_BASTION_CLIP_SIZE)
+
+    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
+    eventPlayer.self_repair_time_left = OW1_BASTION_MAX_SELF_REPAIR_DURATION
 
     removeSelfHealing()
 
