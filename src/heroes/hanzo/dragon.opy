@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule"[hanzo/dragon.opy]: Set dragon speed":
+rule "[hanzo/dragon.opy]: Set dragon speed":
     @Event eachPlayer
     @Hero hanzo
     @Condition eventPlayer.isUsingUltimate()

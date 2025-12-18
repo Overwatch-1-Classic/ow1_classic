@@ -51,6 +51,7 @@ rule "[utilities/debug.opy]: player debug (Top Right)":
     hudSubheader(eventPlayer, "isReloading() = {}".format(eventPlayer.isReloading()), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "is_starting_supercharger() = {}".format(eventPlayer.is_starting_supercharger), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "_is_using_self_repair() = {}".format(eventPlayer._is_using_self_repair), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    hudSubheader(eventPlayer, "controller_user() = {}".format(eventPlayer.controller_user), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
 
 rule "[utilities/debug.opy]: Current victim HP":
     @Event playerDealtDamage
