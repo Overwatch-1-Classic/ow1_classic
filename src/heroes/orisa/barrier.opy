@@ -20,23 +20,23 @@ playervar barrier_seed_position
 #!defineMember _seed_hit_surface_normal barrier_pvar[3]
 
 #!defineMember _barrier_origin barrier_pvar[4]
-#!defineMember barrier_orientation barrier_pvar[5]
-#!defineMember barrier_sample_y barrier_pvar[6]
-#!defineMember barrier_sample_radius barrier_pvar[7]
-#!defineMember barrier_sample_coordinate barrier_pvar[8]
+playervar barrier_orientation
+playervar barrier_sample_y
+playervar barrier_sample_radius
+playervar barrier_sample_coordinate
 playervar barrier_entity_positions
-#!defineMember barrier_entity_colors barrier_pvar[9]
-#!defineMember barrier_entity_ids barrier_pvar[10]
+#!defineMember barrier_entity_colors barrier_pvar[5]
+#!defineMember barrier_entity_ids barrier_pvar[6]
 
-#!defineMember barrier_active barrier_pvar[11]
+#!defineMember barrier_active barrier_pvar[7]
 playervar barrier_uptime
-#!defineMember barrier_hp barrier_pvar[12]
-#!defineMember barrier_hp_hud_id barrier_pvar[13]
-#!defineMember orisa_barrier_hit_positions barrier_pvar[14]
+#!defineMember barrier_hp barrier_pvar[8]
+#!defineMember barrier_hp_hud_id barrier_pvar[9]
+#!defineMember orisa_barrier_hit_positions barrier_pvar[10]
 
-#!defineMember barrier_damage_block_id barrier_pvar[15]
-#!defineMember barrier_all_enemies barrier_pvar[16]
-#!defineMember enemies_behind_barrier barrier_pvar[16]
+#!defineMember barrier_damage_block_id barrier_pvar[11]
+#!defineMember barrier_all_enemies barrier_pvar[12]
+#!defineMember enemies_behind_barrier barrier_pvar[13]
 
 subroutine throwBarrier
 subroutine deployBarrier
