@@ -1,6 +1,6 @@
 #!mainFile "../ow1c_main.opy"
 
-#!define GAMEMODE_VERSION "1.5.5"
+#!define GAMEMODE_VERSION "1.6.0"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"
@@ -61,19 +61,19 @@ settings {
     "heroes": {
         "allTeams": {
             "ana": {
-                "health%": percent(OW1_ANA_HEALTH/OW2_ANA_HEALTH),
+                # "health%": percent(OW1_ANA_HEALTH/OW2_ANA_HEALTH),
                 "ammoClipSize%": percent(OW1_ANA_CLIP_SIZE)/(OW2_ANA_CLIP_SIZE),
                 "ability1Cooldown%": percent(OW1_ANA_SLEEP_DART_COOLDOWN_TIME/OW2_ANA_SLEEP_DART_COOLDOWN_TIME),
                 "ability2Cooldown%": percent(OW1_ANA_BIOTIC_GRENADE_COOLDOWN/OW2_ANA_BIOTIC_GRENADE_COOLDOWN),
                 "ultGen%": percent(OW2_ANA_ULT_COST/OW1_ANA_ULT_COST)
             },
             "ashe": {
-                "health%": percent(OW1_ASHE_BOB_HEALTH/OW2_ASHE_BOB_HEALTH), # for BOB hp
+                # "health%": percent(OW1_ASHE_BOB_HEALTH/OW2_ASHE_BOB_HEALTH), # for BOB hp
                 "ultGen%": percent(OW2_ASHE_ULT_COST/OW1_ASHE_ULT_COST)
             },
             "baptiste": {
                 "ability2Cooldown%": percent(OW1_BAPTISTE_LAMP_COOLDOWN_TIME/OW2_BAPTISTE_LAMP_COOLDOWN_TIME),
-                "health%": percent(OW1_BAPTISTE_LAMP_HP/OW2_BAPTISTE_LAMP_HP), # for immortality field hp
+                # "health%": percent(OW1_BAPTISTE_LAMP_HP/OW2_BAPTISTE_LAMP_HP), # for immortality field hp
                 "ultGen%": percent(OW2_BAPTISTE_ULT_COST/OW1_BAPTISTE_ULT_COST)
             },
             "bastion": {
@@ -82,7 +82,7 @@ settings {
                 "ultGen%": percent(OW2_BASTION_ULT_COST/OW1_BASTION_ULT_COST)
             },
             "brigitte": {
-                "health%": percent(OW1_BRIGITTE_BARRIER_HEALTH/OW2_BRIGITTE_BARRIER_HEALTH), # for barrier hp
+                # "health%": percent(OW1_BRIGITTE_BARRIER_HEALTH/OW2_BRIGITTE_BARRIER_HEALTH), # for barrier hp
                 "shieldBashCooldown%": percent(OW1_BRIGITTE_SHIELD_BASH_COOLDOWN/OW2_BRIGITTE_SHIELD_BASH_COOLDOWN),
                 "shieldBashKb%": percent(OW1_BRIGITTE_SHIELD_BASH_KNOCKBACK/OW2_BRIGITTE_SHIELD_BASH_KNOCKBACK),
                 "ability2Cooldown%": percent(OW1_BRIGITTE_REPAIR_PACK_COOLDOWN/OW2_BRIGITTE_REPAIR_PACK_COOLDOWN),
@@ -103,14 +103,14 @@ settings {
                 "ultGen%": percent(OW2_DOOMFIST_ULT_COST/OW1_DOOMFIST_ULT_COST)
             },
             "dva": {
-                "health%": percent(OW1_DVA_PILOT_HEALTH/OW2_DVA_PILOT_HEALTH), # for pilot dva hp
+                # "health%": percent(OW1_DVA_PILOT_HEALTH/OW2_DVA_PILOT_HEALTH), # for pilot dva hp
                 "secondaryFireMaximumTime%": percent(OW1_DVA_MATRIX_DURATION/OW2_DVA_MATRIX_DURATION),
                 "ability1Cooldown%": percent(OW1_DVA_BOOSTER_COOLDOWN_TIME/OW2_DVA_BOOSTER_COOLDOWN_TIME),
                 "ability2Cooldown%": percent(OW1_DVA_MICRO_MISSILES_COOLDOWN_TIME/OW2_DVA_MICRO_MISSILES_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_DVA_ULT_COST/OW1_DVA_ULT_COST)
             },
             "echo": {
-                "health%": percent(OW1_ECHO_HEALTH/OW2_ECHO_HEALTH),
+                # "health%": percent(OW1_ECHO_HEALTH/OW2_ECHO_HEALTH),
                 "ultGen%": percent(OW2_ECHO_ULT_COST/OW1_ECHO_ULT_COST)
             },
             "freja": {
@@ -127,8 +127,11 @@ settings {
                 "ability2Cooldown%": percent(OW1_HANZO_STORM_COOLDOWN/OW2_HANZO_STORM_COOLDOWN),
                 "ultGen%": percent(OW2_HANZO_ULT_COST/OW1_HANZO_ULT_COST)
             },
+            "hazard": {
+                "ultGen%": percent(OW2_HAZARD_ULT_COST/OW1_HAZARD_ULT_COST)
+            },
             "illari": {
-                "health%": percent(OW1_ILLARI_PYLON_HP/OW2_ILLARI_PYLON_HP), # for pylon hp
+                # "health%": percent(OW1_ILLARI_PYLON_HP/OW2_ILLARI_PYLON_HP), # for pylon hp
                 "ability1Cooldown%": percent(OW1_ILLARI_OUTBURST_COOLDOWN/OW2_ILLARI_OUTBURST_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_ILLARI_PYLON_COOLDOWN/OW2_ILLARI_PYLON_COOLDOWN),
                 "ultGen%": percent(OW2_ILLARI_ULT_COST/OW1_ILLARI_ULT_COST)
@@ -143,7 +146,7 @@ settings {
                 "ultGen%": percent(OW2_JUNKERQUEEN_ULT_COST/OW1_JUNKERQUEEN_ULT_COST)
             },
             "junkrat": {
-                "health%": percent((OW1_JUNKRAT_HEALTH-OW1_JUNKRAT_TIRE_HEALTH)/(OW2_JUNKRAT_HEALTH-OW2_JUNKRAT_TIRE_HEALTH)), # fore tire health
+                # "health%": percent((OW1_JUNKRAT_HEALTH-OW1_JUNKRAT_TIRE_HEALTH)/(OW2_JUNKRAT_HEALTH-OW2_JUNKRAT_TIRE_HEALTH)), # fore tire health
                 "ability1Cooldown%": percent(OW1_JUNKRAT_CONCUSSION_MINE_COOLDOWN/OW2_JUNKRAT_CONCUSSION_MINE_COOLDOWN),
                 "ultGen%": percent(OW2_JUNKRAT_ULT_COST/OW1_JUNKRAT_ULT_COST)
             },
@@ -154,7 +157,7 @@ settings {
             },
             "lifeweaver": {
                 "ammoClipSize%": percent(OW1_LIFEWEAVER_CLIP_SIZE1)/(OW2_LIFEWEAVER_CLIP_SIZE1),
-                "health%": percent(OW1_LIFEWEAVER_PETAL_HP/OW2_LIFEWEAVER_PETAL_HP), # for petal
+                # "health%": percent(OW1_LIFEWEAVER_PETAL_HP/OW2_LIFEWEAVER_PETAL_HP), # for petal
                 "ultGen%": percent(OW2_LIFEWEAVER_ULT_COST/OW1_LIFEWEAVER_ULT_COST)
             },
             "lucio": {
@@ -179,6 +182,9 @@ settings {
             },
             "orisa": {
                 "enableInfiniteAmmo": true,
+                "ability1Cooldown%": percent(OW1_ORISA_FORTIFY_COOLDOWN/OW2_ORISA_FORTIFY_COOLDOWN),
+                "ability2Cooldown%": percent(OW1_ORISA_PROJECTILE_BARRIER_COOLDOWN_TIME/OW2_ORISA_JAVELIN_SPIN_COOLDOWN),
+                "secondaryFireCooldown%": percent(OW1_ORISA_HALT_COOLDOWN_TIME/OW2_ORISA_ENERGY_JAVELIN_COOLDOWN),
                 "ammoClipSize%": percent(OW1_ORISA_CLIP_SIZE/OW2_ORISA_CLIP_SIZE),
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
@@ -190,7 +196,7 @@ settings {
                 "ultGen%": percent(OW1_PHARAH_ULT_COST/OW2_PHARAH_ULT_COST)
             },
             "ramattra": {
-                "health%": percent(OW1_RAMATTRA_NEMESIS_ARMOR/OW2_RAMATTRA_NEMESIS_ARMOR), # for nemesis hp
+                # "health%": percent(OW1_RAMATTRA_NEMESIS_ARMOR/OW2_RAMATTRA_NEMESIS_ARMOR), # for nemesis hp
                 "ability1Cooldown%": percent(OW1_RAMATTRA_NEMESIS_COOLDOWN/OW2_RAMATTRA_NEMESIS_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_RAMATTRA_VORTEX_COOLDOWN/OW2_RAMATTRA_VORTEX_COOLDOWN),
                 "enableInfiniteUlt": true, # for old ult
@@ -202,7 +208,7 @@ settings {
             },
             "reinhardt": {
                 "secondaryFireRechargeRate%": percent(OW1_REINHARDT_BARRIER_REGEN/OW2_REINHARDT_BARRIER_REGEN),
-                "health%": percent(OW1_REINHARDT_BARRIER_HEALTH/OW2_REINHARDT_BARRIER_HEALTH), # for barrier
+                # "health%": percent(OW1_REINHARDT_BARRIER_HEALTH/OW2_REINHARDT_BARRIER_HEALTH), # for barrier
                 "ability1Cooldown%": percent(OW1_REINHARDT_CHARGE_COOLDOWN_TIME/OW2_REINHARDT_CHARGE_COOLDOWN_TIME),
                 "ability2Cooldown%": percent(OW1_REINHARDT_FIRESTRIKE_COOLDOWN_TIME/OW2_REINHARDT_FIRESTRIKE_COOLDOWN),
                 "ultGen%": percent(OW2_REINHARDT_ULT_COST/OW1_REINHARDT_ULT_COST)
@@ -216,7 +222,7 @@ settings {
             },
             "sigma": {
                 "secondaryFireRechargeRate%": percent(OW1_SIGMA_BARRIER_REGEN/OW2_SIGMA_BARRIER_REGEN),
-                "health%": percent(OW1_SIGMA_BARRIER_HEALTH/OW2_SIGMA_BARRIER_HEALTH), # for barrier
+                # "health%": percent(OW1_SIGMA_BARRIER_HEALTH/OW2_SIGMA_BARRIER_HEALTH), # for barrier
                 "ultGen%": percent(OW2_SIGMA_ULT_COST/OW1_SIGMA_ULT_COST),
             },
             "sojourn": {
@@ -227,12 +233,12 @@ settings {
                 "ultGen%": percent(OW2_SOLDIER_ULT_COST/OW1_SOLDIER_ULT_COST)
             },
             "sombra": {
-                "health%": percent(OW1_SOMBRA_HEALTH/OW2_SOMBRA_HEALTH),
+                # "health%": percent(OW1_SOMBRA_HEALTH/OW2_SOMBRA_HEALTH),
                 "secondaryFireCooldown%": percent(OW1_SOMBRA_HACK_COOLDOWN_TIME/OW2_SOMBRA_HACK_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_SOMBRA_ULT_COST/OW1_SOMBRA_ULT_COST)
             },
             "symmetra": {
-                "health%": percent(OW1_SYMMETRA_TURRET_HEALTH/OW2_SYMMETRA_TURRET_HEALTH), # for turret hp
+                # "health%": percent(OW1_SYMMETRA_TURRET_HEALTH/OW2_SYMMETRA_TURRET_HEALTH), # for turret hp
                 "ultGen%": percent(OW2_SYMMETRA_ULT_COST/OW1_SYMMETRA_ULT_COST)
             },
             "torbjorn": {
@@ -257,9 +263,12 @@ settings {
             },
             "winston": {
                 "ammoClipSize%": percent(OW1_WINSTON_CLIP_SIZE/OW2_WINSTON_CLIP_SIZE),
-                "health%": percent(OW1_WINSTON_BARRIER_HEALTH/OW2_WINSTON_BARRIER_HEALTH), # for barrier hp
+                # "health%": percent(OW1_WINSTON_BARRIER_HEALTH/OW2_WINSTON_BARRIER_HEALTH), # for barrier hp
                 "ability1Cooldown%": percent(OW1_WINSTON_JUMP_PACK_COOLDOWN_TIME/OW2_WINSTON_JUMP_PACK_COOLDOWN_TIME),
                 "ultGen%": percent(OW2_WINSTON_ULT_COST/OW1_WINSTON_ULT_COST)
+            },
+            "wuyang": {
+                "ultGen%": percent(OW2_WUYANG_ULT_COST/OW1_WUYANG_ULT_COST)
             },
             "hammond": {
                 "ability1Kb%": percent(1/OW2_WRECKING_BALL_FIREBALL_KB),
@@ -283,6 +292,7 @@ settings {
                 "doomfist",
                 "dva",
                 "echo",
+                "freja",
                 "genji",
                 "hanzo",
                 "illari",
@@ -292,6 +302,7 @@ settings {
                 "kiriko",
                 # "lifeweaver",
                 "lucio",
+                "hazard",
                 # "mauga",
                 "mei",
                 "mercy",
@@ -310,8 +321,10 @@ settings {
                 "torbjorn",
                 "tracer",
                 "venture",
+                # "vendetta",
                 "widowmaker",
                 "winston",
+                "wuyang",
                 "hammond",
                 "zarya",
                 "zenyatta",

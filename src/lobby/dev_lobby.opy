@@ -183,6 +183,8 @@ settings {
                 "enableInfiniteAmmo": true,
                 "ammoClipSize%": percent(OW1_ORISA_CLIP_SIZE/OW2_ORISA_CLIP_SIZE),
                 "ability1Cooldown%": percent(OW1_ORISA_FORTIFY_COOLDOWN/OW2_ORISA_FORTIFY_COOLDOWN),
+                "ability2Cooldown%": percent(OW1_ORISA_PROJECTILE_BARRIER_COOLDOWN_TIME/OW2_ORISA_JAVELIN_SPIN_COOLDOWN),
+                "secondaryFireCooldown%": percent(OW1_ORISA_HALT_COOLDOWN_TIME/OW2_ORISA_ENERGY_JAVELIN_COOLDOWN),
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
             "pharah": {
@@ -262,6 +264,9 @@ settings {
                 "ability1Cooldown%": percent(OW1_WINSTON_JUMP_PACK_COOLDOWN_TIME/OW2_WINSTON_JUMP_PACK_COOLDOWN_TIME),
                 "ability2Cooldown%": percent(OW1_WINSTON_BARRIER_COOLDOWN/OW2_WINSTON_BARRIER_COOLDOWN),
                 "ultGen%": percent(OW2_WINSTON_ULT_COST/OW1_WINSTON_ULT_COST)
+            },
+            "wuyang": {
+                "ultGen%": percent(OW2_WUYANG_ULT_COST/OW1_WUYANG_ULT_COST)
             },
             "hammond": {
                 "ability1Kb%": percent(1/OW2_WRECKING_BALL_FIREBALL_KB),

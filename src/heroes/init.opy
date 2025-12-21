@@ -38,8 +38,10 @@ subroutine initSymmetra
 subroutine initTorbjorn
 subroutine initTracer
 subroutine initVenture
+subroutine initVendetta
 subroutine initWidowmaker
 subroutine initWinston
+subroutine initWuyang
 subroutine initHammond
 subroutine initZarya
 subroutine initZenyatta
@@ -171,6 +173,9 @@ def initHero():
             break
         case Hero.WINSTON:
             initWinston()
+            break
+        case Hero.WUYANG:
+            initWuyang()
             break
         case Hero.HAMMOND:
             initHammond()

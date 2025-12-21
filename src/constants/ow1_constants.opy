@@ -747,6 +747,10 @@ globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Reaper",
 #!define OW1_WRECKING_BALL_SHIELDS 0
 #!define OW1_WRECKING_BALL_ULT_COST 1540
 
+# Wuyang
+#!define OW1_WUYANG_HEALTH 200
+#!define OW1_WUYANG_ULT_COST 2900
+
 # Zarya
 #!define OW1_ZARYA_ARMOR 0
 #!define OW1_ZARYA_BARRIER_HEALTH 200
