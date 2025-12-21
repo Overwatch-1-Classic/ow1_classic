@@ -32,9 +32,9 @@ rule "[utilities/ready.opy]: Create ready HUD":
         hudSubtext(eventPlayer, "Join Discord for Matchmaking", HudPosition.TOP, Math.INFINITY, rgb(250, 156, 29), HudReeval.STRING_AND_COLOR)
         eventPlayer.ready_hud[1] = getLastCreatedText()
 
-    # if eventPlayer.ready_hud[2] == null:
-        # hudSubtext(eventPlayer, DISCORD_SHORT_LINK, HudPosition.TOP, Math.INFINITY, rgb(141, 187, 9), HudReeval.STRING_AND_COLOR)
-        # eventPlayer.ready_hud[2] = getLastCreatedText()
+    if eventPlayer.ready_hud[2] == null:
+        hudSubtext(eventPlayer, DISCORD_SHORT_LINK, HudPosition.TOP, Math.INFINITY, rgb(141, 187, 9), HudReeval.STRING_AND_COLOR)
+        eventPlayer.ready_hud[2] = getLastCreatedText()
     
     waitUntil(not isInSetup(), Math.INFINITY)
 
