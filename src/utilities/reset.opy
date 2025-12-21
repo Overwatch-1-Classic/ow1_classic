@@ -124,6 +124,8 @@ def resetStats():
     eventPlayer.setKnockbackReceived(100)
     eventPlayer.setKnockbackDealt(100)
     eventPlayer.setGravity(100)
+    eventPlayer.stopScalingBarriers()
+    eventPlayer.stopScalingSize()
     setBaseMovement(eventPlayer, 1)
 
     eventPlayer._stat_reset = true
