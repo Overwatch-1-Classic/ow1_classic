@@ -3,8 +3,6 @@
 # Credit to oreoslurpee for Brigitte shield bash logic
 # see https://workshop.codes/MR5QJ for oreslurpee's 2018 brig implementation
 
-globalvar BRIGITTE_SUPERGLIDE = createWorkshopSetting(bool, "Brigitte", "Superglide Bug/Tech", false) # I added this because im unsure if we should include this in the code or not.
-
 rule "[brigitte/bash.opy]: Add stun to shield bash":
     @Event playerDealtDamage
     @Hero brigitte
@@ -29,30 +27,6 @@ rule "[brigitte/bash.opy]: Reduce shield bash distance":
     else:
         eventPlayer.setMoveSpeed(100)
 
-rule "[brigitte/bash.opy]: Brigitte superglide 'tech' ": # https://youtu.be/qY4s7zJ01eU?si=X330hdHMUBxcOiY3&t=430 , Video by KarQ this is disabled by default
-    @Event eachPlayer
-    @Hero brigitte
-    @Condition BRIGITTE_SUPERGLIDE == true
-    @Condition eventPlayer.isFiringSecondaryFire()
-    @Condition eventPlayer.isFiringPrimaryFire()
-
-    waitUntil(not eventPlayer.isFiringPrimaryFire(), Math.INFINITY)
-    # waitUntil(not eventPlayer.isFiringPrimaryFire(), 0.1)
-    if eventPlayer.isHoldingButton(Button.ABILITY_1) and eventPlayer.getAbilityCooldown(Button.ABILITY_1) == 0:
-        eventPlayer.setStatusEffect(null, Status.STUNNED, TICK_DURATION)
-        eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
-        eventPlayer.forceButtonPress(Button.ABILITY_1)
-        # eventPlayer.applyImpulse(eventPlayer.getVelocity(), 2000, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        eventPlayer.applyImpulse(eventPlayer.getVelocity(), 30, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        eventPlayer.setMoveSpeed(100) # Hot fix cause sometimes speed get conflicted due to reduce shield bash distance rule
-
-    waitUntil(not eventPlayer.isFiringPrimaryFire() and not eventPlayer.isFiringSecondaryFire(), Math.INFINITY)
-    if eventPlayer.isUsingAbility2() and eventPlayer.isHoldingButton(Button.JUMP):
-        eventPlayer.setStatusEffect(null, Status.STUNNED, TICK_DURATION)
-        eventPlayer.applyImpulse(eventPlayer.getVelocity(), 30, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
-        eventPlayer.setMoveSpeed(100) # Hot fix cause sometimes speed get conflicted due to reduce shield bash distance rule
-        eventPlayer.setAbilityCharge(Button.ABILITY_2, 0)
-
 rule "[brigitte/bash.opy]: Reduce shield bash damage to OW1":
     @Event playerDealtDamage
     @Hero brigitte
@@ -76,5 +50,4 @@ rule "[brigitte/barrier.opy]: OW1 brigitte barrier health":
     waitUntil(not eventPlayer.isFiringSecondaryFire())
     eventPlayer.stopForcingButton(Button.SECONDARY_FIRE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
-
-# I think i made this too easy LULZ
+    
