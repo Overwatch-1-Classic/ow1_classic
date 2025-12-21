@@ -17,14 +17,14 @@ playervar shield_gen_pvar
 #!defineMember shiled_gen_owned shield_gen_pvar [5]
 #!defineMember shield_gen_facing shield_gen_pvar [6]
 #!defineMember shield_gen_hud shield_gen_pvar [7]
+#!defineMember objective shield_gen_pvar [8]
+#!defineMember teleporter_up shield_gen_pvar [9]
+#!defineMember teleporter_used shield_gen_pvar [10]
 
 #!define OW1_SYMMETRA_SHIELD_EFFECT_Y_VALUE 0.75
 #!define OW1_SYMMETRA_SHIELD_EFFECT_Y_VALUE_HANDLE 0.5
 
 playervar cords 
-playervar objective 
-playervar teleporter_up 
-playervar teleporter_used 
 
 subroutine createTeleporter 
 subroutine destroyTeleporter 

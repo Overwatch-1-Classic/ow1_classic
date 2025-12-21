@@ -1,14 +1,13 @@
 #!mainFile "../../dev_main.opy"
 
-playervar beam_visibility
-
 playervar beam_multiplier_dmg
 
-playervar beam_effects
-#!defineMember beam_effect beam_effects [0]
-#!defineMember beam_effect1 beam_effects [1]
-#!defineMember beam_effect2 beam_effects [2]
-#!defineMember photon_projector_hud_effect beam_effects [3]
+playervar beam_pvar
+#!defineMember beam_effect beam_pvar [0]
+#!defineMember beam_effect1 beam_pvar [1]
+#!defineMember beam_effect2 beam_pvar [2]
+#!defineMember photon_projector_hud_effect beam_pvar [3]
+#!defineMember beam_visibility beam_pvar [3]
 
 subroutine showPhotonProjecterBeam
 subroutine hidePhotonProjector
