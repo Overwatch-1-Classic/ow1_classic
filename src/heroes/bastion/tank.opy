@@ -27,6 +27,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     # transform into ow1 tank
     eventPlayer.setUltEnabled(false) # Prevent Bastion from getting ult charge during ultimate
     wait(OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME-OW2_BASTION_ASSAULT_CONFIG_TRANSFORM_TIME)
+    eventPlayer.setStatusEffect(null, Status.ROOTED, OW1_BASTION_TANK_CONFIG_TRANSFORM_TIME) # More cast time, due cancelPrimaryAction() not working if i wait for 1 second 0.5 + 1 is 1.5
     eventPlayer.cancelPrimaryAction() # interrupt ultimate animation right before it completes
     # eventPlayer.stopCamera() # Stop bruteforcing camera
     eventPlayer.setFacing(vect(updateEveryTick(eventPlayer.getFacingDirection()).x, 0, updateEveryTick(updateEveryTick(eventPlayer.getFacingDirection()).z)), Relativity.TO_WORLD) # Bruteforce camera facing
