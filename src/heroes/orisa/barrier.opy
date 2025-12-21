@@ -28,15 +28,15 @@ playervar barrier_entity_positions
 #!defineMember barrier_entity_colors barrier_pvar[5]
 #!defineMember barrier_entity_ids barrier_pvar[6]
 
-#!defineMember barrier_active barrier_pvar[7]
+playervar barrier_active
 playervar barrier_uptime
-#!defineMember barrier_hp barrier_pvar[8]
-#!defineMember barrier_hp_hud_id barrier_pvar[9]
-#!defineMember orisa_barrier_hit_positions barrier_pvar[10]
+#!defineMember barrier_hp barrier_pvar[7]
+#!defineMember barrier_hp_hud_id barrier_pvar[8]
+playervar orisa_barrier_hit_positions
 
-#!defineMember barrier_damage_block_id barrier_pvar[11]
-#!defineMember barrier_all_enemies barrier_pvar[12]
-#!defineMember enemies_behind_barrier barrier_pvar[13]
+#!defineMember barrier_damage_block_id barrier_pvar[9]
+playervar barrier_all_enemies
+playervar enemies_behind_barrier
 
 subroutine throwBarrier
 subroutine deployBarrier
