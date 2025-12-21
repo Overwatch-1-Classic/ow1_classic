@@ -2,18 +2,20 @@
 
 globalvar slam_i
 
-playervar slam_to_use
+playervar slam_pvar
+
+#!defineMember slam_to_use slam_pvar[0]
 playervar proto_indicator_slam_position
 playervar indicator_slam_position
 playervar slam_damage
-playervar slam_damage_text_entity
+#!defineMember slam_damage_text_entity slam_pvar[1]
 playervar ow1_slam_victims
 
-playervar slam_velocity_correction
-playervar stop_slam
+#!defineMember slam_velocity_correction slam_pvar[2]
+#!defineMember stop_slam slam_pvar[3]
 
-playervar slam_indicator_beam_id
-playervar slam_indicator_ring_id
+#!defineMember slam_indicator_beam_id slam_pvar[4]
+#!defineMember slam_indicator_ring_id slam_pvar[5]
 
 subroutine initSlam
 subroutine startSlamAnimation

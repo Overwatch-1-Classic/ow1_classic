@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[dva/remech.opy]: set remech damage":
+rule "[dva/remech.opy]: Set remech damage":
     @Event eachPlayer
     @Hero dva
     @Condition eventPlayer.isInAlternateForm()

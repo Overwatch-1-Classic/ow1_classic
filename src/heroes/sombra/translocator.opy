@@ -6,12 +6,12 @@ playervar translocator_pvar
 #!defineMember _translocator_id translocator_pvar[1]
 #!defineMember _translocator_icon_id1 translocator_pvar[2]
 #!defineMember _translocator_icon_id2 translocator_pvar[3]
-#!defineMember _translocator_hud_text_id translocator_pvar[3]
+#!defineMember _translocator_hud_text_id translocator_pvar[4]
 
 playervar transloc_position
 playervar trasnloc_velocity
-playervar transloc_p0
-playervar transloc_v0
+#!defineMember transloc_p0 translocator_pvar[5]
+#!defineMember transloc_v0 translocator_pvar[6]
 playervar transloc_time
 playervar transloc_timer
 

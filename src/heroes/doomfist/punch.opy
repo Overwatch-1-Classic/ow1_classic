@@ -88,7 +88,7 @@ rule "[doomfist/punch.opy]: Find punched victims":
 rule "[doomfist/punch.opy]: Remove Empowered Punch from ultimate":
     @Event eachPlayer
     @Hero doomfist
-    @Condition eventPlayer.isUsingUltimate() == true
+    @Condition eventPlayer.isUsingUltimate()
     
     eventPlayer.disallowButton(Button.ABILITY_2)
     eventPlayer.is_ultimate_locked = true
