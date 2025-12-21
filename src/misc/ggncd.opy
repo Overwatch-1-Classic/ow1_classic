@@ -2,8 +2,6 @@
 
 # Gun Game No CD by Vassy, inspiration by: https://youtu.be/2YbGwKprEQw?si=UTABfITk9Z4nksiG 
 
-#!define AFK_START 30
-
 globalvar available_heroes_array 
 globalvar next_match_description 
 globalvar next_match_timer 
@@ -15,15 +13,10 @@ playervar next_hero
 playervar hero_skips 
 playervar kills 
 playervar used_hero_skip 
-playervar is_afk  
 
 playervar hud_pvar
-#!defineMember afk_first_hud_id hud_pvar[0]
-#!defineMember afk_second_hud_id hud_pvar[1]
-#!defineMember afk_third_hud_id hud_pvar[2]
 #!defineMember skip_potg_hud_id hud_pvar[3]
 #!defineMember hero_skips_hud_text hud_pvar[4]
-playervar afk_timer 
 
 
 macro afkDetection(player):
@@ -103,7 +96,6 @@ rule "Initialize HUD for each player":
     @Condition isGameInProgress()
     @Condition not winner
     
-    hudSubtext(eventPlayer, " ", HudPosition.LEFT, 0, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
     hudText(eventPlayer, null, "    Gain a hero skip every 15 kills", "   Crouch + interact to use a Hero Skip", HudPosition.LEFT, 1, Color.WHITE, Color.GREEN, Color.YELLOW, HudReeval.VISIBILITY_AND_STRING)
     # hudText(eventPlayer, null, "Discord", "https://bit.ly/ggnocd-d", HudPosition.LEFT, 2, Color.WHITE, Color.GREEN, Color.YELLOW, HudReeval.NONE)
     # hudSubtext(eventPlayer, "Crouch + interact to use a hero skip", HudPosition.LEFT, 0, Color.ORANGE, HudReeval.VISIBILITY_AND_STRING)
@@ -199,7 +191,6 @@ rule "Declare winner, clear his pets, set camera, make everyone invisible, set n
     getAllPlayers().startCamera(vect(0, 30, 50), vect(0, 20, 0))
     getAllPlayers().teleport(nearestWalkablePosition(vect(0, 0, 0)))
     getAllPlayers().exclude(eventPlayer).setInvisibility(Invis.ALL)
-    getAllPlayers().is_afk = false
 
 
 rule "Waiting for next match state - Player joined":
@@ -247,73 +238,10 @@ rule "Waiting for next match state - HUD":
     getAllPlayers().disableGamemodeHud()
     getAllPlayers().disableHeroHud()
     getAllPlayers().disableKillFeed()
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 2, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 3, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 4, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 5, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 6, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 7, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 8, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 9, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 10, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 11, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 12, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 13, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 14, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 15, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 16, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 17, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 18, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 19, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 20, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 21, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 22, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 23, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 24, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 25, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 26, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 27, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 28, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 29, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 30, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 31, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 32, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 33, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-    hudSubtext(getAllPlayers(), " ", HudPosition.TOP, 34, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
     hudHeader(getAllPlayers(), l"{0}: {1}".format(next_match_description, next_match_timer), HudPosition.TOP, 35, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
     hudHeader(winner, l"{0}: {1}".format("Skip play of the game", l"{0} {1} {2}".format(inputBindingString(Button.ULTIMATE), " + ", inputBindingString(Button.INTERACT))), HudPosition.TOP, 36, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
     winner.skip_potg_hud_id = getLastCreatedText()
     if not winner.used_hero_skip:
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 2, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 3, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 4, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 5, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 6, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 7, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 8, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 9, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 10, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 11, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 12, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 13, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 14, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 15, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 16, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 17, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 18, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 19, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 20, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 21, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 22, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 23, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 24, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 25, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 26, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 27, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 28, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 29, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 30, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
-        hudSubtext(getAllPlayers(), " ", HudPosition.LEFT, 31, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
         hudHeader(winner, l"{0}: {1}".format("Emote up", inputBindingString(Button.PRIMARY_FIRE)), HudPosition.LEFT, 33, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
         hudHeader(winner, l"{0}: {1}".format("Emote down", inputBindingString(Button.SECONDARY_FIRE)), HudPosition.LEFT, 34, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
         hudHeader(winner, l"{0}: {1}".format("Emote left", inputBindingString(Button.ABILITY_1)), HudPosition.LEFT, 35, Color.WHITE, HudReeval.VISIBILITY_AND_STRING)
@@ -451,83 +379,3 @@ rule "Match ender":
         restartMatch()
     else:
         declarePlayerVictory(winner)
-
-
-rule "AFK Enter":
-    @Event eachPlayer
-    @Condition isGameInProgress() 
-    @Condition not eventPlayer.is_afk
-    @Condition not eventPlayer.getThrottle() == vect(0, 0, 0)
-    @Condition afkDetection(eventPlayer)
-    @Condition len(getAllPlayers()) > 1
-    @Condition not winner
-    
-    wait(10, Wait.ABORT_WHEN_FALSE)
-    eventPlayer.is_afk = true
-    eventPlayer.setInvisibility(Invis.ALL)
-    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, Math.INFINITY)
-    eventPlayer.startForcingThrottle(0, 0.008, 0, 0.008, 0, 0.008)
-    eventPlayer.disallowButton(Button.PRIMARY_FIRE)
-    eventPlayer.disallowButton(Button.SECONDARY_FIRE)
-    eventPlayer.disallowButton(Button.ABILITY_1)
-    eventPlayer.disallowButton(Button.ABILITY_2)
-    eventPlayer.disallowButton(Button.ULTIMATE)
-    eventPlayer.disallowButton(Button.MELEE)
-    eventPlayer.disallowButton(Button.JUMP)
-    eventPlayer.disallowButton(Button.CROUCH)
-    hudHeader(eventPlayer, 
-        "YOU ARE MARKED AS AFK", 
-        HudPosition.TOP, 
-        2, 
-        Color.RED, 
-        HudReeval.VISIBILITY_AND_STRING)
-    eventPlayer.afk_first_hud_id = getLastCreatedText()
-
-    hudHeader(eventPlayer, l"{0} {1}".format("YOU WILL BE KICKED IN", l"{0} sec".format(eventPlayer.afk_timer)), 
-        HudPosition.TOP, 
-        2, 
-        Color.RED, 
-        HudReeval.VISIBILITY_AND_STRING)
-    eventPlayer.afk_second_hud_id = getLastCreatedText()
-
-    eventPlayer.afk_timer = AFK_START
-
-
-rule "AFK Exit":
-    @Event eachPlayer
-    @Condition eventPlayer.is_afk 
-    @Condition (eventPlayer.getThrottle() != vect(0, 0, 0) or eventPlayer.isCommunicatingAnything()) 
-    
-    eventPlayer.is_afk = false
-    eventPlayer.clearStatusEffect(Status.PHASED_OUT)
-    eventPlayer.stopForcingThrottle()
-    wait(0.112)
-    eventPlayer.setInvisibility(Invis.NONE)
-    eventPlayer.allowButton(Button.PRIMARY_FIRE)
-    eventPlayer.allowButton(Button.SECONDARY_FIRE)
-    eventPlayer.allowButton(Button.ABILITY_1)
-    eventPlayer.allowButton(Button.ABILITY_2)
-    eventPlayer.allowButton(Button.ULTIMATE)
-    eventPlayer.allowButton(Button.MELEE)
-    eventPlayer.allowButton(Button.JUMP)
-    eventPlayer.allowButton(Button.CROUCH)
-    destroyHudText(eventPlayer.afk_first_hud_id)
-    destroyHudText(eventPlayer.afk_second_hud_id)
-    destroyHudText(eventPlayer.afk_third_hud_id)
-
-
-rule "AFK Timer":
-    @Event eachPlayer
-    @Condition eventPlayer.is_afk 
-    
-    eventPlayer.afk_timer = eventPlayer.afk_timer - 1
-    wait(1, Wait.ABORT_WHEN_FALSE)
-    loop()
-
-
-rule "AFK Kick":
-    @Event eachPlayer
-    @Condition eventPlayer.is_afk 
-    
-    wait(AFK_START, Wait.ABORT_WHEN_FALSE)
-    eventPlayer.removeFromGame()
