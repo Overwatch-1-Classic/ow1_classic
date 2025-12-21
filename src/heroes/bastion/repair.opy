@@ -74,9 +74,9 @@ rule "[bastion/repair.opy]: Activate self-repair + Deactive self repair":
 
     if eventPlayer._self_repair_ring_gui == null:
         createEffect(getAllPlayers(), 
-                     Effect.SPHERE, 
-                     rgb(235, 235, 75, 255/3), 
-                     eventPlayer, 
+                     Effect.LIGHT_SHAFT, 
+                     Color.YELLOW, 
+                     updateEveryTick(eventPlayer.getPosition()), 
                      1.5, 
                      EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
         eventPlayer._self_repair_ring_gui = getLastCreatedEntity()
