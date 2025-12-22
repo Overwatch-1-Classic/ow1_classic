@@ -9,7 +9,6 @@ playervar uppercut_shields #uppercut_pvar[2]
 #!defineMember _uppercut_attacker uppercut_pvar[5]
 #!defineMember _last_uppercut_attacker uppercut_pvar[6]
 
-
 rule "[doomfist/uppercut.opy]: Control flow for uppercut":
     @Event eachPlayer
     @Hero doomfist
@@ -134,19 +133,6 @@ rule "[doomfist/uppercut.opy]: Damage uppercut victims + vfx + uppercut knockbac
     wait(OW1_DOOMFIST_UPPERCUT_AIR_LOCK_TIME)
     eventPlayer.stopForcingThrottle() # Regain movement control
 
-
-rule "[doomfist/uppercut.opy]: Best defense for each uppercut victim hit":
-    @Event eachPlayer
-    @Condition eventPlayer.is_hit_by_uppercut
-    @Condition eventPlayer._last_uppercut_attacker != eventPlayer._uppercut_attacker
-
-    # best defense
-    stopChasingVariable(eventPlayer._uppercut_attacker.uppercut_shields)
-    eventPlayer._uppercut_attacker.uppercut_shields += OW1_DOOMFIST_BEST_DEFENSE
-    wait(OW1_DOOMFIST_BEST_DEFENSE_LINGER)
-    chase(eventPlayer._uppercut_attacker.uppercut_shields, 0, rate=OW1_DOOMFIST_BEST_DEFENSE_DECAY_RATE, ChaseReeval.NONE)
-
-
 rule "[doomfist/uppercut.opy]: Uppercut victim state variables":
     @Event eachPlayer
     @Condition eventPlayer.is_hit_by_uppercut
@@ -157,17 +143,3 @@ rule "[doomfist/uppercut.opy]: Uppercut victim state variables":
     eventPlayer.is_hit_by_uppercut = false
     eventPlayer._uppercut_attacker = null
     eventPlayer._last_uppercut_attacker = null
-
-
-rule "[doomfist/uppercut.opy]: Heal doomfist uppercut shields":
-    @Event eachPlayer
-    @Hero doomfist
-    @Condition updateEveryTick(eventPlayer.uppercut_shields > 0)
-    @Condition updateEveryTick(eventPlayer.getHealth() < eventPlayer.getMaxHealth())
-    
-    do:
-        eventPlayer.hp_before_uppercut = eventPlayer.getHealth()
-        heal(eventPlayer, null, eventPlayer.uppercut_shields)
-        eventPlayer.uppercut_shields -= min(eventPlayer.getMaxHealth() - eventPlayer.hp_before_uppercut, eventPlayer.uppercut_shields)
-        wait()
-    while RULE_CONDITION
