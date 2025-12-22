@@ -8,7 +8,7 @@ created by discord users: Bebel#5658 and Xponit#1474
 
 # Semi-public scoped variables
 #!defineMember is_using_uppercut uppercut_pvar[7]
-#!defineMember is_ultimate_locked uppercut_pvar[7]
+#!defineMember is_ultimate_locked uppercut_pvar[8]
 
 #!include "uppercut.opy"
 #!include "slam.opy"
