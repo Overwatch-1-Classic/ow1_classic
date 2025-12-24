@@ -18,20 +18,6 @@ playervar hud_pvar
 #!defineMember skip_potg_hud_id hud_pvar[3]
 #!defineMember hero_skips_hud_text hud_pvar[4]
 
-
-macro afkDetection(player):
-    not player.isHoldingButton(Button.JUMP)\
-    not player.isHoldingButton(Button.CROUCH)\
-    not player.isHoldingButton(Button.PRIMARY_FIRE)\
-    not player.isHoldingButton(Button.SECONDARY_FIRE)\
-    not player.isHoldingButton(Button.ABILITY_1)\
-    not player.isHoldingButton(Button.ABILITY_2)\
-    not player.isHoldingButton(Button.ULTIMATE)\
-    not player.isHoldingButton(Button.INTERACT)\
-    not player.isHoldingButton(Button.MELEE)\
-    not player.isHoldingButton(Button.RELOAD)\
-    not player.isCommunicatingAnything()\
-
 rule "One hour match time":
     @Condition isGameInProgress()
 
