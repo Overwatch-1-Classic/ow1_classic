@@ -1,5 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "defense.opy"
+
 playervar meteor_strike_slow_time
 
 # Calculate OW1 meteor strike outer ring damage from OW2 meteor strike outer ring damage
@@ -38,10 +40,15 @@ rule "[doomfist/meteor.opy]: Reset Meteor Strike slow effect compensation":
     eventPlayer.setMoveSpeed(100)
 
 
-rule "[doomfist/meteor.opy]: OW1 Meteor Strike knockback":
+rule "[doomfist/meteor.opy]: OW1 Meteor Strike knockback + Best defense shields":
     @Event playerDealtDamage
     @Hero doomfist
     @Condition eventAbility == Button.ULTIMATE
+
+    # Overwrite OW2 Best defense
+    attacker.setHealth(eventPlayer.defense_health)
+    attacker.addHealthPool(Health.SHIELDS, min(victim.getMaxHealthOfType(Health.NORMAL) + victim.getMaxHealthOfType(Health.ARMOR) + victim.getMaxHealthOfType(Health.SHIELDS) + OW1_DOOMFIST_BEST_DEFENSE_MAX_OVERHEALTH - victim.getHealth(), 
+        attacker.defense_shields + OW1_DOOMFIST_BEST_DEFENSE_ULTIMATE), false, false)
 
     victim.setGravity(50) 
     # Boop slammed victims up

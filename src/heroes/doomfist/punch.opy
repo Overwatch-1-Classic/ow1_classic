@@ -1,5 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "defense.opy"
+
 playervar punched_victims
 playervar wall_impacted_victims
 playervar punch_charge_time
@@ -77,12 +79,10 @@ rule "[doomfist/punch.opy]: Find punched victims":
     if (len(attacker.punched_victims) == 1): # OW1 single punch victim
         damage(victim, attacker, getRocketPunchDamage(eventPlayer.punch_charge_time)-eventDamage)
         victim.applyImpulse(attacker.getFacingDirection(), getPunchKnockbackSpeed(eventPlayer.punch_charge_time), Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION) # Apply knockback manually
-        damage(attacker, null, OW2_DOOMFIST_BEST_DEFENSE*eventPlayer._hp_scalar - OW1_DOOMFIST_BEST_DEFENSE)
+        doomfistBestDefenseShields()
     else: # OW2 multi punch victim
         heal(victim, null, eventDamage) # Heal back OW2 punch victims
-        # Transfer shield gained from uppercut to shield gained from OW2 punch victims
-        damage(attacker, null, OW2_DOOMFIST_BEST_DEFENSE*eventPlayer._hp_scalar - min(OW2_DOOMFIST_BEST_DEFENSE*eventPlayer._hp_scalar, attacker.uppercut_shields))
-        attacker.uppercut_shields -= min(OW2_DOOMFIST_BEST_DEFENSE*eventPlayer._hp_scalar, attacker.uppercut_shields)
+        doomfistBestDefenseShields()
 
 
 rule "[doomfist/punch.opy]: Remove Empowered Punch from ultimate":

@@ -28,7 +28,6 @@ def initDoomfist():
 
     initRocketPunch()
     initSlam()
-    eventPlayer.uppercut_shields = 0
 
 
 rule "[doomfist/init.opy]: Clean up Doomfist":

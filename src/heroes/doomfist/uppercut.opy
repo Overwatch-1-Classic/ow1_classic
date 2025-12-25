@@ -1,9 +1,10 @@
 #!mainFile "../../dev_main.opy"
 
+#!include "defense.opy"
+
 playervar uppercut_pvar
 #!defineMember is_hit_by_uppercut uppercut_pvar[0]
 #!defineMember is_uppercut_locked uppercut_pvar[1]
-playervar uppercut_shields #uppercut_pvar[2]
 #!defineMember hp_before_uppercut uppercut_pvar[3]
 #!defineMember _uppercut_victims uppercut_pvar[4]
 #!defineMember _uppercut_attacker uppercut_pvar[5]
@@ -118,6 +119,9 @@ rule "[doomfist/uppercut.opy]: Damage uppercut victims + vfx + uppercut knockbac
     @Event eachPlayer
     @Condition eventPlayer.is_hit_by_uppercut
     @Condition eventPlayer._last_uppercut_attacker != eventPlayer._uppercut_attacker
+
+    # shields for uppercut attacker
+    eventPlayer._uppercut_attacker.addHealthPool(Health.SHIELDS, eventPlayer._uppercut_attacker.defense_shields + OW1_DOOMFIST_BEST_DEFENSE, false, false)
 
     # damage
     damage(eventPlayer, eventPlayer._uppercut_attacker, OW1_DOOMFIST_UPPERCUT_DAMAGE)
