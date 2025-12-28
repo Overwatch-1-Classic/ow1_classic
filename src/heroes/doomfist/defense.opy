@@ -34,12 +34,20 @@ rule "[doomfist/defense.opy]: Add Best defense health":
             eventPlayer.defense_overhealth + OW1_DOOMFIST_BEST_DEFENSE), false, false)
         wait(0.4)
 
-    if eventPlayer.is_using_uppercut: # Uppercut overhealth
-        eventPlayer.addHealthPool(Health.SHIELDS, min(victim.getMaxHealthOfType(Health.NORMAL) + victim.getMaxHealthOfType(Health.ARMOR) + victim.getMaxHealthOfType(Health.SHIELDS) + OW1_DOOMFIST_BEST_DEFENSE_MAX_OVERHEALTH - victim.getHealth(), 
-            eventPlayer.defense_overhealth + OW1_DOOMFIST_BEST_DEFENSE), false, false)
-
     if eventPlayer.getHealthOfType(Health.SHIELDS) > eventPlayer.getMaxHealthOfType(Health.SHIELDS) + OW1_DOOMFIST_BEST_DEFENSE_MAX_OVERHEALTH: # Correct overheatlh if over max overhealth limit
-        removeHealthPool(getLastCreatedHealthPool())
         eventPlayer.setHealth(eventPlayer.defense_health)
         eventPlayer.addHealthPool(Health.SHIELDS, OW1_DOOMFIST_BEST_DEFENSE_MAX_OVERHEALTH, false, false)
         return
+
+rule "[doomfist/defense.opy]: Decay Health":
+    @Event eachPlayer
+    @Hero doomfist
+    @Condition eventPlayer.getHealthOfType(Health.SHIELDS)
+
+    do:
+        if eventPlayer.decay_timer == 0:
+            eventPlayer.setHealth(eventPlayer.getHealth() - OW1_DOOMFIST_BEST_DEFENSE_LINGER)
+        else:
+            eventPlayer.decay_timer -= 0.1
+        wait(OW1_DOOMFIST_BEST_DEFENSE_DECAY_RATE)
+    while RULE_CONDITION
