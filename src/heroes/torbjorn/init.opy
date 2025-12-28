@@ -4,7 +4,12 @@
 #!include "rivet.opy"
 #!include "scrap.opy"
 #!include "turret.opy"
+#!include "armour_pack.opy"
 
+/*
+This 2016 Torbjorn workshop script was made by wadetata#0315
+https://workshop.codes/AMSG8    code: AMSG8
+*/
 
 def initTorbjorn():
     @Name "[torbjorn/init.opy]: initTorbjorn()"
@@ -18,18 +23,33 @@ def initTorbjorn():
     eventPlayer.disallowButton(Button.INTERACT)
     eventPlayer.disallowButton(Button.ULTIMATE)
 
-    progressBarHud(eventPlayer, eventPlayer._scrap_allowance / OW1_TORBJORN_SCRAP_MAX * 100, "Scrap {0}".
-        format(eventPlayer._scrap_allowance), 
-        HudPosition.TOP, 
+    createProgressBarInWorldText(eventPlayer, 0.5 * eventPlayer.scrap, 
+        "Scrap: {}/200".format(eventPlayer.scrap), 
+        updateEveryTick(eventPlayer.getEyePosition() + (100 * (2.7 * worldVector(Vector.RIGHT, 
+        eventPlayer, 
+        Transform.ROTATION) + (-1.5 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
         1, 
-        Color.YELLOW, 
+        Clip.NONE, 
+        Color.ORANGE, 
         Color.WHITE, 
-        ProgressHudReeval.VISIBILITY_VALUES_AND_COLOR, 
+        ProgressWorldTextReeval.VISIBILITY_POSITION_VALUES_AND_COLOR, 
         SpecVisibility.DEFAULT)
-    eventPlayer._scrap_hud = getLastCreatedText()
+    eventPlayer.scrap_hud = getLastCreatedText()
 
     eventPlayer.turret_level = OW1_TORBJORN_TURRET_DEFAULT
 
+    eventPlayer.use_armour_pack = []
+    eventPlayer.scrap_position = vect(0, -500, 0)
+
+    eventPlayer.armour_pack_position = vect(0, -500, 0)
+    eventPlayer.turret_level = 1
+    eventPlayer.scrap = 0
+
+    ARMOUR_PACK_TEAM_1 = []
+    ARMOUR_PACK_TEAM_2 = []
+
+    eventPlayer.setProjectileSpeed(percent(OW1_TORBJORN_RIVET_GUN_PROJECTILE_SPEED/OW2_TORBJORN_RIVET_GUN_PROJECTILE_SPEED))
     setBaseDamage(eventPlayer, OW1_TORBJORN_TURRET_DAMAGE/OW2_TORBJORN_TURRET_DAMAGE)
 
 rule "[torbjorn/init.opy]: Clean up Torbjorn":
@@ -39,35 +59,13 @@ rule "[torbjorn/init.opy]: Clean up Torbjorn":
     waitUntil(eventPlayer.getCurrentHero() != Hero.TORBJORN, Math.INFINITY)
     removeHealthPool(eventPlayer._torbjorn_overload_health)
     removeHealthPool(eventPlayer._torbjorn_overload_armor)
-    destroyProgressBarHud(eventPlayer._scrap_hud)
+    destroyProgressBarInWorldText(eventPlayer.scrap_hud)
+    hideTurretProgressHUD()
     eventPlayer.turret_level = 1
-    eventPlayer._scrap = 1
-
-rule "[torbjorn/init.opy]: OW1 Torbjorn fire rate":
-    @Event eachPlayer
-    @Hero torbjorn
-    @Condition eventPlayer.getCurrentWeapon() == 2
-    @Condition eventPlayer.isFiringPrimaryFire()
-    @Condition not eventPlayer.isUsingAbility2()
-
-    eventPlayer.disallowButton(Button.PRIMARY_FIRE)
-    wait(OW1_TORBJORN_HAMMER_RECOVERY_TIME)
-    eventPlayer.allowButton(Button.PRIMARY_FIRE)
-    if eventPlayer.isHoldingButton(Button.PRIMARY_FIRE):
-        eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
-
-rule "[torbjorn/init.opy]: OW1 Torbjorn fire rate melee":
-    @Event eachPlayer
-    @Hero torbjorn
-    @Condition eventPlayer.getCurrentWeapon() == 2
-    @Condition eventPlayer.isHoldingButton(Button.MELEE) # For some reason it wont let me do isMeleeing()
-    @Condition not eventPlayer.isUsingAbility2()
-
-    eventPlayer.disallowButton(Button.MELEE)
-    wait(OW1_TORBJORN_HAMMER_RECOVERY_TIME)
-    eventPlayer.allowButton(Button.MELEE)
-    if eventPlayer.isHoldingButton(Button.MELEE):
-        eventPlayer.forceButtonPress(Button.MELEE)
+    eventPlayer.scrap = 0
+    eventPlayer.use_armour_pack = []
+    eventPlayer.armour_pack_position = vect(0, -500, 0)
+    eventPlayer.scrap_position = vect(0, -500, 0)
 
 rule "[torbjorn/init.opy]: Correct Rivet Gun, Hammer, and ultimate damage":
     @Event playerDealtDamage
