@@ -3,8 +3,8 @@
 # Depcrecated code, lifeweaver is not included anymore
 
 #!include "parting_gift.opy"
-#!include "platform.opy"
-#!include "tree.opy"
+# !include "platform.opy"
+# !include "tree.opy"
 
 def initLifeweaver():
     @Name "[lifeweaver/init.opy]: initLifeweaver()"

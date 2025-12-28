@@ -80,12 +80,12 @@ def createTeleporter():
         SpecVisibility.DEFAULT)
     eventPlayer.shield_gen_effect3 = getLastCreatedText()
 
-    createInWorldText(getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if localPlayer.isAlive() and localPlayer.teleporter_used > 0 else [], "{1}{0}".format(localPlayer.teleporter_used, 
+    createInWorldText(getPlayersOnHero(Hero.SYMMETRA, Team.ALL) if eventPlayer.isAlive() and eventPlayer.teleporter_used > 0 else [], "{1}{0}".format(eventPlayer.teleporter_used, 
         abilityIconString(Hero.SYMMETRA, Button.ABILITY_2)), 
-        updateEveryFrame(localPlayer.getEyePosition() + (150 * (0.3 * worldVector(Vector.RIGHT, 
-        localPlayer, 
-        Transform.ROTATION) + (-1.6 * (directionFromAngles(horizontalAngleOfDirection(localPlayer.getFacingDirection()), 
-        verticalAngleOfDirection(localPlayer.getFacingDirection()) - 90))) + 3 * localPlayer.getFacingDirection()))), 
+        updateEveryFrame(eventPlayer.getEyePosition() + (150 * (0.3 * worldVector(Vector.RIGHT, 
+        eventPlayer, 
+        Transform.ROTATION) + (-1.6 * (directionFromAngles(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
         2)
     eventPlayer.shield_gen_hud = getLastCreatedText()
     

@@ -13,7 +13,7 @@ playervar rally_pvar
 subroutine startRally
 subroutine endRally
 
-rule "[brigitte/rally.opy]: rally start":
+rule "[brigitte/rally.opy]: Rally start":
     @Event eachPlayer
     @Hero brigitte
     @Condition eventPlayer.isUsingUltimate()
