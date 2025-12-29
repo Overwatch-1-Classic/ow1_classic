@@ -1,10 +1,12 @@
 #!mainFile "../../dev_main.opy"
 
+playervar machine_gun_pvar
+#!defineMember machine_gun_ammo_id machine_gun_pvar[0]
+#!defineMember machine_gun_ready machine_gun_pvar[1]
+
 playervar machine_gun_ammo
-playervar machine_gun_ready
 playervar machine_gun_reload_timer
 
-playervar machine_gun_ammo_id
 
 subroutine reloadMachineGun
 

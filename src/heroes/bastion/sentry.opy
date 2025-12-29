@@ -10,11 +10,12 @@ rule "[bastion/sentry.opy]: Initialize sentry mode":
 
     eventPlayer.current_configuration = Configuration.SENTRY
 
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION)
+    eventPlayer.setDamageReceived(percent(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION/(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION-OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION))) # Remove Ironclad
     setBaseDamage(eventPlayer, OW1_BASTION_SENTRY_CONFIG_DAMAGE/OW2_BASTION_ASSAULT_CONFIG_DAMAGE)
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
     eventPlayer.setKnockbackReceived(0)
     eventPlayer.setJumpEnabled(false)
+    cancelSelfRepair()
 
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 

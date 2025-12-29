@@ -12,6 +12,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
 
     # eventPlayer.startCamera(updateEveryTick(eventPlayer.getEyePosition()), updateEveryTick(eventPlayer.getEyePosition() + vect(eventPlayer.getFacingDirection().x, 0, eventPlayer.getFacingDirection().z)), 0) # Bruteforce camera
 
+    cancelSelfRepair()
     eventPlayer.setMoveSpeed(percent(OW1_BASTION_TANK_CONFIG_MOVE_SPEED)) # move faster in tank mode
     setBaseDamage(eventPlayer, OW1_BASTION_TANK_CONFIG_DAMAGE/OW2_BASTION_TACTICAL_GRENADE_DAMAGE) # deal more damage in tank mode
     eventPlayer.setProjectileSpeed(percent(OW1_BASTION_TANK_CONFIG_PROJECTILE_SPEED/OW2_BASTION_TACTICAL_GRENADE_PROJECTILE_SPEED)) # increase grenade travel speed (to mimic tank shells)
@@ -33,7 +34,7 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.setFacing(vect(updateEveryTick(eventPlayer.getFacingDirection()).x, 0, updateEveryTick(updateEveryTick(eventPlayer.getFacingDirection()).z)), Relativity.TO_WORLD) # Bruteforce camera facing
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to turret mode
     eventPlayer.disallowButton(Button.ABILITY_1) # Disable reconfiguring out of turret mode
-    eventPlayer.setDamageReceived(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION - OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION) # Remove Ironclad
+    eventPlayer.setDamageReceived(percent(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION/(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION-OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION))) # Remove Ironclad
 
     eventPlayer.addHealthPool(Health.ARMOR, OW1_BASTION_TANK_ARMOR-OW1_BASTION_ARMOR, true, false) # Apply Tank healthpool
     eventPlayer.tank_armour = getLastCreatedHealthPool()

@@ -26,6 +26,8 @@ rule "[bastion/recon.opy]: Initialize recon mode":
     eventPlayer.clearStatusEffect(Status.ROOTED)
     eventPlayer.setKnockbackReceived(100)
 
+    cancelSelfRepair()
+
 # rule "[bastion/sentry.opy]: OW1 Bastion recon fire rate":
 #     @Event eachPlayer
 #     @Hero bastion

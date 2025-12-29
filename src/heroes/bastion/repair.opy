@@ -22,7 +22,7 @@ macro isUsingSelfRepair(player):
 
 # Detect if you're using tank config
 macro cancelSelfRepairTank(): 
-    eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isFiringSecondaryFire() or eventPlayer.isHoldingButton(Button.SECONDARY_FIRE) and eventPlayer.isUsingAbility1()
+    eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isFiringSecondaryFire() and eventPlayer.current_configuration != Configuration.TANK
 
 # Remove repair detection
 macro hideSelfRepair():
@@ -37,6 +37,10 @@ macro hideSelfRepairRing():
     eventPlayer._self_repair_sparkles_lower_gui = null
     destroyEffect(eventPlayer._self_repair_ring_gui)
     eventPlayer._self_repair_ring_gui = null
+
+macro cancelSelfRepair():
+    eventPlayer._is_using_self_repair = false
+    hideSelfRepairRing()
 
 rule "[bastion/repair.opy]: Activate self-repair + Deactive self repair":
     @Event eachPlayer
