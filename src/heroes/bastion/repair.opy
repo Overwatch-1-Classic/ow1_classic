@@ -22,7 +22,7 @@ macro isUsingSelfRepair(player):
 
 # Detect if you're using tank config
 macro cancelSelfRepairTank(): 
-    eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isFiringSecondaryFire() and eventPlayer.current_configuration != Configuration.TANK
+    eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isFiringSecondaryFire() and eventPlayer.current_configuration == Configuration.TANK
 
 # Remove repair detection
 macro hideSelfRepair():
