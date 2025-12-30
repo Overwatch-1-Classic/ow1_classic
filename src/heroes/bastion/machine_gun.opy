@@ -2,26 +2,24 @@
 
 playervar machine_gun_pvar
 #!defineMember machine_gun_ammo_id machine_gun_pvar[0]
-#!defineMember machine_gun_ready machine_gun_pvar[1]
-
-playervar machine_gun_ammo
-playervar machine_gun_reload_timer
-
-
-subroutine reloadMachineGun
+#!defineMember machine_gun_ammo machine_gun_pvar[2]
 
 macro hideMachineGunAmmo():
     destroyInWorldText(eventPlayer.machine_gun_ammo_id)
     eventPlayer.machine_gun_ammo_id = null
 
+macro updateMachineGunAmmo():
+    # eventPlayer.setAmmo(1, eventPlayer.getAmmo(1) - 1)
+    eventPlayer.setAmmo(1, eventPlayer.machine_gun_ammo - 1)
 
-rule "[bastion/machine_gun.opy]: Activate machine gun in sentry mode":
+macro resetMachineGun():
+    eventPlayer.machine_gun_ammo = OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE
+    updateMachineGunAmmo()
+
+rule "[bastion/machine_gun.opy]: Activate & De-activate machine gun in sentry mode":
     @Event eachPlayer
     @Hero bastion
     @Condition eventPlayer.current_configuration == Configuration.SENTRY
-
-    eventPlayer.machine_gun_ready = true
-    stopChasingVariable(eventPlayer.machine_gun_reload_timer)
 
     # show machine gun ammo
     if eventPlayer.machine_gun_ammo_id == null:
@@ -38,82 +36,56 @@ rule "[bastion/machine_gun.opy]: Activate machine gun in sentry mode":
             Color.WHITE, 
             SpecVisibility.DEFAULT)
         eventPlayer.machine_gun_ammo_id = getLastCreatedText()
-
-
-rule "[bastion/machine_gun.opy]: Hide machine gun ammo when not in sentry mode":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.current_configuration != Configuration.SENTRY
+    
+    waitUntil(eventPlayer.current_configuration != Configuration.SENTRY, Math.INFINITY)
 
     hideMachineGunAmmo()
 
-
-def reloadMachineGun():
-    @Name "[bastion/machine_gun.opy]: start machine gun reload timer"
- 
-    eventPlayer.machine_gun_reload_timer = OW1_BASTION_SENTRY_CONFIG_RELOAD_TIME
-    chase(eventPlayer.machine_gun_reload_timer, 0, rate=1, ChaseReeval.DESTINATION_AND_RATE)
-
-
-rule "[bastion/machine_gun.opy]: finish reloading machine gun":
+rule "[bastion/machine_gun.opy]: Update machine gun ammo when shooting":
     @Event eachPlayer
     @Hero bastion
-    @Condition eventPlayer.machine_gun_reload_timer <= 0
+    @Condition eventPlayer.current_configuration == Configuration.SENTRY
+    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    @Condition not eventPlayer.isReloading()
 
-    eventPlayer.machine_gun_ammo = OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE
-    eventPlayer.setAmmo(1, OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE)
-
+    updateMachineGunAmmo()
 
 rule "[bastion/machine_gun.opy]: Consume machine gun ammo when shooting":
     @Event eachPlayer
     @Hero bastion
     @Condition eventPlayer.current_configuration == Configuration.SENTRY
-    @Condition eventPlayer.isFiringPrimaryFire() == true
-
-    chase(eventPlayer.machine_gun_ammo, 0, rate=OW1_BASTION_SENTRY_CONFIG_FIRE_RATE, ChaseReeval.DESTINATION_AND_RATE)
-
-
-rule "[bastion/machine_gun.opy]: Stop machine gun ammo consumption when not shooting":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition not (eventPlayer.current_configuration == Configuration.SENTRY and eventPlayer.isFiringPrimaryFire())
-
-    stopChasingVariable(eventPlayer.machine_gun_ammo)
-
-
-rule "[bastion/machine_gun.opy]: Reload machine gun on reload key or when out of ammo":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD) or eventPlayer.machine_gun_ammo <= 0
-    @Condition eventPlayer.current_configuration == Configuration.SENTRY
+    @Condition eventPlayer.isFiringPrimaryFire()
     @Condition not eventPlayer.isReloading()
-    @Condition eventPlayer.machine_gun_ammo < OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE # don't reload if ammo already full
+    @Condition not eventPlayer.isMeleeing()
+    
+    do:
+        eventPlayer.machine_gun_ammo -= 1
+        wait(1/OW1_BASTION_SENTRY_CONFIG_FIRE_RATE)
+    while RULE_CONDITION
 
-    eventPlayer.setAmmo(1, 0) # play turret reload animation
-    reloadMachineGun()
+rule "[bastion/machine_gun.opy]: Reload machine gun when out of ammo":
+    @Event eachPlayer
+    @Hero bastion
+    @Condition eventPlayer.machine_gun_ammo <= 0 or eventPlayer.getAmmo(1) == 0
+    @Condition eventPlayer.current_configuration == Configuration.SENTRY
 
+    eventPlayer.setAmmo(1, 0) # Not go negative ammo & When restarting sentry force reload
+    wait(OW1_BASTION_SENTRY_CONFIG_RELOAD_TIME, Wait.ABORT_WHEN_FALSE)
+    resetMachineGun()
+
+rule "[bastion/machine_gun.opy]: Reload machine gun on reload key":
+    @Event eachPlayer
+    @Hero bastion
+    @Condition eventPlayer.current_configuration == Configuration.SENTRY
+    @Condition eventPlayer.isReloading()
+
+    wait(OW1_BASTION_SENTRY_CONFIG_RELOAD_TIME, Wait.ABORT_WHEN_FALSE) # Cant use eventPlayer.isReloading() due to it instantly reloading after restarting sentry and i find this approach better because no time is wasted
+    resetMachineGun()
 
 rule "[bastion/machine_gun.opy]: Reload machine gun when not in sentry mode":
     @Event eachPlayer
     @Hero bastion
     @Condition eventPlayer.current_configuration != Configuration.SENTRY
 
-    reloadMachineGun()
-
-
-rule "[bastion/machine_gun.opy]: Allow machine gun shooting when machine gun ready":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition eventPlayer.machine_gun_ready # gun ready to shoot
-    @Condition eventPlayer.current_configuration == Configuration.SENTRY
-
-    eventPlayer.allowButton(Button.PRIMARY_FIRE)
-
-
-rule "[bastion/machine_gun.opy]: Disallow machine gun shooting when machine gun not ready":
-    @Event eachPlayer
-    @Hero bastion
-    @Condition not eventPlayer.machine_gun_ready # gun not ready to shoot
-    @Condition eventPlayer.current_configuration == Configuration.SENTRY
-
-    eventPlayer.disallowButton(Button.PRIMARY_FIRE)
+    wait(OW1_BASTION_SENTRY_CONFIG_RELOAD_TIME, Wait.ABORT_WHEN_FALSE)
+    resetMachineGun()

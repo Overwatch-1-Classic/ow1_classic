@@ -10,8 +10,6 @@ def initBastion():
     
     setCustomHp(OW1_BASTION_HEALTH, OW1_BASTION_ARMOR, 0)
     setUltCost(OW1_BASTION_ULT_COST)
-    eventPlayer.machine_gun_ammo = OW1_BASTION_SENTRY_CONFIG_CLIP_SIZE
-    eventPlayer.machine_gun_reload_timer = 0
 
     setBaseDamage(eventPlayer, OW1_BASTION_RECON_GUN_DAMAGE/OW2_BASTION_RECON_GUN_DAMAGE)
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
@@ -19,6 +17,7 @@ def initBastion():
     eventPlayer.setAmmo(0, OW1_BASTION_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_BASTION_CLIP_SIZE)
 
+    resetMachineGun()
     eventPlayer._is_using_self_repair = false
 
     removeSelfHealing()
