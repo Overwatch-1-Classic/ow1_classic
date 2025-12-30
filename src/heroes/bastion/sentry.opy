@@ -10,6 +10,7 @@ rule "[bastion/sentry.opy]: Initialize sentry mode":
 
     eventPlayer.current_configuration = Configuration.SENTRY
 
+    eventPlayer.setGravity(150) # Stronger increase in gravity if not on floor
     eventPlayer.setDamageReceived(percent(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION/(OW1_BASTION_ICONCLAD_DAMAGE_REDUCTION-OW2_BASTION_ICONCLAD_DAMAGE_REDUCTION))) # Remove Ironclad
     setBaseDamage(eventPlayer, OW1_BASTION_SENTRY_CONFIG_DAMAGE/OW2_BASTION_ASSAULT_CONFIG_DAMAGE)
     eventPlayer.setStatusEffect(null, Status.ROOTED, Math.INFINITY)
@@ -20,6 +21,7 @@ rule "[bastion/sentry.opy]: Initialize sentry mode":
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
 
     waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
+    eventPlayer.setGravity(100)
     if eventPlayer.current_configuration == Configuration.SENTRY:
         eventPlayer.setMoveSpeed(0)
 
@@ -68,7 +70,7 @@ rule "[bastion/sentry.opy]: Sentry Facing & Cast time":
     eventPlayer.setPrimaryFireEnabled(false)
     eventPlayer.setAbility1Enabled(false)
 
-    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME*3) # Firing delay
+    wait(OW1_BASTION_SENTRY_CONFIG_DELAY_TIME) # Firing delay
     
     eventPlayer.setPrimaryFireEnabled(true)
     eventPlayer.setAbility1Enabled(true)
