@@ -73,6 +73,7 @@
 #!include "heroes/symmetra/init.opy"
 #!include "heroes/torbjorn/init.opy"
 #!include "heroes/tracer/init.opy"
+#!include "heroes/vendetta/init.opy"
 #!include "heroes/venture/init.opy"
 #!include "heroes/widowmaker/init.opy"
 #!include "heroes/winston/init.opy"
@@ -86,6 +87,6 @@
 
 # Include debug at the end so any variable can be viewed
 #!include "utilities/debug.opy"
-#!include "utilities/third_person.opy"
+# !include "utilities/third_person.opy"
 
 # !include "utilities/watermark.opy"
