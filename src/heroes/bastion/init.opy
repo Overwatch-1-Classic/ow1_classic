@@ -17,7 +17,7 @@ def initBastion():
     eventPlayer.setAmmo(0, OW1_BASTION_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_BASTION_CLIP_SIZE)
 
-    resetMachineGun()
+    reloadMachineGun()
     eventPlayer._is_using_self_repair = false
 
     removeSelfHealing()
