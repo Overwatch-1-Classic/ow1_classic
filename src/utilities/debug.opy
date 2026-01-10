@@ -10,15 +10,18 @@ playervar debug_pvar
 #!define _total_healing_received debug_pvar[2]
 #!define _last_healing_received debug_pvar[3]
 
-rule "[utilities/debug.opy]: Math.INFINITY ana hp":
+rule "[utilities/debug.opy]: Immortal Ana":
     @Event eachPlayer
     @Hero ana
     @Condition eventPlayer.isDummy()
     @Condition DEBUG_MODE == true
 
-    wait(1)
-    eventPlayer.addHealthPool(Health.NORMAL, Math.INFINITY, true, true)
-    heal(eventPlayer, null, Math.INFINITY)
+    do:
+        wait(1)
+        # eventPlayer.addHealthPool(Health.NORMAL, Math.INFINITY, true, true)
+        heal(eventPlayer, null, Math.INFINITY)
+        eventPlayer.setStatusEffect(null, Status.UNKILLABLE, Math.INFINITY)
+    while RULE_CONDITION
 
 rule "[debug.opy] Disable Inspector for performance":
     @Event global
