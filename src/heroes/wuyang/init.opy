@@ -7,4 +7,4 @@ def initWuyang():
     setUltCost(OW1_WUYANG_ULT_COST)
     removeSelfHealing()
 
-    setBaseDamage(eventPlayer, 0.8)
+    setBaseDamage(eventPlayer, 0.7)

@@ -1,7 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-playervar machine_gun_pvar
-#!defineMember machine_gun_ammo_id machine_gun_pvar[0]
+playervar machine_gun_ammo_id
 playervar machine_gun_ammo # machine_gun_pvar[2]
 
 macro hideMachineGunAmmo():

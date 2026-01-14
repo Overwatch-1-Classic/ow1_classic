@@ -67,7 +67,11 @@ rule "[lifeweaver/parting_gift.opy]: follow players":
     wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     eventPlayer.parting_gift_position = eventPlayer.getPosition()
     eventPlayer.startForcingPosition(eventPlayer.parting_gift_position, true)
-    chase(eventPlayer.parting_gift_position, ((sorted([player for player in getPlayersOnHero(Hero.LIFEWEAVER, getOppositeTeam(eventPlayer.getTeam())) if player.isAlive() and player.getNormalizedHealth() < 1], lambda i: distance(eventPlayer.getPosition(), i.getPosition())))).getPosition(), rate=8, ChaseReeval.DESTINATION_AND_RATE)
+    chase(eventPlayer.parting_gift_position, ((sorted([player for player in getPlayersOnHero(Hero.LIFEWEAVER, 
+        getOppositeTeam(eventPlayer.getTeam())) if player.isAlive() and player.getNormalizedHealth() < 1], 
+        lambda i: distance(eventPlayer.getPosition(), i.getPosition())))).getPosition(), 
+        rate=8,
+        ChaseReeval.DESTINATION_AND_RATE)
 
 
 rule "[lifeweaver/parting_gift.opy]: stop following":
