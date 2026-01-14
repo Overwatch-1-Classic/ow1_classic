@@ -1,6 +1,6 @@
 #!mainFile "../ow1c_main.opy"
 
-#!define GAMEMODE_VERSION "1.7.5"
+#!define GAMEMODE_VERSION "1.8.5"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"
