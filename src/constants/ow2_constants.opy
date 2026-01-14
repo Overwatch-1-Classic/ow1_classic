@@ -2,6 +2,7 @@
 
 # Misc
 #!define MIN_DAMAGE 0.000001
+#!define MIN_RECOGNIZE_DAMAGE 0.01
 #!define TICK_DURATION 0.016
 
 # Universal
