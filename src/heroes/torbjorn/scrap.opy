@@ -8,6 +8,29 @@ playervar scrap_pvar
 
 playervar scrap_position
 
+macro showScrapHUD():
+    createProgressBarInWorldText(eventPlayer, 0.5 * eventPlayer.scrap, 
+        "Scrap: {}/200".format(eventPlayer.scrap), 
+        updateEveryTick(eventPlayer.getEyePosition() + (100 * (2.7 * worldVector(Vector.RIGHT, 
+        eventPlayer, 
+        Transform.ROTATION) + (-1.5 * (angleToDirection(horizontalAngleOfDirection(eventPlayer.getFacingDirection()), 
+        verticalAngleOfDirection(eventPlayer.getFacingDirection()) - 90))) + 3 * eventPlayer.getFacingDirection()))), 
+        1, 
+        Clip.NONE, 
+        Color.ORANGE, 
+        Color.WHITE, 
+        ProgressWorldTextReeval.VISIBILITY_POSITION_VALUES_AND_COLOR, 
+        SpecVisibility.DEFAULT)
+    eventPlayer.scrap_hud = getLastCreatedText()
+
+macro hideScrapHUD():
+    destroyProgressBarInWorldText(eventPlayer.scrap_hud)
+    eventPlayer.scrap_hud = null
+
+macro initScrap():
+    eventPlayer.scrap_position = vect(0, -500, 0)
+    eventPlayer.scrap = 0
+
 rule "[torbjorn/scrap.opy]: Collect scrap":
     @Event eachPlayer
     @Hero torbjorn
