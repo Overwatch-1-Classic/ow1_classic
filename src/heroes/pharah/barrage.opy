@@ -21,8 +21,7 @@ rule "[pharah/barrage.opy]: 3s barrage duration":
     @Hero pharah
     @Condition eventPlayer.isUsingUltimate()
 
-    waitUntil(not eventPlayer.isUsingUltimate())
+    wait(OW1_PHARAH_BARRAGE_DURATION - OW2_PHARAH_BARRAGE_DURATION, Wait.ABORT_WHEN_FALSE)
+    eventPlayer.cancelPrimaryAction()
     eventPlayer.setUltCharge(100)
     eventPlayer.forceButtonPress(Button.ULTIMATE)
-    wait(OW1_PHARAH_BARRAGE_DURATION - OW2_PHARAH_BARRAGE_DURATION)
-    eventPlayer.cancelPrimaryAction()
