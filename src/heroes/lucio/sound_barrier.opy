@@ -8,4 +8,13 @@ rule "[lucio/sound_barrier.opy]: sound barrier reduce overhealth if on ground":
 
     wait()
     waitUntil(eventPlayer.isOnGround(), Math.INFINITY)
-    damage(getPlayersInRadius(eventPlayer.getPosition(), OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, eventPlayer.getTeam(), LosCheck.SURFACES_AND_ENEMY_BARRIERS), null, OW2_LUCIO_SOUND_BARRIER_OVERHEALTH - OW1_LUCIO_SOUND_BARRIER_OVERHEALTH)
+        getPlayersInRadius(eventPlayer.getPosition(), 
+            OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
+            eventPlayer.getTeam(), 
+            LosCheck.SURFACES).setHealth(eventPlayer.getHealth() - OW2_LUCIO_SOUND_BARRIER_OVERHEALTH-OW1_LUCIO_SOUND_BARRIER_OVERHEALTH)
+#     damage(getPlayersInRadius(eventPlayer.getPosition(), 
+#         OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
+#         eventPlayer.getTeam(), 
+#         LosCheck.SURFACES), 
+#         null, 
+#         OW2_LUCIO_SOUND_BARRIER_OVERHEALTH-OW1_LUCIO_SOUND_BARRIER_OVERHEALTH)
