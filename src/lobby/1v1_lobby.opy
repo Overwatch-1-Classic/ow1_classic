@@ -158,6 +158,7 @@ settings {
                 "ultGen%": percent(OW2_LIFEWEAVER_ULT_COST/OW1_LIFEWEAVER_ULT_COST)
             },
             "lucio": {
+                "secondaryFireCooldown%": percent(OW1_LUCIO_SOUNDWAVE_COOLDOWN/OW2_LUCIO_SOUNDWAVE_COOLDOWN),
                 "ultGen%": percent(OW2_LUCIO_ULT_COST/OW1_LUCIO_ULT_COST)
             },
             "mauga": {
