@@ -140,7 +140,7 @@ rule "[lucio/aura.opy]: set correct amp speed":
     @Event eachPlayer
     @Hero lucio
     @Condition LUCIO_CROSSFADE
-    @Condition eventPlayer.isInAlternateForm()
+    @Condition eventPlayer.isUsingAbility1()
     @Condition eventPlayer.isUsingAbility2()
 
     do:
