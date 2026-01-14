@@ -1,7 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-globalvar ARMOUR_PACK_TEAM_1
-globalvar ARMOUR_PACK_TEAM_2
+globalvar ARMOUR_PACK
 
 playervar armour_pack_pvar
 #!defineMember armour_pack_effects armour_pack_pvar[0]
@@ -15,6 +14,11 @@ playervar armour_pack_pvar
 #!defineMember armour_pack_vector armour_pack_pvar[8]
 #!defineMember armour_pack_timeout armour_pack_pvar[9]
 playervar armour_pack_player_left
+
+macro initArmourPack():
+    ARMOUR_PACK = []
+    eventPlayer.use_armour_pack = []
+    eventPlayer.armour_pack_position = vect(0, -500, 0)
 
 rule "[torbjorn/armour_pack.opy]: Throw armour pack":
     @Event eachPlayer
@@ -38,12 +42,13 @@ rule "[torbjorn/armour_pack.opy]: Throw armour pack":
     else:
         eventPlayer.armour_pack_vector = (normalize(eventPlayer.getFacingDirection() + Vector.UP * 0.09)) * 25
     eventPlayer.armour_pack_timeout = 0
-    while raycast(eventPlayer.armour_pack_position, eventPlayer.armour_pack_position + eventPlayer.armour_pack_vector / 61.881, getLivingPlayers(eventPlayer.getTeam()), eventPlayer, true).getHitPosition() == eventPlayer.armour_pack_position + eventPlayer.armour_pack_vector / 61.881 and eventPlayer.armour_pack_timeout <= 5:
+    while raycast(eventPlayer.armour_pack_position, eventPlayer.armour_pack_position + eventPlayer.armour_pack_vector / 61.881, 
+        getLivingPlayers(eventPlayer.getTeam()), eventPlayer, true).getHitPosition() == eventPlayer.armour_pack_position + eventPlayer.armour_pack_vector / 61.881 and eventPlayer.armour_pack_timeout <= OW1_TORBJORN_SCRAP_RADIUS:
         eventPlayer.armour_pack_vector -= vect(0, 0.098 * 206.995 / 62.5, 0)
         eventPlayer.armour_pack_position += eventPlayer.armour_pack_vector / 62.5
         eventPlayer.armour_pack_timeout += TICK_DURATION
         wait()
-    destroyEffect(eventPlayer.armour_pack_effect[0])
+    destroyEffect(eventPlayer.armour_pack_effect)
     eventPlayer.use_armour_pack.append(eventPlayer.armour_pack_position)
     createEffect(getPlayers(eventPlayer.getTeam()), Effect.SPHERE, Color.YELLOW, eventPlayer.use_armour_pack[eventPlayer.use_armour_pack.index(evalOnce(eventPlayer.use_armour_pack.last()))], 0.5, EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.armour_pack_effects.append(getLastCreatedEntity())
@@ -52,57 +57,27 @@ rule "[torbjorn/armour_pack.opy]: Throw armour pack":
 
 rule "[torbjorn/armour_pack.opy]: Get player's armour packs and append them":
     @Event eachPlayer
-    @Team 1
     @Hero torbjorn
     @Condition len(eventPlayer.use_armour_pack) > 0
-    @Condition (any([not player in ARMOUR_PACK_TEAM_1 for player in eventPlayer.use_armour_pack]))
+    @Condition (any([not player in ARMOUR_PACK for player in eventPlayer.use_armour_pack]))
     
     do:
-        ARMOUR_PACK_TEAM_1.append(eventPlayer.use_armour_pack.exclude(ARMOUR_PACK_TEAM_1))
-        wait(0.1) # Doesn't waste as much workshop load
-    while RULE_CONDITION
-
-
-rule "[torbjorn/armour_pack.opy]: Get player's armour packs and append them 2":
-    @Event eachPlayer
-    @Team 2
-    @Hero torbjorn
-    @Condition len(eventPlayer.use_armour_pack) > 0
-    @Condition (any([not player in ARMOUR_PACK_TEAM_2 for player in eventPlayer.use_armour_pack]))
-    
-    do:
-        ARMOUR_PACK_TEAM_2.append(eventPlayer.use_armour_pack.exclude(ARMOUR_PACK_TEAM_2))
+        ARMOUR_PACK.append(eventPlayer.use_armour_pack.exclude(ARMOUR_PACK))
         wait(0.1) # Doesn't waste as much workshop load
     while RULE_CONDITION
 
 
 rule "[torbjorn/armour_pack.opy]: Update closest armour pack":
     @Event eachPlayer
-    @Team 1
     @Condition eventPlayer.hasSpawned()
     @Condition len(getPlayersOnHero(Hero.TORBJORN, eventPlayer.getTeam())) > 0
-    @Condition len(ARMOUR_PACK_TEAM_1) > 0
+    @Condition len(ARMOUR_PACK) > 0
     @Condition eventPlayer.isAlive()
     
     do:
         wait(TICK_DURATION*3, Wait.ABORT_WHEN_FALSE)
-        eventPlayer.nearby_armour_pack = sorted(ARMOUR_PACK_TEAM_1, lambda player: distance(eventPlayer.getPosition(), player))[0]
+        eventPlayer.nearby_armour_pack = sorted(ARMOUR_PACK, lambda player: distance(eventPlayer.getPosition(), player))[0]
         eventPlayer.nearby_player = [player for player in getPlayersOnHero(Hero.TORBJORN, Team.ALL) if eventPlayer.nearby_armour_pack in player.use_armour_pack]
-    while RULE_CONDITION
-
-
-rule "[torbjorn/armour_pack.opy]: Update nearby armour pack 2":
-    @Event eachPlayer
-    @Team 2
-    @Condition eventPlayer.hasSpawned()
-    @Condition len(getPlayersOnHero(Hero.TORBJORN, eventPlayer.getTeam())) > 0
-    @Condition len(ARMOUR_PACK_TEAM_2) > 0
-    @Condition eventPlayer.isAlive()
-    
-    do:
-        wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
-        eventPlayer.nearby_armour_pack = sorted(ARMOUR_PACK_TEAM_2, lambda player: distance(eventPlayer.getPosition(), player))[0]
-        eventPlayer.nearby_player = getPlayersOnHero(Hero.TORBJORN, eventPlayer.getTeam())[ARMOUR_PACK_TEAM_2.index(eventPlayer.nearby_armour_pack)]
     while RULE_CONDITION
 
 
@@ -134,17 +109,13 @@ rule "[torbjorn/armour_pack.opy]: Give scrap armour":
     eventPlayer.player_armour_pack_health = getLastCreatedHealthPool()
     destroyEffect(eventPlayer.nearby_player.armour_pack_effects[eventPlayer.nearby_player.use_armour_pack.index(eventPlayer.nearby_armour_pack)])
     eventPlayer.nearby_player.use_armour_pack[eventPlayer.nearby_player.use_armour_pack.index(eventPlayer.nearby_armour_pack)] = vect(0, -500, 0)
-    if eventPlayer.getTeam() == Team.1:
-        ARMOUR_PACK_TEAM_1.remove(eventPlayer.nearby_armour_pack)
-    else:
-        ARMOUR_PACK_TEAM_2.remove(eventPlayer.nearby_armour_pack)
+    ARMOUR_PACK.remove(eventPlayer.nearby_armour_pack)
 
 
 rule "[torbjorn/armour_pack.opy]: Clean up everything if torbjorn player left":
     @Event playerLeft
     @Hero torbjorn
     
-    ARMOUR_PACK_TEAM_1.remove(eventPlayer.use_armour_pack)
-    ARMOUR_PACK_TEAM_2.remove(eventPlayer.use_armour_pack)
+    ARMOUR_PACK.remove(eventPlayer.use_armour_pack)
     for eventPlayer.armour_pack_player_left in range(-1, evalOnce(len(eventPlayer.armour_pack_effects))):
         destroyEffect(eventPlayer.armour_pack_effects[eventPlayer.armour_pack_player_left])
