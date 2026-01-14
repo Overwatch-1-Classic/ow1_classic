@@ -48,9 +48,8 @@ macro restartTurret():
     eventPlayer.forceButtonPress(Button.ABILITY_1)
 
 macro restartTurretProgress():
-    # eventPlayer.turret_progress -= 100
     eventPlayer.turret_position = vect(0, -500, 0)
-    eventPlayer.turret_level = 1
+    eventPlayer.turret_level = OW1_TORBJORN_TURRET_DEFAULT
     eventPlayer.turret_progress = 0
 
 rule "[torbjorn/turret.opy]: Set turret":
@@ -61,7 +60,7 @@ rule "[torbjorn/turret.opy]: Set turret":
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_1) <= 0
     
     showTurretProgressHUD()
-    eventPlayer.turret_level = 1
+    eventPlayer.turret_level = OW1_TORBJORN_TURRET_DEFAULT
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setProjectileGravity(Math.INFINITY)
     eventPlayer.setProjectileSpeed(0)
@@ -116,16 +115,6 @@ rule "[torbjorn/turret.opy]: Upgrade turret":
     else:
         eventPlayer.turret_level += 1
         smallMessage(eventPlayer, "Turret Upgraded to level {}".format(eventPlayer.turret_level))
-        # setTurretHealth()
-
-# rule "[torbjorn/turret.opy]: remove upgrade to level 2 if turret finished":
-    # @Event eachPlayer
-    # @Hero torbjorn
-    # @Condition eventPlayer.turret_level >= OW1_TORBJORN_TURRET_LEVEL_ULTIMATE
-    # @Condition not eventPlayer.isUsingAbility2()
-    
-    # eventPlayer.turret_level = OW1_TOBRJORN_TURRET_LEVEL
-    # setTurretHealth()
     
 rule "[torbjorn/turret.opy]: Instantly upgrade to level 3 if using overload":
     @Event eachPlayer
