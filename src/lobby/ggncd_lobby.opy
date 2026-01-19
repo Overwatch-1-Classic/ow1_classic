@@ -247,6 +247,7 @@ settings {
 
             ],
             "general": {
+                "passiveHealthRegen": false,
                 "abilityCooldown%": 0,
                 "enableInfiniteAmmo": true,
                 "ultGen%": 500,

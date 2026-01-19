@@ -13,7 +13,7 @@ def initGenji():
     eventPlayer.setAmmo(0, OW1_GENJI_CLIP_SIZE)
     eventPlayer.setMaxAmmo(0, OW1_GENJI_CLIP_SIZE)
 
-    removeSelfHealing()
+    # removeSelfHealing()
 
 
 rule "[genji/init.opy]: Deal OW1 shuriken damage":

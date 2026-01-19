@@ -10,7 +10,7 @@ def initReaper():
 
     setCustomHp(OW1_REAPER_HEALTH, 0, 0)
     setUltCost(OW1_REAPER_ULT_COST)
-    removePassiveHealing()
+    # removePassiveHealing()
     eventPlayer.setHealingDealt(0)
 
 

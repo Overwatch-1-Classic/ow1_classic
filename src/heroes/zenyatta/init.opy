@@ -9,7 +9,7 @@ def initZenyatta():
     
     setCustomHp(OW1_ZENYATTA_HEALTH, 0, OW1_ZENYATTA_SHIELDS)
     setUltCost(OW1_ZENYATTA_ULT_COST)
-    removeSelfHealing()
+    # removeSelfHealing()
     
     eventPlayer.setKnockbackDealt(0)
     setBaseDamage(eventPlayer, OW1_ZENYATTA_ORB_DAMAGE/OW2_ZENYATTA_ORB_DAMAGE)

@@ -14,7 +14,7 @@ def initDva():
     
     setUltCost(OW1_DVA_ULT_COST)
     # removeTankPassive()
-    removeSelfHealing()
+    # removeSelfHealing()
 
     eventPlayer.disallowButton(Button.SECONDARY_FIRE)
     eventPlayer.setAbility2Enabled(false)

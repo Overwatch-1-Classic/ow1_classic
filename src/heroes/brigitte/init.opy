@@ -20,7 +20,7 @@ def initBrigitte():
 
     setBaseDamage(eventPlayer, OW1_BRIGITTE_FLAIL_DAMAGE/OW2_BRIGITTE_FLAIL_DAMAGE)
 
-    removeSelfHealing()
+    # removeSelfHealing()
 
 
 rule "[brigitte/init.opy]: Compensate Brigitte global damage reduction":

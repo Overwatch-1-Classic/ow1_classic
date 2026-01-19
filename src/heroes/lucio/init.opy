@@ -10,7 +10,7 @@ def initLucio():
     
     setCustomHp(OW1_LUCIO_HEALTH, 0, 0)
     setUltCost(OW1_LUCIO_ULT_COST)
-    removePassiveHealing()
+    # removePassiveHealing()
 
     initCrossfade()
     showCrossfadeAreaText()

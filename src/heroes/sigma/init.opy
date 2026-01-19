@@ -16,7 +16,7 @@ def initSigma():
     setCustomHp(OW1_SIGMA_HEALTH, 0, OW1_SIGMA_SHIELDS)
     setUltCost(OW1_SIGMA_ULT_COST)
     # removeTankPassive()
-    removeSelfHealing()
+    # removeSelfHealing()
 
     setBaseDamage(eventPlayer, OW1_SIGMA_ACCRETION_TOTAL_DAMAGE/OW2_SIGMA_ACCRETION_TOTAL_DAMAGE)
 

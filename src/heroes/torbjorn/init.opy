@@ -16,7 +16,7 @@ def initTorbjorn():
 
     setCustomHp(OW1_TORBJORN_HEALTH, OW1_TORBJORN_ARMOR, 0)
     setUltCost(OW1_TORBJORN_ULT_COST)
-    removeSelfHealing()
+    # removeSelfHealing()
 
     eventPlayer.disallowButton(Button.ABILITY_1)
     eventPlayer.turret_level = OW1_TORBJORN_TURRET_DEFAULT
@@ -27,7 +27,6 @@ def initTorbjorn():
 
     initScrap()
     initArmourPack()
-
     showScrapHUD()
 
     eventPlayer.setProjectileSpeed(percent(OW1_TORBJORN_RIVET_GUN_PROJECTILE_SPEED/OW2_TORBJORN_RIVET_GUN_PROJECTILE_SPEED))

@@ -32,7 +32,7 @@
 #!include "passives/tank/knockback.opy"
 #!include "passives/tank/ult_charge.opy"
 # Remove support passive
-#!include "passives/support/self_heal.opy"
+#   !include "passives/support/self_heal.opy"
 # Perk utility
 # !include "passives/perk.opy"
 

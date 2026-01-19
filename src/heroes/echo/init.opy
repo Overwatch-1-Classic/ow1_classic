@@ -9,4 +9,4 @@ def initEcho():
 
     setCustomHp(OW1_ECHO_HEALTH-0.75, 0, 0) # Partially fix shield healthpool
     setUltCost(OW1_ECHO_ULT_COST)
-    removeSelfHealing()
+    # removeSelfHealing()

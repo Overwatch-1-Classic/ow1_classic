@@ -162,14 +162,13 @@ rule "[debug.opy] dummybot testing":
     destroyAllDummies()
     createDummy(Hero.ANA, getOppositeTeam(eventPlayer.getTeam()), -1, eventPlayer, eventPlayer)
     
-rule "[debug.opy] damage player":
+rule "[debug.opy] lowest health possible":
     @Event eachPlayer
     @Condition DEBUG_MODE
     @Condition eventPlayer.isHoldingButton(Button.INTERACT)
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
 
-    eventPlayer.setStatusEffect(null, Status.UNKILLABLE, 2)
-    damage(eventPlayer, null, Math.INFINITY)
+    eventPlayer.setHealth(MIN_DAMAGE)
 
 rule "[debug.opy] heal player":
     @Event eachPlayer

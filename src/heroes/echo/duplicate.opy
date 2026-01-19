@@ -10,8 +10,8 @@ rule "[echo/duplicate.opy]: Initialize duplicate hero":
     resetHero()
     initHero()
     
-    resetSelfHealing()
-    removePassiveHealing()
+    # resetSelfHealing()
+    # removePassiveHealing()
     enableAllAbilities()
     
     heal(eventPlayer, null, eventPlayer.getMaxHealth()) # Fix low hp when initializing

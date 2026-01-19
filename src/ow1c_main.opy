@@ -30,7 +30,7 @@
 #!include "passives/tank/knockback.opy"
 #!include "passives/tank/ult_charge.opy"
 # Remove support passive
-#!include "passives/support/self_heal.opy"
+# !include "passives/support/self_heal.opy"
 
 # Hero specific logic
 #!include "heroes/ana/init.opy"
@@ -69,6 +69,7 @@
 #!include "heroes/symmetra/init.opy"
 #!include "heroes/torbjorn/init.opy"
 #!include "heroes/tracer/init.opy"
+#!include "heroes/vendetta/init.opy"
 #!include "heroes/venture/init.opy"
 #!include "heroes/widowmaker/init.opy"
 #!include "heroes/winston/init.opy"

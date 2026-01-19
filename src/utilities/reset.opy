@@ -14,7 +14,7 @@ playervar reset_pvar
 #!defineMember _status_reset reset_pvar[10]
 #!defineMember _frenemy_reset reset_pvar[11]
 #!defineMember _ult_charge_reset reset_pvar[12]
-#!defineMember _self_healing_reset reset_pvar[13]
+# !defineMember _self_healing_reset reset_pvar[13]
 #!defineMember _ability_reset reset_pvar[14]
 
 subroutine clearCustomHp
@@ -33,7 +33,7 @@ macro isResetComplete(player):
  and player._status_reset \
  and player._frenemy_reset \
  and player._ult_charge_reset \
- and player._self_healing_reset \
+#  and player._self_healing_reset \
  and player._ability_reset)
 
 def resetHero():
@@ -171,4 +171,4 @@ rule "[utilities/reset.opy]: Reinitialize hero on new round":
     wait(1)
     resetHero()
     initHero()
-    printLog('called init after new round')
+    # printLog('called init after new round')

@@ -11,7 +11,7 @@ def initRamattra():
     setUltCost(OW1_RAMATTRA_ULT_COST)
 
     # removeTankPassive()
-    removeSelfHealing()
+    # removeSelfHealing()
 
 rule "[ramattra/init.opy]: Clean up Ramattra":
     @Event eachPlayer

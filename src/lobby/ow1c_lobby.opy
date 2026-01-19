@@ -283,6 +283,9 @@ settings {
             "zenyatta": {
                 "ultGen%": percent(OW2_ZENYATTA_ULT_COST/OW1_ZENYATTA_ULT_COST)
             },
+            "general": {
+                "passiveHealthRegen": false
+            },
             "enabledHeroes": [
                 "ana",
                 "ashe",

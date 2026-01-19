@@ -16,13 +16,10 @@ macro isPressingSelfRepairButton(player):
 macro isUsingSelfRepair(player):
     ((isPressingSelfRepairButton(player))
  and (not player.isFiringPrimaryFire())
+ and (not player.isFiringSecondaryFire())
  and (not player.isMeleeing())
  and (not isCCd(player))
  and (player.isAlive()))
-
-# Detect if you're using tank config
-macro cancelSelfRepairTank(): 
-    eventPlayer.isHoldingButton(Button.PRIMARY_FIRE) and eventPlayer.isFiringSecondaryFire() and eventPlayer.current_configuration == Configuration.TANK
 
 # Remove repair detection
 macro hideSelfRepair():
@@ -46,7 +43,6 @@ rule "[bastion/repair.opy]: Activate self-repair + Deactive self repair":
     @Event eachPlayer
     @Hero bastion
     @Condition isUsingSelfRepair(eventPlayer)
-    @Condition not cancelSelfRepairTank()
     @Condition not isCCd(eventPlayer)
     @Condition not eventPlayer.isUsingUltimate()
     @Condition eventPlayer._self_repair_cooldown == 0 # Custom ability timer.

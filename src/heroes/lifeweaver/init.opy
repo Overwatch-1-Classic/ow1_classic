@@ -11,7 +11,7 @@ def initLifeweaver():
     
     setCustomHp(OW1_LIFEWEAVER_HEALTH, 0, 0)
     setUltCost(OW1_LIFEWEAVER_ULT_COST)
-    removePassiveHealing()
+    # removePassiveHealing()
 
     eventPlayer.setProjectileSpeed(percent(OW1_LIFEWEAVER_THORN_VALLEY_PROJECTILE_SPEED/OW2_LIFEWEAVER_THORN_VALLEY_PROJECTILE_SPEED))
     setBaseDamage(eventPlayer, OW1_LIFEWEAVER_THORN_VALLEY_DAMAGE/OW2_LIFEWEAVER_THORN_VALLEY_DAMAGE)

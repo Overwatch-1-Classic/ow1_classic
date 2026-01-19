@@ -20,7 +20,7 @@ def initBastion():
     reloadMachineGun()
     eventPlayer._is_using_self_repair = false
 
-    removeSelfHealing()
+    # removeSelfHealing()
 
 rule "[bastion/init.opy]: Clean up Bastion":
     @Event eachPlayer
