@@ -54,11 +54,13 @@ rule "[doomfist/meteor.opy]: OW1 Meteor Strike knockback":
     victim.setGravity(100)
 
 
-rule "[doomfist/meteor.opy]: Remove Meteor Strike healing":
+rule "[doomfist/meteor.opy]: Remove Meteor Strike healing + decrease movement speed":
     @Event eachPlayer
     @Hero doomfist
     @Condition eventPlayer.isUsingUltimate()
 
     eventPlayer.setHealingDealt(0)
+    eventPlayer.setMoveSpeed(percent(OW1_DOOMFIST_METEOR_STRIKE_MOVEMENT_SPEED_INCREASE/OW2_DOOMFIST_METEOR_STRIKE_MOVEMENT_SPEED_INCREASE))
     waitUntil(not eventPlayer.isUsingUltimate(), Math.INFINITY)
+    eventPlayer.setMoveSpeed(100)
     eventPlayer.setHealingDealt(100)

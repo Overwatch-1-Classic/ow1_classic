@@ -140,7 +140,8 @@
 #!define OW1_DOOMFIST_BEST_DEFENSE_MAX_OVERHEALTH 150
 #!define OW1_DOOMFIST_HEALTH 250
 #!define OW1_DOOMFIST_HAND_CANNON_DAMAGE 66
-#!define OW1_DOOMFIST_METEOR_STRIKE_INNER_RING_RADIUS 2
+#!define OW1_DOOMFIST_METEOR_STRIKE_MOVEMENT_SPEED_INCREASE 150
+#!define OW1_DOOMFIST_METEOR_STRIKE_INNER_RING_RADIUS 1.5
 #!define OW1_DOOMFIST_METEOR_STRIKE_OUTER_RING_MAX_DAMAGE 300
 # Testing out damage, i heard its 300
 #!define OW1_DOOMFIST_METEOR_STRIKE_OUTER_RING_MIN_DAMAGE 15
@@ -156,7 +157,7 @@ globalvar OW1_DOOM_PUNCH_WALL_DAMAGE_MIN = createWorkshopSettingFloat('Doomfist'
 globalvar OW1_DOOM_PUNCH_WALL_DAMAGE_MAX = createWorkshopSettingFloat('Doomfist', 'Rocket Punch Wall Slam Max Damage', 150, 0, 1500)
 #!define OW1_DOOMFIST_SLAM_AOE_MAX_RADIUS 8
 #!define OW1_DOOMFIST_SLAM_AOE_MIN_RADIUS 1
-#!define OW1_DOOMFIST_SLAM_COOLDOWN 6
+#!define OW1_DOOMFIST_SLAM_COOLDOWN 7
 globalvar OW1_DOOMFIST_SLAM_DAMAGE_MAX = createWorkshopSettingInt('Doomfist', 'Seismic Slam Max Damage', 125, 0, 10000)
 # Slamming on flat ground should deal 49 damage
 # Frame by frame analysis of Youtube videos indicate that slam damage increases at a rate of 100 damage/second
@@ -170,6 +171,7 @@ globalvar OW1_DOOM_SLAM_INDIC_BEAM_COUNT = createWorkshopSettingInt('Doomfist', 
 globalvar OW1_DOOMFIST_SLAM_INDIC_PITCH = createWorkshopSettingFloat('Doomfist', 'Seismic Slam Indicator Pitch', 10, -90, 90)
 globalvar OW1_DOOMFIST_SLAM_INDIC_RANGE = createWorkshopSettingFloat('Doomfist', 'Seismic Slam Indicator Range', 15, 0, 30)
 globalvar OW1_DOOM_SLAM_INDIC_RING_COUNT = createWorkshopSettingInt('Doomfist', 'Seismic Slam Indicator GUI Ring Count', 6, 0, 12)
+#!define OW1_DOOMFIST_SLAM_MAX_RADIUS 20
 #!define OW1_DOOMFIST_UPPERCUT_AIR_LOCK_TIME 3
 #!define OW1_DOOMFIST_UPPERCUT_COOLDOWN_DEFAULT 7
 globalvar OW1_DOOMFIST_UPPERCUT_COOLDOWN = createWorkshopSettingFloat('Doomfist', 'Uppercut Cooldown', OW1_DOOMFIST_UPPERCUT_COOLDOWN_DEFAULT, 0, 12)
@@ -776,7 +778,9 @@ globalvar OW1_REAPER_SOUL_ORB_VISUAL_ARRAY = createWorkshopSettingEnum("Reaper",
 
 # Zenyatta
 #!define OW1_ZENYATTA_TRANSCENDENCE_MOVEMENT_BONUS 0.1
+#!define OW1_ZENYATTA_TRANSCENDENCE_HEALING 200
 #!define OW1_ZENYATTA_DISCORD_ORB_TAKEN 150
+#!define OW1_ZENYATTA_ORB_SPEED 30
 #!define OW1_ZENYATTA_CLIP_SIZE 20
 #!define OW1_ZENYATTA_HEALTH 50
 #!define OW1_ZENYATTA_KNOCKBACK 100
