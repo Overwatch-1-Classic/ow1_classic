@@ -42,9 +42,9 @@ rule "[torbjorn/init.opy]: Clean up Torbjorn":
     removeHealthPool(eventPlayer._torbjorn_overload_armor)
     
     hideScrapHUD()
-    hideTurretProgressHUD()
     initScrap()
     initArmourPack()
+    hideTurretProgressHUD()
 
 rule "[torbjorn/init.opy]: Correct Rivet Gun, Hammer, and ultimate damage":
     @Event playerDealtDamage

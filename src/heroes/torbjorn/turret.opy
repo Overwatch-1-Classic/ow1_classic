@@ -60,6 +60,7 @@ rule "[torbjorn/turret.opy]: Set turret":
     @Condition eventPlayer.getAbilityCooldown(Button.ABILITY_1) <= 0
     
     showTurretProgressHUD()
+    eventPlayer.turret_progress = 0
     eventPlayer.turret_level = OW1_TORBJORN_TURRET_DEFAULT
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setProjectileGravity(Math.INFINITY)
