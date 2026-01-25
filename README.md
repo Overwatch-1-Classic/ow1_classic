@@ -2,7 +2,7 @@
 
 This repository contains OverPy source code for building [Overwatch 1 Classic](https://workshop.codes/ow1-classic) and [Overwatch 1 Classic++](https://workshop.codes/ow1coutaded) Workshop gamemode.  
 
-Overwatch 1 stats are referenced using the [Overwatch Wikipedia](https://overwatch.fandom.com/wiki/Overwatch:_Classic#Heroes) and [Youtube](https://youtu.be/BP3BesuqOFk?si=-XDM0pAW8u8S8faf).  
+Overwatch 1 stats are referenced using the [Overwatch Wikipedia](https://overwatch.fandom.com/wiki/Overwatch_Wiki).  
 
 Progress (✅ = Equivalent to OW1, ✔ = Close to OW1, Blank = Untouched):
 <!--- https://docs.google.com/spreadsheets/d/NOWAYTEST/edit?usp=sharing -->
