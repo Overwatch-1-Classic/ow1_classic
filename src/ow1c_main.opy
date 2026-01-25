@@ -21,13 +21,14 @@
 # !include "utilities/ready.opy"
 #!include "utilities/hit_detection.opy"
 #!include "utilities/anti_crash.opy"
+#!include "utilities/platform.opy"
 
 # OW1 logic
 # Remove damage passive
 #!include "passives/damage/damage_passive.opy"
 # Remove tank passive
-#!include "passives/tank/headshot.opy"
-#!include "passives/tank/knockback.opy"
+# !include "passives/tank/headshot.opy"
+# !include "passives/tank/knockback.opy"
 #!include "passives/tank/ult_charge.opy"
 # Remove support passive
 # !include "passives/support/self_heal.opy"
