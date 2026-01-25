@@ -20,6 +20,7 @@
 #!include "utilities/hero_switch.opy"
 #!include "utilities/hit_detection.opy"
 #!include "utilities/anti_crash.opy"
+#!include "utilities/platform.opy"
 
 # OW1 logic
 # Remove damage passive
