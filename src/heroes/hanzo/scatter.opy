@@ -8,10 +8,7 @@ playervar scatter_pvar
 #!defineMember _scatter_hit_position scatter_pvar [4]
 #!defineMember _scatter_hit_normal scatter_pvar [5]
 #!defineMember _scatter_hit_normal_position scatter_pvar [6]
-#!defineMember platform_detection scatter_pvar [7]
-#!defineMember controller_user scatter_pvar [8]
 
-subroutine platformCheck
 subroutine fireScatterArrow 
 
 
@@ -44,7 +41,6 @@ def fireScatterArrow():
         OW1_HANZO_SCATTER_ARROW_GRAVITY)
         eventPlayer._scatter_arrow_fragment++
 
-
 rule "[hanzo/scatter.opy]: fire scatter arrow":
     @Event eachPlayer
     @Hero hanzo
@@ -56,7 +52,7 @@ rule "[hanzo/scatter.opy]: fire scatter arrow":
         eventPlayer.disallowButton(Button.PRIMARY_FIRE)
         eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
         while eventPlayer.isUsingAbility2():
-            eventPlayer.forceButtonPress(Button.ABILITY_1 if eventPlayer.controller_user else Button.ABILITY_2)
+            eventPlayer.forceButtonPress(Button.ABILITY_1 if eventPlayer.controller_user == InputType.KEYBOARD else Button.ABILITY_2)
             wait()
         eventPlayer.setAbilityCooldown(Button.ABILITY_2, OW1_HANZO_SCATTER_ARROW_COOLDOWN)
     else:
@@ -66,21 +62,8 @@ rule "[hanzo/scatter.opy]: fire scatter arrow":
             eventPlayer.disallowButton(Button.PRIMARY_FIRE)
             eventPlayer.forceButtonPress(Button.PRIMARY_FIRE)
             while eventPlayer.isUsingAbility2():
-                eventPlayer.forceButtonPress(Button.ABILITY_1 if eventPlayer.controller_user else Button.ABILITY_2)
+                eventPlayer.forceButtonPress(Button.ABILITY_1 if eventPlayer.controller_user == InputType.CONTROLLER else Button.ABILITY_2)
                 wait()
         else:
-            eventPlayer.setAbilityCooldown(Button.ABILITY_1 if eventPlayer.controller_user else Button.ABILITY_2, 0.25)
+            eventPlayer.setAbilityCooldown(Button.ABILITY_1 if eventPlayer.controller_user == InputType.KEYBOARD else Button.ABILITY_2, 0.25)
     eventPlayer.allowButton(Button.PRIMARY_FIRE)
-
-def platformCheck():
-    @Name "[hanzo/scatter.opy]: Platform detection for scatter" # This code was made by HPJ#21547 & Lotto https://workshop.codes/7G6E9
-    
-    eventPlayer.platform_detection = ceil(eventPlayer.getHorizontalFacingAngle())
-    eventPlayer.startFacing(directionFromAngles(eventPlayer.platform_detection + 1, 0) if any([inputBindingString(i)[0] and strContains("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&~\"#'{([-|`_\\^@)]=}^$%*,?.;/:>²ÉÈÇÀÙ+¤^ßÜÖÄÑ¡´¿ÒÌСЛП↓←→↑스아좌왼숫우오위空回退大下左暂右上；，向數", inputBindingString(i).charAt(0)) for i in [Button.ABILITY_1, Button.ABILITY_2, Button.CROUCH, Button.INTERACT, Button.JUMP, Button.MELEE, Button.PRIMARY_FIRE, Button.RELOAD, Button.SECONDARY_FIRE, Button.ULTIMATE]]) else directionFromAngles(eventPlayer.platform_detection - 1, 0), 10000)
-    wait(0.25)
-    waitUntil(round(eventPlayer.getHorizontalFacingAngle() * 100) / 100 in [eventPlayer.platform_detection + 1, eventPlayer.platform_detection - 1], 3)
-    if round(eventPlayer.getHorizontalFacingAngle() * 100) / 100 == eventPlayer.platform_detection + 1:
-        eventPlayer.controller_user = false
-    else:
-        eventPlayer.controller_user = true
-    eventPlayer.stopFacing()
