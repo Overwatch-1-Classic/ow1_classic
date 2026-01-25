@@ -53,8 +53,7 @@ rule "[orisa/fusion_driver.opy]: Decrease ammo when shooting gun":
     
     eventPlayer.orisa_ammo -= 1
     wait(1/OW1_ORISA_GUN_FIRE_RATE)
-    if RULE_CONDITION:
-        goto RULE_START
+    if RULE_CONDITION: goto RULE_START
 
 
 rule "[orisa/fusion_driver.opy]: Reload gun after respawning":
@@ -102,8 +101,9 @@ rule "[orisa/fusion_driver.opy]: Slow down Orisa when shooting":
     @Event eachPlayer
     @Hero orisa
     @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition not eventPlayer.is_orisa_reloading
+    @Condition not eventPlayer.is_orisa_reloading 
+    @Condition not eventPlayer.isMeleeing()
 
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar*(1-OW1_ORISA_MOVEMENT_PENALTY))
-    waitUntil((not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)) or (eventPlayer.is_orisa_reloading), Math.INFINITY)
+    waitUntil((not eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)) or (eventPlayer.is_orisa_reloading) or eventPlayer.isMeleeing(), Math.INFINITY)
     setBaseMovement(eventPlayer, eventPlayer._base_movement_scalar/(1-OW1_ORISA_MOVEMENT_PENALTY))
