@@ -8,5 +8,5 @@ rule "[reinhardt/earthshatter.opy]: Correct Earthstatter damage":
     @Condition not isCCd(eventPlayer)
 
     eventPlayer.setDamageDealt(percent(OW1_REINHARDT_EARTHSHATTER_BASE_DAMAGE/OW2_REINHARDT_EARTHSHATTER_BONUS_DAMAGE))
-    waitUntil(eventPlayer.isUsingUltimate(), Math.INFINITY)
+    waitUntil(eventPlayer.isUsingUltimate() or isCCd(eventPlayer), Math.INFINITY)
     eventPlayer.setDamageDealt(100)
