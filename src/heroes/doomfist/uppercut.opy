@@ -69,7 +69,7 @@ rule "[doomfist/uppercut.opy]: Uppercut vfx + movement physics":
     eventPlayer.applyImpulse(Vector.UP, 2.5, Relativity.TO_WORLD, Impulse.INCORPORATE_CONTRARY_MOTION)
     eventPlayer.enablePlayerCollision()
     eventPlayer.is_using_uppercut = false # End of uppercut
-    wait(0.35)
+    wait(0.2) # Recovery time
 
     # set cooldown
     eventPlayer.setAbilityCooldown(Button.ABILITY_2, OW1_DOOMFIST_UPPERCUT_COOLDOWN)
