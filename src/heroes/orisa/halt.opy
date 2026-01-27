@@ -3,14 +3,12 @@
 playervar halt_pvar
 #!defineMember _is_using_halt halt_pvar [0]
 #!defineMember is_using_halt halt_pvar [1]
-#!defineMember is_snared halt_pvar [2]
-#!defineMember halt_victims halt_pvar [3]
 playervar halt_position
 playervar halt_ending_position
-#!defineMember halt_orb_id halt_pvar [6]
-#!defineMember halt_snare_line_id halt_pvar [7]
+#!defineMember halt_orb_id halt_pvar [2]
+#!defineMember halt_snare_line_id halt_pvar [3]
 playervar halt_victim_position
-#!defineMember halt_active halt_pvar [9]
+#!defineMember halt_active halt_pvar [4]
 
 subroutine shootHalt
 subroutine explodeHalt
