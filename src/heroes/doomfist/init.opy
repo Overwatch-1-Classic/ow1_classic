@@ -15,7 +15,7 @@ created by discord users: Bebel#5658 and Xponit#1474
 #!include "punch.opy"
 #!include "meteor.opy"
 #!include "cannon.opy"
-# !include "defense.opy"
+#!include "defense.opy"
 
 
 def initDoomfist():
@@ -28,7 +28,6 @@ def initDoomfist():
 
     initRocketPunch()
     initSlam()
-    eventPlayer.uppercut_shields = 0
 
 
 rule "[doomfist/init.opy]: Clean up Doomfist":
