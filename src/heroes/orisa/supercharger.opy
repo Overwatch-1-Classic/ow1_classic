@@ -8,8 +8,8 @@ playervar supercharger_pvar
 #!defineMember orisa_supercharger_origin supercharger_pvar[3]
 #!defineMember orisa_supercharger_beam_id supercharger_pvar[4]
 #!defineMember orisa_supercharger_sound_id supercharger_pvar[5]
-#!defineMember javelin_cooldown_before_ult supercharger_pvar[5]
-#!defineMember is_starting_supercharger supercharger_pvar[6]
+#!defineMember javelin_cooldown_before_ult supercharger_pvar[6]
+#!defineMember is_starting_supercharger supercharger_pvar[7]
 
 subroutine startSupercharger
 subroutine endSupercharger
