@@ -1,6 +1,6 @@
 #!mainFile "../1v1_main.opy"
 
-#!define GAMEMODE_VERSION "1.0.0 Recoded"
+#!define GAMEMODE_VERSION "Internal Dev Build"
 #!define GAMEMODE_NAME "1v1 Arena - Overwatch 1 Classic Edition"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"

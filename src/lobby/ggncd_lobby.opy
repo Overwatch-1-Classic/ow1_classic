@@ -1,6 +1,6 @@
 #!mainFile "../ggncd_main.opy"
 
-#!define GAMEMODE_VERSION "v1.0.0"
+#!define GAMEMODE_VERSION "Internal Dev Build"
 #!define GAMEMODE_NAME "GGNCD - Overwatch 1 Classic Edition"
 #!define GAMEMODE_CODE "FHPZ3"
 #!define STAGING_CODE "None"
