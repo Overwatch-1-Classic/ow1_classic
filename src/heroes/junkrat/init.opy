@@ -12,6 +12,7 @@ def initJunkrat():
     setUltCost(OW1_JUNKRAT_ULT_COST)
     # removeSelfHealing()
 
+    eventPlayer.setProjectileSpeed(percent(OW1_JUNKRAT_FRAG_PROJECTILE_SPEED/OW2_JUNKRAT_FRAG_PROJECTILE_SPEED))
     setBaseDamage(eventPlayer, OW1_JUNKRAT_FRAG_DAMAGE/OW2_JUNKRAT_FRAG_DAMAGE)
 
 
