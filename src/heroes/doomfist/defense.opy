@@ -54,7 +54,7 @@ rule "[doomfist/defense.opy] Decay best defense shields": # Logic by Alomare: ht
             eventPlayer.current_health -= OW1_DOOMFIST_BEST_DEFENSE_DECAY_RATE
             if eventPlayer.current_health < 1:
                 return
-            eventPlayer.addHealthPool(Health.NORMAL, eventPlayer.current_health, false, false)
+            eventPlayer.addHealthPool(Health.SHIELDS, eventPlayer.current_health, false, false)
         else:
             eventPlayer.setHealth(eventPlayer.getHealth() - OW1_DOOMFIST_BEST_DEFENSE_DECAY_RATE)
             storedDefenseHealth()
