@@ -2,6 +2,7 @@
 
 #!include "guardian.opy"
 #!include "resurrect.opy"
+#!include "regeneration.opy"
 
 
 def initMercy():
@@ -19,3 +20,11 @@ def initMercy():
 
     eventPlayer.is_using_guardian_angel = false
     eventPlayer.is_slingshotting = false
+
+rule "[mercy/init.opy]: Clean up Mercy":
+    @Event eachPlayer
+    @Condition eventPlayer.getCurrentHero() == Hero.MERCY
+
+    waitUntil(eventPlayer.getCurrentHero() != Hero.MERCY, Math.INFINITY)
+    hideMercyMassResurrectionHud()
+    eventPlayer.stopAllHealingOverTime()
