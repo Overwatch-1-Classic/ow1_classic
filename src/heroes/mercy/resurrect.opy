@@ -1,7 +1,7 @@
 #!mainFile "../../dev_main.opy"
 
-# Huge thanks for oreoslurpee for making this wonderful mass ressurection code! https://workshop.codes/72JEY
-# Rewrote in overpy & optimized by viper#18545
+# This Mass Ressurection script is heavily based off https://workshop.codes/72JEY made by Oreoslurpee
+# Rewriten in Overpy & Optimized by viper#18545
 
 playervar resurrect_pvar
 
@@ -11,11 +11,7 @@ playervar resurrect_pvar
 #!defineMember _dead_allies resurrect_pvar[3]
 #!defineMember mercy_res_id resurrect_pvar[4]
 
-#!define OW1_MERCY_ULT_VOICELINE_DUR 1.635
-#!define OW1_MERCY_MAS_RES_DURATION 0.65
-#!define OW1_RES_WAIT 2.25
-
-macro hideMercyResHud():
+macro hideMercyMassResurrectionHud():
     destroyInWorldText(eventPlayer._mercy_hud_text)
     eventPlayer._mercy_hud_text = null
 
@@ -41,10 +37,10 @@ def startMassRes():
     eventPlayer.setUltEnabled(false) # Prevent Mercy from getting ult charge
     eventPlayer.communicate(Comms.VOICE_LINE_UP) # Play ultimate voice line
 
-    # mass res sound eeffects
-    playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.YELLOW, eventPlayer, 5)
-    playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.YELLOW, eventPlayer, 5)
-    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
+    # mass res sound effects
+    playEffect(getAllPlayers(), DynamicEffect.GOOD_EXPLOSION, Color.YELLOW, eventPlayer, 10)
+    playEffect(getAllPlayers(), DynamicEffect.RING_EXPLOSION, Color.YELLOW, eventPlayer, 10)
+    playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 10)
 
     # Res Player Effects
     if (eventPlayer.mercy_res_id == null):
@@ -52,7 +48,7 @@ def startMassRes():
     eventPlayer.mercy_res_id = getLastCreatedEntity()
 
     # Effects
-    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, 1)
+    # eventPlayer.setStatusEffect(null, Status.PHASED_OUT, 1)
 
 def stopMassRes():
     @Name "[mercy/resurrect.opy]: stopMassRes()"
@@ -72,6 +68,7 @@ def stopMassRes():
 rule "[mercy/resurrect.opy]: Trigger res":
     @Event eachPlayer
     @Hero mercy
+    @Condition not isCCd(eventPlayer)
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
     @Condition len(eventPlayer._dead_allies) > 0
     @Condition not isCCd(eventPlayer)
@@ -84,7 +81,7 @@ rule "[mercy/resurrect.opy]: Trigger res":
     waitUntil(not eventPlayer.isUsingAbility1(), 5)
     eventPlayer.setAbility1Enabled(false)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
-    wait(OW1_MERCY_MAS_RES_DURATION)
+    wait(OW1_MERCY_MASS_RESURRECTION_DURATION)
     eventPlayer.setAbility1Enabled(true)
     eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
     stopMassRes()
@@ -114,7 +111,7 @@ rule "[mercy/resurrect.opy]: HUD counter":
             SpecVisibility.DEFAULT) 
         eventPlayer._mercy_hud_text = getLastCreatedText()
         waitUntil(not eventPlayer._dead_allies or eventPlayer.getUltCharge() < 100, 5)
-        hideMercyResHud()
+        hideMercyMassResurrectionHud()
         wait()
     while RULE_CONDITION
 
@@ -130,11 +127,11 @@ rule "[mercy/resurrect.opy]: Resurrected player":
     wait()
     eventPlayer.startCamera(eventPlayer.getEyePosition(), eventPlayer.getPosition() + eventPlayer.getFacingDirection() * 100, 3)
     wait()
-    eventPlayer.setStatusEffect(null, Status.ROOTED, OW1_RES_WAIT)
-    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, OW1_RES_WAIT)
-    eventPlayer.setStatusEffect(null, Status.BURNING, OW1_RES_WAIT)
+    eventPlayer.setStatusEffect(null, Status.ROOTED, OW1_MERCY_MASS_RESURRECTION_CAST_TIME)
+    eventPlayer.setStatusEffect(null, Status.PHASED_OUT, OW1_MERCY_MASS_RESURRECTION_CAST_TIME)
+    eventPlayer.setStatusEffect(null, Status.BURNING, OW1_MERCY_MASS_RESURRECTION_CAST_TIME)
     playEffect(getAllPlayers(), DynamicEffect.BUFF_EXPLOSION_SOUND, Color.YELLOW, eventPlayer, 5)
-    wait(OW1_RES_WAIT)
+    wait(OW1_MERCY_MASS_RESURRECTION_CAST_TIME)
     eventPlayer.stopCamera()
     enableAllAbilities()
     eventPlayer._res_allies = false
@@ -148,7 +145,6 @@ rule "[mercy/resurrect.opy]: Fix bug where rez HUD applied after death":
     @Condition eventPlayer.isDead()
     @Condition not eventPlayer.isInSpawnRoom()
     
-    hideMercyResHud()
+    hideMercyMassResurrectionHud()
     wait(0.064)
-    if eventPlayer.isDead():
-        goto RULE_START
+    if eventPlayer.isDead(): goto RULE_START
