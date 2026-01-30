@@ -22,4 +22,4 @@ rule "[dva/hp.opy]: Correct DVa pilot health":
 
     clearCustomHp()
     setCustomHp(OW1_DVA_PILOT_HEALTH, 0, 0)
-    heal(eventPlayer, null , OW1_DVA_PILOT_HEALTH)
+    eventPlayer.setHealth(OW1_DVA_PILOT_HEALTH)
