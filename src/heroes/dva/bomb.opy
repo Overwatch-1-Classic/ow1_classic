@@ -23,7 +23,7 @@ rule "[dva/bomb.opy]: Force reset ult charge when DVa pops out of Mech":
     eventPlayer.setUltCharge(0)
 
 
-rule "[dva/bomb.opy]: set bomb position":
+rule "[dva/bomb.opy]: Set Bomb position":
     @Event eachPlayer
     @Hero dva
     @Condition eventPlayer.isHoldingButton(Button.ULTIMATE)
@@ -44,15 +44,17 @@ rule "[dva/bomb.opy]: set bomb position":
     eventPlayer.allowButton(Button.ULTIMATE)
 
 
-rule "[dva/bomb.opy]: Kill dva from bomb":
+rule "[dva/bomb.opy]: Damage DVa from Bomb":
     @Event eachPlayer
     @Hero dva
+    @Condition not eventPlayer.isInSpawnRoom()
+    @Condition eventPlayer.isInAlternateForm()
     @Condition eventPlayer.ultimate_duration >= 65
     @Condition isInLoS(eventPlayer, eventPlayer._center_point, BarrierLos.PASS_THROUGH_BARRIERS)
-    @Condition distance(eventPlayer._center_point, eventPlayer) < 20.5
+    @Condition distance(eventPlayer._center_point, eventPlayer) < OW1_DVA_SELF_DESTRUCT_RADIUS
     
     eventPlayer.applyImpulse(directionTowards(eventPlayer._center_point, eventPlayer) + (vect(0, 0.5 - directionTowards(eventPlayer._center_point, eventPlayer).y, 0)), 22.1, Relativity.TO_WORLD, Impulse.CANCEL_CONTRARY_MOTION)
-    damage(eventPlayer, null, (min(OW1_DVA_BOMB_DAMAGE, OW1_DVA_BOMB_DAMAGE - (59.375 * (distance(eventPlayer._center_point, eventPlayer) - 4.5)))) * (distance(eventPlayer._center_point, eventPlayer) <= 20.5))
+    damage(eventPlayer, null, (min(OW1_DVA_BOMB_DAMAGE, OW1_DVA_BOMB_DAMAGE - (59.375 * (distance(eventPlayer._center_point, eventPlayer) - 4.5)))) * (distance(eventPlayer._center_point, eventPlayer) <= OW1_DVA_SELF_DESTRUCT_RADIUS))
 
 
 def normalTracking():
