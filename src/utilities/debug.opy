@@ -55,6 +55,7 @@ rule "[utilities/debug.opy]: player debug (Top Right)":
     hudSubheader(eventPlayer, "is_starting_supercharger() = {}".format(eventPlayer.is_starting_supercharger), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "_is_using_self_repair() = {}".format(eventPlayer._is_using_self_repair), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
     hudSubheader(eventPlayer, "controller_user() = {}".format(eventPlayer.controller_user), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
+    # hudSubheader(eventPlayer, "mercy_start_passive_regeneration() = {}".format(eventPlayer.mercy_start_passive_regeneration), HudPosition.RIGHT, 1, Color.WHITE, HudReeval.STRING)
 
 rule "[utilities/debug.opy]: Current victim HP":
     @Event playerDealtDamage
@@ -180,3 +181,11 @@ rule "[debug.opy] heal player":
     wait()
     if RULE_CONDITION:
         goto RULE_START
+
+rule "[debug.opy] lowest health possible":
+    @Event eachPlayer
+    @Condition DEBUG_MODE
+    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
+    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
+
+    damage(eventPlayer, eventPlayer.getRealPlayerClosestToReticle(Team.2), 25)
