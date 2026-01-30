@@ -30,3 +30,4 @@ rule "[bastion/init.opy]: Clean up Bastion":
     hideMachineGunAmmo()
     hideSelfRepair()
     hideSelfRepairRing()
+    eventPlayer.stopAllHealingOverTime()
