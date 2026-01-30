@@ -24,7 +24,6 @@ subroutine resetStats
 subroutine resetStatuses
 subroutine resetFrenemies
 subroutine resetUltCharge
-subroutine resetSelfHealing
 subroutine resetPerkCost
 
 macro isResetComplete(player):
@@ -45,7 +44,6 @@ def resetHero():
     async(resetFrenemies, AsyncBehavior.RESTART)
     async(resetUltCharge, AsyncBehavior.RESTART)
     async(resetPerkCost, AsyncBehavior.RESTART)
-    async(resetSelfHealing, AsyncBehavior.RESTART)
     async(enableAllAbilities, AsyncBehavior.RESTART)
 
     wait() # wait at least 1 tick
@@ -125,6 +123,7 @@ def resetStats():
     eventPlayer.setKnockbackReceived(100)
     eventPlayer.setKnockbackDealt(100)
     eventPlayer.setGravity(100)
+    eventPlayer.setJumpVerticalSpeed(100)
     eventPlayer.stopScalingBarriers()
     eventPlayer.stopScalingSize()
     setBaseMovement(eventPlayer, 1)
