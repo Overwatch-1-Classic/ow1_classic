@@ -5,7 +5,7 @@ rule "[symmetra/orb.opy]: set turret speed":
     @Hero symmetra
     @Condition eventPlayer.isUsingAbility1()
     
-    eventPlayer.setProjectileSpeed(1000)
+    eventPlayer.setProjectileSpeed(Math.INFINITY)
     eventPlayer.setMoveSpeed(47.778) # artillary based on
     waitUntil(not eventPlayer.isUsingAbility1(), Math.INFINITY)
     eventPlayer.setMoveSpeed(100)
