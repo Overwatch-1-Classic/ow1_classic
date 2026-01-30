@@ -54,6 +54,7 @@ rule "[reaper/soul_orb.opy]: Accelerate orbs to Reaper":
     @Condition isHeroBeingPlayed(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam()))
     @Condition distance(eventPlayer.position, getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam()))) <= OW1_REAPER_SOUL_ORB_RADIUS
     @Condition isInLoS(eventPlayer.position, getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())))
+    # @Condition getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())).getHealth() < getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())).getMaxHealth()
     
     eventPlayer.acceleration_speed = OW1_REAPER_SOUL_ORB_SPEED
     chaseAtRate(eventPlayer.position, updateEveryFrame(getPlayersOnHero(Hero.REAPER, getOppositeTeam(eventPlayer.getTeam())).getPosition() + Vector.UP), eventPlayer.acceleration_speed)
