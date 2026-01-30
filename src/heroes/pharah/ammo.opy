@@ -1,11 +1,11 @@
 #!mainFile "../../dev_main.opy"
 
-playervar globalAmmo
-#!defineMember barrage_ammo globalAmmo[0] 
-#!defineMember transc_ammo globalAmmo[1]
-#!defineMember wrath_ammo globalAmmo[2]
-#!defineMember primal_ammo globalAmmo[2]
-#!defineMember dragonblade_ammo globalAmmo[3]
-#!defineMember tire_ammo globalAmmo[4]
+playervar global_ammo_pvar
+#!defineMember barrage_ammo global_ammo_pvar[0] 
+#!defineMember transc_ammo global_ammo_pvar[1]
+#!defineMember wrath_ammo global_ammo_pvar[2]
+#!defineMember primal_ammo global_ammo_pvar[2]
+#!defineMember dragonblade_ammo global_ammo_pvar[3]
+#!defineMember tire_ammo global_ammo_pvar[4]
 
 # This code is so ugly i hate it 
