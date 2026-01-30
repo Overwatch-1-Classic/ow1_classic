@@ -177,6 +177,7 @@ settings {
                 "enablePassive": false
             },
             "moira": {
+                "ability2Cooldown%": percent(OW1_MOIRA_BIOTIC_ORB_COOLDOWN/OW2_MOIRA_BIOTIC_ORB_COOLDOWN),
                 "ultGen%": percent(OW2_MOIRA_ULT_COST/OW1_MOIRA_ULT_COST),
                 "primaryFireMaximumTime%": percent((OW2_MOIRA_HEAL_GRASP_AMMO_USAGE/OW1_MOIRA_HEAL_GRASP_AMMO_USAGE)*(OW1_MOIRA_HEAL_GRASP_AMMO/OW2_MOIRA_HEAL_GRASP_AMMO)),
             },
