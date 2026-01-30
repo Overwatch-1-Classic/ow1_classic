@@ -17,4 +17,5 @@ rule "[dva/booster.opy]: Correct light gun damage":
     @Condition eventPlayer.isInAlternateForm()
     @Condition eventAbility == Button.PRIMARY_FIRE
 
-    heal(victim, null, 1.27) # Magic numbers for inaccurate number, temporarily solution for the time being
+    # TODO(HACK): Inaccurate light gun damage due to setBaseDamage() and hard coding it for the time being, this is still really ugly. Sorry for magic numbers
+    heal(victim, null, 1.27)
