@@ -181,11 +181,3 @@ rule "[debug.opy] heal player":
     wait()
     if RULE_CONDITION:
         goto RULE_START
-
-rule "[debug.opy] lowest health possible":
-    @Event eachPlayer
-    @Condition DEBUG_MODE
-    @Condition eventPlayer.isHoldingButton(Button.PRIMARY_FIRE)
-    @Condition eventPlayer.isHoldingButton(Button.RELOAD)
-
-    damage(eventPlayer, eventPlayer.getRealPlayerClosestToReticle(Team.2), 25)
