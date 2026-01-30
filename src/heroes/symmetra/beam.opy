@@ -27,7 +27,7 @@ rule "[symmetra/beam.opy]: set sym primary fire":
     do:
         eventPlayer.setAmmo(0, eventPlayer.getAmmo(0) - 1)
         damage((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if eventPlayer.hasSpawned() and isInLoS(eventPlayer.getEyePosition(), player.getEyePosition(), 
-        BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(), player.getEyePosition()) < 5], 
+        BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(), player.getEyePosition()) < OW1_SYMMETRA_PROJECTOR_RANGE], 
         lambda i: distance(eventPlayer.getEyePosition(), 
         i.getEyePosition())))[0], 
         eventPlayer, 
@@ -93,7 +93,7 @@ def showPhotonProjecterBeam():
         i.getEyePosition())))[0]).getEyePosition()) + vect(0, -0.3, 0) 
         if entityExists((sorted([player for player in getLivingPlayers(getOppositeTeam(eventPlayer.getTeam())) if eventPlayer.hasSpawned() and isInLoS(eventPlayer.getEyePosition(), 
         player.getEyePosition(), BarrierLos.PASS_THROUGH_BARRIERS) and eventPlayer.isInViewAngle(player.getEyePosition(), 60) and distance(eventPlayer.getEyePosition(),
-        player.getEyePosition()) < 5], lambda i: distance(eventPlayer.getEyePosition(), i.getEyePosition())))[0]) else updateEveryTick(raycast(eventPlayer.getEyePosition(), 
+        player.getEyePosition()) < OW1_SYMMETRA_PROJECTOR_RANGE], lambda i: distance(eventPlayer.getEyePosition(), i.getEyePosition())))[0]) else updateEveryTick(raycast(eventPlayer.getEyePosition(), 
         eventPlayer.getEyePosition() + 3 * eventPlayer.getFacingDirection(), null, null, false).getHitPosition()), eventPlayer.getTeam(), EffectReeval.VISIBILITY_POSITION_AND_RADIUS)
     eventPlayer.beam_effect = getLastCreatedEntity()
 
