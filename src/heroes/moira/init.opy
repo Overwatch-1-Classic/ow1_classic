@@ -3,6 +3,7 @@
 #!include "biotic_grasp.opy"
 #!include "biotic_orb.opy"
 #!include "coalescence.opy"
+#!include "fade.opy"
 
 
 def initMoira():
