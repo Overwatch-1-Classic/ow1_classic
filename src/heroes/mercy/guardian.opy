@@ -1,8 +1,9 @@
 #!mainFile "../../dev_main.opy"
 
-playervar is_using_guardian_angel
-playervar is_slingshotting
-playervar slingshot_velocity
+playervar guardian_angel_pvar
+#!defineMember is_using_guardian_angel guardian_angel_pvar[0]
+#!defineMember is_slingshotting guardian_angel_pvar[1]
+#!defineMember slingshot_velocity guardian_angel_pvar[2]
 
 
 rule "[mercy/guardian.opy]: Detect Guardian Angel activation":
