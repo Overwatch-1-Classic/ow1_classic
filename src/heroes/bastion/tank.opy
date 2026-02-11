@@ -39,25 +39,23 @@ rule "[bastion/tank.opy]: Initialize tank mode":
     eventPlayer.addHealthPool(Health.ARMOR, OW1_BASTION_TANK_ARMOR-OW1_BASTION_ARMOR, true, false) # Apply Tank healthpool
     eventPlayer.tank_armour = getLastCreatedHealthPool()
 
+rule "[bastion/tank.opy]: Restart tank mode":
+    @Event eachPlayer
+    @Hero bastion
+    @Condition eventPlayer.current_configuration == Configuration.TANK
+
     wait(OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH) # Keep these 2 no matter what otherwise it would break
     waitUntil(not eventPlayer.isUsingAbility1(), OW1_BASTION_TANK_CONFIG_DURATION-OW2_BASTION_ASSAULT_CONFIG_LENGTH) # Keep these 2 no matter what otherwise it would break
 
     # Restart tank config
     eventPlayer.allowButton(Button.ABILITY_1)
-    
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Leave assault mode
     eventPlayer.cancelPrimaryAction()
-
     eventPlayer.forceButtonPress(Button.ABILITY_1) # Re-enter assault and restart tank mode
     eventPlayer.cancelPrimaryAction()
-
-    eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of turret mode
+    eventPlayer.disallowButton(Button.ABILITY_1) # Re-disable reconfiguring out of tank mode
 
     waitUntil(not eventPlayer.isInAlternateForm(), OW2_BASTION_ASSAULT_CONFIG_LENGTH)
-
-    if eventPlayer.isUsingAbility1():
-        eventPlayer.setAbilityCooldown(Button.ABILITY_1, 0)
-        eventPlayer.forceButtonPress(Button.ABILITY_1) # Go to recon mode
     eventPlayer.stopFacing()
     eventPlayer.allowButton(Button.ABILITY_1)
     eventPlayer.setUltEnabled(true)
