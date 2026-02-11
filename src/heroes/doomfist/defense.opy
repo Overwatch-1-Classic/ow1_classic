@@ -18,7 +18,7 @@ rule "[doomfist/defense.opy]: Override OW2 best defense + Custom OW1 best defens
 
     storedDefenseHealth()
     wait() # Try prevent crashes as much as possible
-    eventPlayer.ow1_best_defense_shields = eventPlayer.getHealthOfType(Health.SHIELDS)
+    eventPlayer.ow1_best_defense_shields = eventPlayer.getHealthOfType(Health.SHIELDS) # Detect how much shields you have right now so you dont get under shields
     if eventAbility == Button.ULTIMATE: # Meteor strike defense
         eventPlayer.ow2_best_defense_overhealth = eventPlayer.getHealth() - eventPlayer.current_health # Detect OW2 best defense
         eventPlayer.setHealth(eventPlayer.ow2_best_defense_overhealth) # Overwrite OW2 best defense
