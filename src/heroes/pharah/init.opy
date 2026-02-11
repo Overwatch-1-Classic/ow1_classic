@@ -12,6 +12,7 @@ def initPharah():
     setUltCost(OW1_PHARAH_ULT_COST)
     # removeSelfHealing()
     eventPlayer.setSecondaryFireEnabled(false)
+    eventPlayer.setProjectileSpeed(percent(OW1_PHARAH_ROCKET_SPEED/OW2_PHARAH_ROCKET_SPEED))
     eventPlayer.setKnockbackDealt(percent(OW1_PHARAH_CONCUSSIVE_BLAST_KNOCKBACK/OW2_PHARAH_CONCUSSIVE_BLAST_KNOCKBACK))
     initHoverJets()
 
