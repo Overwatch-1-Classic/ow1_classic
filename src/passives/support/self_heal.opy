@@ -58,10 +58,7 @@ rule "[passives/support/self_heal.opy]: Detect healing passive":
     @Event playerTookDamage
 
     eventPlayer._passive_healing_active = false
-    if eventPlayer.getCurrentHero() in getSupportHeroes(): # supports
-        wait(OW2_SUPPORT_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION)
-    else: # all other roles
-        wait(OW2_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION)
+    wait(OW2_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION)
     eventPlayer._passive_healing_active = true
 
 
@@ -76,7 +73,5 @@ rule "[passives/support/self_heal.opy]: Remove Passive self healing":
     
     do:
         damage(eventPlayer, null, MIN_DAMAGE)
-        wait(OW2_SUPPORT_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION \
-            if eventPlayer.getCurrentHero() in getSupportHeroes() \
-            else OW2_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION, Wait.ABORT_WHEN_FALSE)
+        wait(OW2_HEAL_PASSIVE_ACTIVATION_TIME - TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     while RULE_CONDITION
