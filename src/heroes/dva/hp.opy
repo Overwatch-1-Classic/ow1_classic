@@ -1,13 +1,15 @@
 #!mainFile "../../dev_main.opy"
 
+
 rule "[dva/hp.opy]: Correct DVa mech health":
     @Event eachPlayer
     @Hero dva
     @Condition not eventPlayer.isInAlternateForm()
 
-    wait(TICK_DURATION)
+    wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     clearCustomHp()
     setCustomHp(OW1_DVA_HEALTH, OW1_DVA_ARMOR, 0)
+    eventPlayer.setHealth(OW1_DVA_HEALTH + OW1_DVA_ARMOR)
 
 
 rule "[dva/hp.opy]: Correct DVa pilot health":
