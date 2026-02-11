@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[lucio/sound_barrier.opy]: sound barrier reduce overhealth if on ground":
+rule "[lucio/sound_barrier.opy]: Reduce Soundbarrier overhealth":
     @Event eachPlayer
     @Hero lucio
     @Condition eventPlayer.isUsingUltimate()
@@ -11,7 +11,9 @@ rule "[lucio/sound_barrier.opy]: sound barrier reduce overhealth if on ground":
         getPlayersInRadius(eventPlayer.getPosition(), 
             OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
             eventPlayer.getTeam(), 
-            LosCheck.SURFACES).setHealth(eventPlayer.getHealth() - OW2_LUCIO_SOUND_BARRIER_OVERHEALTH-OW1_LUCIO_SOUND_BARRIER_OVERHEALTH)
+            LosCheck.SURFACES).setHealth(eventPlayer.getHealth() - (OW2_LUCIO_SOUND_BARRIER_OVERHEALTH-OW1_LUCIO_SOUND_BARRIER_OVERHEALTH))
+
+            
 #     damage(getPlayersInRadius(eventPlayer.getPosition(), 
 #         OW1_LUCIO_SOUND_BARRIER_AREA_OF_EFFECT, 
 #         eventPlayer.getTeam(), 

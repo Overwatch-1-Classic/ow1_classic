@@ -90,7 +90,7 @@ rule "[torbjorn/scrap.opy]: De-accelerate scrap to torbjorn":
     
     stopChasingVariable(eventPlayer.scrap_position)
 
-rule "[torbjorn/scrap.opy]: Create soul orb if player dies":
+rule "[torbjorn/scrap.opy]: Create scrap if player dies":
     @Event eachPlayer
     @Condition isHeroBeingPlayed(Hero.TORBJORN, getOppositeTeam(eventPlayer.getTeam()))
     @Condition eventPlayer.isDead()

@@ -8,14 +8,14 @@
 
 #     damage(victim, attacker, (eventDamage/eventPlayer._base_damage_scalar*(OW1_LUCIO_SOUNDWAVE_DAMAGE/OW2_LUCIO_SOUNDWAVE_DAMAGE) - eventDamage)/eventPlayer._base_damage_scalar)
 
-rule "[lucio/soundwave.opy]: consume soundwave ammo":
+rule "[lucio/soundwave.opy]: Consume soundwave ammo":
     @Event eachPlayer
     @Hero lucio
     @Condition eventPlayer.isFiringSecondaryFire()
     
     eventPlayer.setAmmo(0, max(0, eventPlayer.getAmmo(0) - OW1_LUCIO_SOUNDWAVE_AMMO_CONSUMPTION))
 
-rule "[lucio/soundwave.opy]: disallow during reload":
+rule "[lucio/soundwave.opy]: Disable Soundwave during reload":
     @Event eachPlayer
     @Hero lucio
     @Condition eventPlayer.isReloading()

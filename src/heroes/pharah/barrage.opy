@@ -1,6 +1,6 @@
 #!mainFile "../../dev_main.opy"
 
-rule "[pharah/barrage.opy]: get barrage ammo":
+rule "[pharah/barrage.opy]: Get Barrage ammo":
     @Event eachPlayer
     @Hero pharah
     @Condition eventPlayer.barrage_ammo != eventPlayer.getAmmo(0)
@@ -9,14 +9,14 @@ rule "[pharah/barrage.opy]: get barrage ammo":
     wait(TICK_DURATION, Wait.ABORT_WHEN_FALSE)
     eventPlayer.barrage_ammo = eventPlayer.getAmmo(0)
         
-rule "[pharah/barrage.opy]: set barrage ammo":
+rule "[pharah/barrage.opy]: Set Barrage ammo":
     @Event eachPlayer
     @Hero pharah
     @Condition eventPlayer.isUsingUltimate()
     
     eventPlayer.setAmmo(0, eventPlayer.barrage_ammo)
 
-rule "[pharah/barrage.opy]: 3s barrage duration":
+rule "[pharah/barrage.opy]: Longer Barrage Duration":
     @Event eachPlayer
     @Hero pharah
     @Condition eventPlayer.isUsingUltimate()
