@@ -1,7 +1,8 @@
 #!mainFile "../../dev_main.opy"
 
-playervar punched_victims
-playervar wall_impacted_victims
+playervar punch_pvar
+#!defineMember punched_victims punch_pvar[0]
+#!defineMember wall_impacted_victims punch_pvar[1]
 playervar punch_charge_time
 
 subroutine initRocketPunch
