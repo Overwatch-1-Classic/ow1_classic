@@ -1,6 +1,6 @@
 #!mainFile "../dev_main.opy"
 
-#!define GAMEMODE_VERSION "Internal Dev Build"
+#!define GAMEMODE_VERSION "2.1.0"
 #!define GAMEMODE_NAME "Overwatch 1 Classic"
 #!define GAMEMODE_CODE "YVE2X"
 #!define STAGING_CODE "None"
@@ -33,7 +33,7 @@ macro GAMEMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                SOURCE_CODE_LINK)
 
 
-rule "Copyright (c) 2025 Overwatch 1 Classic. See https://github.com/arvrianmaybe/classic for license to use this code.":
+rule "Copyright (c) 2026 Overwatch 1 Classic. See https://github.com/Overwatch-1-Classic/ow1_classic for license to use this code.":
     # This code has been forked by Overwatch 1 Emulator, Please also check theres https://github.com/Overwatch-1-Emulator/ow1-emulator
     disableInspector()
 
@@ -77,6 +77,9 @@ settings {
             "ashe": {
                 "ultGen%": percent(OW2_ASHE_ULT_COST/OW1_ASHE_ULT_COST)
             },
+            "anran": {
+                "ultGen%": percent(OW2_ANRAN_ULT_COST/OW1_ANRAN_ULT_COST)
+            },
             "baptiste": {
                 "ability1Cooldown%": percent(OW1_BAPTISTE_REGEN_BURST_COOLDOWN/OW2_BAPTISTE_REGEN_BURST_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_BAPTISTE_LAMP_COOLDOWN_TIME/OW2_BAPTISTE_LAMP_COOLDOWN_TIME),
@@ -105,6 +108,9 @@ settings {
                 "ability2Cooldown%": percent(OW1_DOOMFIST_SLAM_COOLDOWN/OW2_DOOMFIST_SEISMIC_SLAM_COOLDOWN),
                 "ultGen%": percent(OW2_DOOMFIST_ULT_COST/OW1_DOOMFIST_ULT_COST)
             },
+            "domina": {
+                "ultGen%": percent(OW2_DOMINA_ULT_COST/OW1_DOMINA_ULT_COST)
+            },
             "dva": {
                 "secondaryFireMaximumTime%": percent(OW1_DVA_MATRIX_DURATION/OW2_DVA_MATRIX_DURATION),
                 "secondaryFireRechargeRate%": 500,
@@ -114,6 +120,9 @@ settings {
             },
             "echo": {
                 "ultGen%": percent(OW2_ECHO_ULT_COST/OW1_ECHO_ULT_COST)
+            },
+            "emre": {
+                "ultGen%": percent(OW2_EMRE_ULT_COST/OW1_EMRE_ULT_COST)
             },
             "freja": {
                 "ultGen%": percent(OW2_FREJA_ULT_COST/OW1_FREJA_ULT_COST)
@@ -136,6 +145,9 @@ settings {
                 "ability1Cooldown%": percent(OW1_ILLARI_OUTBURST_COOLDOWN/OW2_ILLARI_OUTBURST_COOLDOWN),
                 "ability2Cooldown%": percent(OW1_ILLARI_PYLON_COOLDOWN/OW2_ILLARI_PYLON_COOLDOWN),
                 "ultGen%": percent(OW2_ILLARI_ULT_COST/OW1_ILLARI_ULT_COST)
+            },
+            "jetpackCat": {
+                "ultGen%": percent(OW2_JETPACK_CAT_ULT_COST/OW1_JETPACK_CAT_ULT_COST)
             },
             "junkerQueen": {
                 # "secondaryFireCooldown%": percent(OW1_JUNKERQUEEN_BLADE_COOLDOWN/OW2_JUNKERQUEEN_BLADE_COOLDOWN),
@@ -172,6 +184,9 @@ settings {
                 "ammoClipSize%": percent(OW1_MEI_CLIP_SIZE/OW2_MEI_CLIP_SIZE),
                 "ultGen%": percent(OW2_MEI_ULT_COST/OW1_MEI_ULT_COST)
             },
+            "mizuki": {
+                "ultGen%": percent(OW2_MIZUKI_ULT_COST/OW1_MIZUKI_ULT_COST)
+            },
             "mercy": {
                 "ultGen%": percent(OW2_MERCY_ULT_COST/OW1_MERCY_ULT_COST),
                 "enablePassive": false
@@ -190,6 +205,8 @@ settings {
                 "ultGen%": percent(OW2_ORISA_ULT_COST/OW1_ORISA_ULT_COST)
             },
             "pharah": {
+                "passiveVerticalSpeed%": percent(OW2_PHARAH_HOVER_JETS_HORIZONTAL_SPEED/OW1_PHARAH_HOVER_JETS_HORIZONTAL_SPEED),
+                # "ability1Acceleration%": percent(OW1_PHARAH_JUMP_JET_HEIGHT/OW2_PHARAH_JUMP_JET_HEIGHT),
                 "enablePassiveUnlimitedFuel": true,
                 # "passiveExtraFuel%": 0,
                 "ability1Cooldown%": percent(OW1_PHARAH_JUMP_JET_COOLDOWN/OW2_PHARAH_JUMP_JET_COOLDOWN),

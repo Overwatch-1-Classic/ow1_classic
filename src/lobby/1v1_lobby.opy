@@ -33,7 +33,7 @@ macro GAMEMODE_DESCRIPTION = (GAMEMODE_NAME" "GAMEMODE_VERSION"\n"\
                                SOURCE_CODE_LINK)
 
 
-rule "Copyright (c) 2025 Overwatch 1 Classic. See https://github.com/arvrianmaybe/classic for license to use this code.":
+rule "Copyright (c) 2026 Overwatch 1 Classic. See https://github.com/Overwatch-1-Classic/ow1_classic for license to use this code.":
     # This code has been forked by Overwatch 1 Emulator, Please also check theres https://github.com/Overwatch-1-Emulator/ow1-emulator
     disableInspector()
 
