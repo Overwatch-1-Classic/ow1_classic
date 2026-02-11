@@ -27,38 +27,43 @@
 
 # OW1 logic
 # Remove damage passive
-#!include "passives/damage/damage_passive.opy"
+# !include "passives/damage/damage_passive.opy"
 # Remove tank passive
 # !include "passives/tank/headshot.opy"
 # !include "passives/tank/knockback.opy"
 #!include "passives/tank/ult_charge.opy"
 # Remove support passive
-#   !include "passives/support/self_heal.opy"
+# !include "passives/support/self_heal.opy"
 # Perk utility
-# !include "passives/perk.opy"
+#!include "passives/perk.opy"
 
 # Hero specific logic
 #!include "heroes/ana/init.opy"
 #!include "heroes/ashe/init.opy"
+#!include "heroes/anran/init.opy"
 #!include "heroes/baptiste/init.opy"
 #!include "heroes/bastion/init.opy"
 #!include "heroes/brigitte/init.opy"
 #!include "heroes/doomfist/init.opy"
+#!include "heroes/domina/init.opy"
 #!include "heroes/dva/init.opy"
-#!include "heroes/freja/init.opy"
+#!include "heroes/emre/init.opy"
 #!include "heroes/genji/init.opy"
+#!include "heroes/freja/init.opy"
 #!include "heroes/hanzo/init.opy"
 #!include "heroes/hazard/init.opy"
 #!include "heroes/illari/init.opy"
-#!include "heroes/juno/init.opy"
+#!include "heroes/jetpackcat/init.opy"
 #!include "heroes/junkerqueen/init.opy"
 #!include "heroes/junkrat/init.opy"
+#!include "heroes/juno/init.opy"
 #!include "heroes/kiriko/init.opy"
 #!include "heroes/lifeweaver/init.opy"
 #!include "heroes/lucio/init.opy"
 #!include "heroes/mauga/init.opy"
 #!include "heroes/mccree/init.opy"
 #!include "heroes/mei/init.opy"
+#!include "heroes/mizuki/init.opy"
 #!include "heroes/mercy/init.opy"
 #!include "heroes/moira/init.opy"
 #!include "heroes/orisa/init.opy"
@@ -74,7 +79,6 @@
 #!include "heroes/symmetra/init.opy"
 #!include "heroes/torbjorn/init.opy"
 #!include "heroes/tracer/init.opy"
-#!include "heroes/vendetta/init.opy"
 #!include "heroes/venture/init.opy"
 #!include "heroes/widowmaker/init.opy"
 #!include "heroes/winston/init.opy"
@@ -88,6 +92,6 @@
 
 # Include debug at the end so any variable can be viewed
 #!include "utilities/debug.opy"
-# !include "utilities/third_person.opy"
+#!include "utilities/third_person.opy"
 
 # !include "utilities/watermark.opy"
