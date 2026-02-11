@@ -15,7 +15,7 @@ playervar trasnloc_velocity
 playervar transloc_time
 playervar transloc_timer
 
-playervar call_throwTranslocator
+#!defineMember call_throwTranslocator translocator_pvar[7]
 
 subroutine throwTranslocator
 subroutine destroyTranslocator
